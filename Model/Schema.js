@@ -112,4 +112,4 @@ const Supplier = new mongoose.Schema({
 });
 
 
-module.exports = mongoose.model("User", User);
+module.exports = mongoose.model("customer", Customer,"admin",Admin,"giftCard",GiftCard,"review",Review,"product",Product,"orders",Orders,"supplier",Supplier);
