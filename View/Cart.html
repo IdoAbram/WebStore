@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Shopping Cart
+        </title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <main role="main" class="pb-3">
+            <%for (var i = 0; i < articles.length; i++) {%>
+                <article>
+                    <span><%=articles[i].id%></span>
+                    <span><%=articles[i].title%></span>
+                    <span><%=articles[i].content%></span>
+                </article>
+            <%}%>
+            </main>
+        </div>
+    </body>
+</html>
