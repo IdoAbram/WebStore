@@ -12,7 +12,7 @@ const Customer = new mongoose.Schema({
   },
   address: String,
   moneySpent:{
-    type:Double,
+    type:Number,
     default: 0,
     required: true
   },
