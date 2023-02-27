@@ -17,4 +17,5 @@ const Product=new mongoose.schema({
     Tags: String
   });
 
-  module.exports = mongoose.model("product", Product);
+  
+module.exports = mongoose.model("product", Product);
