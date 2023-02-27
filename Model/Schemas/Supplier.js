@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+var  Orders = mongoose.model('orders')
 
 const Supplier = new mongoose.Schema({
 
