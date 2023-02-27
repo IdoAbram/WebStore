@@ -1,15 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <title>
-            Shopping Cart
-        </title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <link href="Cart.css" rel="stylesheet">
     </head>
     <body>
-        <div class="products">
-            for (let i = 0; i < shoppingCart.length; i++) {
-                //need to run on shoppingcart in user and print on screen each product by searching its name in general product array
-            }
-        </div>
+        <form method="post" action="http://localhost:8080//HomePage">
+            <div class="container-fluid banner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav class="navbar">
+                            <div class="navbar-brand">Mavoch</div>
+                            <ul class="nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Store</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Info</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Cart</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">GiftCards</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Sign In</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 offset-md-3 info text-center">
+                        <h1>Shopping Cart</h1>
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Picture</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Remove</th>
+                                <th scope="col">Price</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                //for loop (ejs)
+                              <tr>
+                                <td><img src="Logo.png" style="width: 300px;"></td>
+                                <td>description</td>
+                                <td>2</td>//need to be able to add or remove(javascript)
+                                <td><button type="button" class="btn btn-danger">Remove</button></td>
+                                <td>$4</td>//price need to change accordint to quantity
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+            </div>
+        </form>
     </body>
 </html>
