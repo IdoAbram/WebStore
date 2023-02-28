@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+app.set('view engine', 'ejs');
 const mongoose = require('mongoose');
 const Customer = require("./Model/Schemas/Customer")
 mongoose.set('strictQuery', false);
@@ -27,6 +28,7 @@ async function run(){
    
    /*
     await customer.save().then(()=> console.log("Saved Alon"));
+    
     await customer2.save().then(()=>console.log("Saved Ido"))
   */
     await console.log(await Customer.count())

@@ -1,16 +1,23 @@
 const express = require("express")
 const router = express.Router();
-const customerController = require('../Controller/customer')
+const customerController = require('../Controller/Customer')
 
 
 router.get('/',(req,res)=>{
     res.send('Customer List');
 })
 
-router.get('/new',async (req,res)=>{
+router.get('/get',async (req,res)=>{
 
-    const c = await customerController.getCustomers({})
-    res.send(c);
+    const customers = await customerController.getCustomers({});
+    res.render("../View/makeCustomerPage/makeCustomer",{customers})
+    //const c = await customerController.getCustomers({})
+    //res.send(c);
+})
+
+router.get('/create',async (req,res)=>{
+
+    res.render('../View/makeCustomerPage/makeCustomer',{customerController})
 })
 
 module.exports = router

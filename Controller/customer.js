@@ -7,7 +7,7 @@ const createCustomer = async (req, res) => { //Could be done with the builder de
 
 const getCustomers = async (req, res) => { // The service should return Value Set
     const customers = await customerService.getCustomers();
-    res.json(customers);
+    return customers;
 };
 
 const getCustomerById = async (req, res) => { //The service should put all customers in hashmap
