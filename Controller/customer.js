@@ -1,7 +1,7 @@
 const customerService = require('../Services/Customer');
 
 const createCustomer = async (req, res) => { //Could be done with the builder design pattern
-    const newCustomer = await customerService.createCustomer(req.body.firstName,req.body.lastName,req.body.address,req.body.password);
+    const newCustomer = await customerService.createCustomer(req.body.firstName,req.body.lastName,req.body.address,req.body.email,req.body.password);
     res.json(newCustomer);
 };
 

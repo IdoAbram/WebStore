@@ -13,17 +13,62 @@
 
 <body>
 
-    <h3>Make A Customer </h3>
+    <h3>Make A Customer</h3>
 
 
-    <h1>Customers</h1>
-    <ul>
-        <% for (cus of customers) { %>
+   <form method="post">
 
-            <li><%= cus.moneySpent %></li>
+    <table>
 
-        <% } %>
-    </ul>
+        <tr>
+            <td>First Name:</td>
+            <td>
+                <input type="text" placeholder="Enter First Name" name="firstName">
+            </td>
+        </tr>
+
+        <tr>
+            <td>Last Name:</td>
+            <td>
+                <input type="text" placeholder="Enter Last Name" name="lastName">
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>Address:</td>
+            <td>
+                <input type="text" placeholder="Enter Address" name="address">
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>Email:</td>
+            <td>
+                <input type="text" placeholder="Enter Mail" name="email">
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>Password:</td>
+            <td>
+                <input type="text" placeholder="Enter Password" name="password">
+            </td>
+
+        </tr>
+        
+
+
+
+
+    </table>
+
+
+
+
+   </form>
     
 
 </body>

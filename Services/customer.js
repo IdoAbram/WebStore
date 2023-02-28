@@ -1,10 +1,11 @@
 const Customer = require('../Model/Schemas/Customer');
 
-const createCustomer = async (firstName, lastName,address,password) => {
+const createCustomer = async (firstName, lastName,address,email,password) => {
     const Customer = new Customer({
         firstName : firstName,
         lastName : lastName,
         address : address,
+        email:email,
         password : password
     });
 

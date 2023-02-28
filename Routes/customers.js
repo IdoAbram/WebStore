@@ -10,7 +10,7 @@ router.get('/',(req,res)=>{
 router.get('/get',async (req,res)=>{
 
     const customers = await customerController.getCustomers({});
-    res.render("../View/makeCustomerPage/makeCustomer",{customers})
+    res.render("../View/getAllCustomersPage/getCustomers",{customers})
     //const c = await customerController.getCustomers({})
     //res.send(c);
 })
