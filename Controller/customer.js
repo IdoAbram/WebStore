@@ -1,4 +1,4 @@
-const customerService = require('../services/customers');
+const customerService = require('../Services/Customer');
 
 const createCustomer = async (req, res) => { //Could be done with the builder design pattern
     const newCustomer = await customerService.createCustomer(req.body.firstName,req.body.lastName,req.body.address,req.body.password);
@@ -23,10 +23,8 @@ const getCustomerById = async (req, res) => { //The service should put all custo
 //Update the customer according to the change attribute with Proxy Design Pattern
 const updateCustomerName = async (req, res) => { 
 
-
     customerService.updateCustomerName(req.params.id,req.body.name,req.body.lastName);
     res.json(customer);   
-
 
 };
 

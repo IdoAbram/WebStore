@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router();
-const Customer = require('../Model/Schemas/Customer.js')
+const customerController = require('../Controller/customer')
 
 
 router.get('/',(req,res)=>{
@@ -9,7 +9,7 @@ router.get('/',(req,res)=>{
 
 router.get('/new',async (req,res)=>{
 
-    const c = await Customer.find({})
+    const c = await customerController.getCustomers({})
     res.send(c);
 })
 
