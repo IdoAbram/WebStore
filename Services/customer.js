@@ -1,4 +1,4 @@
-const Customer = require('../Model/Customer');
+const Customer = require('../Model/Schemas/Customer');
 
 const createCustomer = async (firstName, lastName,address,password) => {
     const Customer = new Customer({
