@@ -1,7 +1,4 @@
-const Customer = require('../Model/Customer');
-
-const attMap = new Map(); //Could be done with Proxy.
-
+const Customer = require('../Model/Schemas/Customer');
 
 const createCustomer = async (firstName, lastName,address,password) => {
     const Customer = new Customer({
@@ -21,8 +18,6 @@ const getCustomerById = async (id) => {
 const getCustomers = async () => {
     return await Customer.find({});  // Return all customers that satsify nothing (Return Everyone)
 };
-
-//Customer is implementing the Builder Design Pattern
 
 const updateCustomerName = async (id, firstName,lastName) => {
    
