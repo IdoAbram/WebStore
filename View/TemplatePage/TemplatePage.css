@@ -1,9 +1,15 @@
+*{
+    font-family: 'Raleway',sans-serif;
+}
+
+
 body{
     margin: 0;
     padding: 0;
     background: #fff;
     font-family: 'Raleway',sans-serif;
-    color: #444;
+    color: #fff;
+    
     background:url('Logo.png');
     background-position: top;
     background-size: cover;
@@ -18,10 +24,24 @@ body{
     background-repeat: no-repeat;
 }
 .banner .navbar{
-    margin-top: 4%;
+    background:url('Logo.png');
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    margin-top: 0%;
+    top: 0;
+    right: 0;
+    z-index: 100000;
 }
-
+.banner .info{
+    position: relative;
+    margin-top: 15%;
+    transform: translateY(-15%);
+    
+    color: #444;
+}
 .banner .navbar-brand{
+    background:url('Logo.png');
     color: black;
     font-size:1.8em;
     font-weight: 700;
@@ -48,10 +68,11 @@ body{
 }
 .banner .info p{
     color:#444;
-    margin-bottom: 50%;
+    margin-bottom: 10%;
 }
 
 footer{
+    width: 100%;
     background-color: #fff;
     display:flex;
     flex-wrap: wrap;
@@ -80,7 +101,7 @@ footer h4{
     padding-bottom: 20px;
 }
 
-footer p{
+footer .col p{
     font-size: 17px;
     margin: 0 0 8px 0;
 }
