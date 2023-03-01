@@ -1,8 +1,9 @@
 const customerService = require('../Services/Customer');
 
-const createCustomer = async (req, res) => { //Could be done with the builder design pattern
+const createCustomer = async (req, res) => {
+   //Could be done with the builder design pattern
     const newCustomer = await customerService.createCustomer(req.body.firstName,req.body.lastName,req.body.address,req.body.email,req.body.password);
-    res.json(newCustomer);
+    return newCustomer;
 };
 
 const getCustomers = async (req, res) => { // The service should return Value Set
@@ -18,7 +19,6 @@ const getCustomerById = async (req, res) => { //The service should put all custo
 
     return customer;
 };
-
 
 //Update the customer according to the change attribute with Proxy Design Pattern
 const updateCustomerName = async (req, res) => { 
@@ -84,8 +84,16 @@ const updateCustomerAddress = async (req, res) => {
     res.json(customer);   
 
   };
+
+
+  const getCount = async (req,res) => {
+    return await customerService.getCount();
+  }
   
 
+  const deleteAllCustomers = async(req,res)=>{
+    await customerService.deleteAll();
+  }
   
 
   const deleteCustomer = async (req, res) => {
@@ -110,5 +118,7 @@ const updateCustomerAddress = async (req, res) => {
     updateCustomerMail,
     updateCustomerPassword,
     updateCustomerCreditcard,
-    deleteCustomer
+    deleteCustomer,
+    getCount,
+    deleteAllCustomers
   };

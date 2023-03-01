@@ -3,10 +3,6 @@ const router = express.Router();
 const customerController = require('../Controller/Customer')
 
 
-router.get('/',(req,res)=>{
-    res.send('Customer List');
-})
-
 router.get('/get',async (req,res)=>{
 
     const customers = await customerController.getCustomers({});
@@ -17,7 +13,17 @@ router.get('/get',async (req,res)=>{
 
 router.get('/create',async (req,res)=>{
 
-    res.render('../View/makeCustomerPage/makeCustomer',{customerController})
+    res.render("../View/makeCustomerPage/makeCustomer")
+    
 })
+
+
+router.route('/create').post(customerController.createCustomer)
+router.route('/delete').get(function (req,res,next){
+
+    customerController.deleteAllCustomers
+    res.redirect("/customers/get")
+});
+ 
 
 module.exports = router

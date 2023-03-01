@@ -2,7 +2,6 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const cors = require('cors');
 app.set('view engine', 'ejs');
 const mongoose = require('mongoose');
 const Customer = require("./Model/Schemas/Customer")
@@ -13,6 +12,8 @@ mongoose.connect("mongodb://127.0.0.1:27017",()=>{console.log("Connected")})
 
 
     const customerRouter = require('./Routes/customers')
+    app.use(bodyParser.urlencoded({extended: false}))
+    app.use(bodyParser.json());
     app.use('/customers',customerRouter);
     app.listen(3000)
 
