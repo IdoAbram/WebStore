@@ -46,3 +46,13 @@ body{
 .banner .info p{
     color:#444;
 }
+.cart{
+    background-color: white;
+}
+.change{
+    border-color: white;
+    width: 35px;
+}
+.hide{
+    display: none;
+}
