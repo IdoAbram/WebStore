@@ -30,7 +30,8 @@ async function run(){
     await customer2.save().then(()=>console.log("Saved Ido"))
   */
 
-    await console.log(await Customer.count())
+    console.log(await Customer.count())
+    
 }
 
 

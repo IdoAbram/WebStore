@@ -1,0 +1,72 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+</head>
+
+<body>
+
+    <h3>Update Customer For <%=customer.Name%></h3>
+
+   <form method="post">
+
+    <table>
+
+        <tr>
+            <td>First Name:</td>
+            <td>
+                
+                <input type="text" placeholder=<%=customer.Name%> name="firstName">
+            </td>
+        </tr>
+
+        <tr>
+            <td>Last Name:</td>
+            <td>
+                <input type="text" placeholder=<%=customer.lastName%> name="lastName">
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>Address:</td>
+            <td>
+                <input type="text" placeholder=<%=customer.address%> name="address">
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>Email:</td>
+            <td>
+                <input type="text" placeholder=<%=customer.email%> name="email">
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>Password:</td>
+            <td>
+                <input type="text" placeholder="********" name="password">
+            </td>
+
+        </tr>
+        
+
+    </table>
+
+
+    <button type="submit">Submit</button>
+   </form>
+
+
+</body>
+
+
+</html>
