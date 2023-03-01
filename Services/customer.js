@@ -1,14 +1,11 @@
 const Customer = require('../Model/Schemas/Customer');
 
-const createCustomer = async (firstName, lastName,address,password) => {
-    const Customer = new Customer({
-        firstName : firstName,
-        lastName : lastName,
-        address : address,
-        password : password
-    });
+const createCustomer = async (firstName, lastName,address,email,password) => {
 
-    return await Customer.save();
+    const customer = new Customer({Name:firstName,lastName:lastName,address:address,moneySpent:0,wishList:[],shoppingCart:[],orders:[],email:email,password:password,creditCards:[]})
+
+
+    return await customer.save();
 };
 
 const getCustomerById = async (id) => {
@@ -83,6 +80,16 @@ const deleteCustomersByName = async(name) =>{
     Customer.delete({Name:name});
 }
 
+const deleteAll = async() => {
+  await Customer.deleteMany({});
+}
+
+const getCount = async() =>{
+    return await Customer.count();
+}
+
+
+
 module.exports = {
     createCustomer,
     getCustomerById,
@@ -97,5 +104,7 @@ module.exports = {
     updateCustomerPassword,
     updateCustomerCreditcards,
     deleteCustomersByName,
-    deleteCustomer
+    deleteCustomer,
+    getCount,
+    deleteAll
 }
