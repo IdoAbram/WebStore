@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 
 const Product=new mongoose.schema({
     Title: String,
-    price: Double,
+    price: Number,
     Supplier_Id: Number,
     Description: String,
+    shortDescription: String,
     Reviews: Array,
     AmountAvailable: Double,
     IsAvailableSuppliers: Boolean,

@@ -1,3 +1,4 @@
+const Customer = require('../Model/Schemas/Customer');
 const customerService = require('../Services/Customer');
 
 const createCustomer = async (req, res) => {
@@ -11,77 +12,94 @@ const getCustomers = async (req, res) => { // The service should return Value Se
     return customers;
 };
 
-const getCustomerById = async (req, res) => { //The service should put all customers in hashmap
-    const customer = await customerService.getCustomerById(req.params.id);
-    if (!customer) {
-        return res.status(404).json({ errors: ['Customer not found'] });
+const getCustomerById = async (req, res, next) => { //The service should put all customers in hashmap
+    var customer = await customerService.getCustomerById(req.params.id);
+
+    if(!customer){
+     customer = null;
     }
 
     return customer;
 };
 
 //Update the customer according to the change attribute with Proxy Design Pattern
+
+
+const updateAll = async (req,res) =>{
+
+
+  if(req.body.firstName && req.body.lastName)
+      await updateCustomerName(req,res);
+  if(req.body.address)
+      await updateCustomerAddress(req,res);
+  if(req.body.mail)
+      await updateCustomerMail(req,res);
+  if(req.body.password)
+      await updateCustomerPassword(req,res);
+  
+}
+
 const updateCustomerName = async (req, res) => { 
 
-    customerService.updateCustomerName(req.params.id,req.body.name,req.body.lastName);
-    res.json(customer);   
+    customerService.updateCustomerName(req.params.id,req.body.firstName,req.body.lastName);
+
 
 };
 
 const updateCustomerAddress = async (req, res) => { 
 
-  customerService.updateCustomerAddress(req.params.id,req.body.name);
-    res.json(customer);   
+    customerService.updateCustomerAddress(req.params.id,req.body.address);
+    
 
-  };
+};
 
-  const updateCustomerMoneySpent = async (req, res) => { 
+const updateCustomerMoneySpent = async (req, res) => { 
 
     customerService.updateCustomerMoneySpent(req.params.id,req.body.money);
-    res.json(customer);   
+   
 
-  };
+};
 
-  const updateCustomerWishList = async (req, res) => { 
+const updateCustomerWishList = async (req, res) => { 
 
     customerService.updateCustomerMoneySpent(req.params.id,req.body.wishList);
-    res.json(customer);   
+     
 
-  };
+};
 
-  const updateCustomerShoppingCart = async (req, res) => { 
+const updateCustomerShoppingCart = async (req, res) => { 
 
     customerService.updateCustomerMoneySpent(req.params.id,req.body.shoppingCart);
-    res.json(customer);   
+      
 
-  };
+};
   
 
-  const updateCustomerOrders = async (req, res) => { 
+const updateCustomerOrders = async (req, res) => { 
 
     customerService.updateCustomerMoneySpent(req.params.id,req.body.Orders);
-    res.json(customer);   
+     
 
-  };
+};
 
   const updateCustomerMail = async (req, res) => { 
 
     customerService.updateCustomerMail(req.params.id,req.body.mail);
-    res.json(customer);   
+    
 
   };
 
   const updateCustomerPassword = async (req, res) => { 
 
     customerService.updateCustomerPassword(req.params.id,req.body.password);
-    res.json(customer);   
+     
 
   };
   
   const updateCustomerCreditcard = async (req, res) => { 
 
-    customerService.updateCustomerPassword(req.params.id,req.body.credicards);
-    res.json(customer);   
+    customerService.updateCustomerPassword(req.params.id,req.body.creditcards);
+     
 
   };
 
@@ -120,5 +138,6 @@ const updateCustomerAddress = async (req, res) => {
     updateCustomerCreditcard,
     deleteCustomer,
     getCount,
-    deleteAllCustomers
+    deleteAllCustomers,
+    updateAll
   };

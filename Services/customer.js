@@ -18,66 +18,66 @@ const getCustomers = async () => {
 
 const updateCustomerName = async (id, firstName,lastName) => {
    
-    Customer.findOneAndUpdate({_id:id},{Name:firstName,lastName:lastName});
+    await Customer.findOneAndUpdate({_id:id},{Name:firstName,lastName:lastName});
 
 };
 
 const updateCustomerAddress = async (id, address) => {
    
-    Customer.findOneAndUpdate({_id:id},{address:address});
+    await Customer.findOneAndUpdate({_id:id},{address:address});
 
 };
 
 const updateCustomerMoneySpent = async (id, money) => {
    
-    Customer.findOneAndUpdate({_id:id},{moneySpent:money});
+    await Customer.findOneAndUpdate({_id:id},{moneySpent:money});
 
 };
 
 const updateCustomerWishList = async (id, WishList) => {
    
-    Customer.findOneAndUpdate({_id:id},{WishList:WishList});
+    await Customer.findOneAndUpdate({_id:id},{WishList:WishList});
 
 };
 
 const updateCustomerShoppingCart = async (id, shoppingCart) => {
    
-    Customer.findOneAndUpdate({_id:id},{shoppingCart:shoppingCart});
+    await Customer.findOneAndUpdate({_id:id},{shoppingCart:shoppingCart});
 
 };
 
 const updateCustomerOrders = async (id, orders) => {
    
-    Customer.findOneAndUpdate({_id:id},{orders:orders});
+    await Customer.findOneAndUpdate({_id:id},{orders:orders});
 
 };
 
 const updateCustomerMail = async (id, email) => {
    
-    Customer.findOneAndUpdate({_id:id},{email:email});
+    await Customer.findOneAndUpdate({_id:id},{email:email});
 
 };
 
 const updateCustomerPassword = async (id, newPass) => {
    
-    Customer.findOneAndUpdate({_id:id},{password:newPass});
+    await Customer.findOneAndUpdate({_id:id},{password:newPass});
 
 };
 
 const updateCustomerCreditcards = async (id, creditcards) => {
    
-    Customer.findOneAndUpdate({_id:id},{creditCards:creditcards});
+    await Customer.findOneAndUpdate({_id:id},{creditCards:creditcards});
 
 };
 
 const deleteCustomer = async (id) => {
     
-    Customer.deleteOne({_id:id})
+    await Customer.deleteOne({_id:id})
 
 }
 
 const deleteCustomersByName = async(name) =>{
-    Customer.delete({Name:name});
+    await Customer.delete({Name:name});
 }
 
 const deleteAll = async() => {

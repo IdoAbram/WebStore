@@ -22,7 +22,8 @@ const Supplier = new mongoose.Schema({
     moneyGiven: Number,
     outGoingOrders: [Orders],
     pastOrders: [Orders],
-    
+
+    location: String
   
   
   });
