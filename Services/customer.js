@@ -81,7 +81,7 @@ const deleteCustomersByName = async(name) =>{
 }
 
 const deleteAll = async() => {
-  await Customer.deleteMany({});
+  await Customer.deleteMany({})
 }
 
 const getCount = async() =>{
