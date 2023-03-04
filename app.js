@@ -4,17 +4,21 @@ const app = express();
 const bodyParser = require('body-parser');
 app.set('view engine', 'ejs');
 const mongoose = require('mongoose');
-const Customer = require("./Model/Schemas/Customer")
+const Customer = require("./Model/Schemas/Customer");
 mongoose.set('strictQuery', false);
+var path = require('path');
 
 
-mongoose.connect("mongodb://127.0.0.1:27017",()=>{console.log("Connected")})
+mongoose.connect("mongodb://127.0.0.1:27017")
 
-
+    const loginRouter = require('./Routes/login')
     const customerRouter = require('./Routes/customers')
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json());
+    app.use(express.static(path.join(__dirname+'/View/LoginPage')))
+
     app.use('/customers',customerRouter);
+    app.use('/login',loginRouter);
     app.listen(3000)
 
 run()
