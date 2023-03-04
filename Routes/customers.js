@@ -1,9 +1,9 @@
 const express = require("express")
 const router = express.Router();
-const customerController = require('../Controller/Customer')
+const customerController = require('../Controller/Customer') //Controller API for using the mongoose methods
 
-router.get('/get',async (req,res)=>{
-    const customers = await customerController.getCustomers({});
+router.get('/get', async (req,res)=>{ 
+    const customers = await customerController.getCustomers();
     res.render("../View/Customer/getCustomers",{customers})
 })
 
