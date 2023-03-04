@@ -8,10 +8,15 @@ const createCustomer = async (req, res) => {
 };
 
 const getCustomers = async (req, res) => { // The service should return Value Set
-    const customers = await customerService.getCustomers(req.body.filter);
+    const customers = await customerService.getCustomers({});
     return customers;
 };
 
+
+function getCustomersByFilter(filter){
+    const customers = customerService.getCustomers(filter);
+    return customers;
+}
 
 const getCustomerById = async (req, res, next) => { //The service should put all customers in hashmap
     var customer = await customerService.getCustomerById(req.params.id);
@@ -140,5 +145,6 @@ const updateCustomerOrders = async (req, res) => {
     deleteCustomer,
     getCount,
     deleteAllCustomers,
-    updateAll
+    updateAll,
+    getCustomersByFilter
   };

@@ -3,7 +3,7 @@ const router = express.Router();
 const customerController = require('../Controller/Customer')
 
 router.get('/get',async (req,res)=>{
-    const customers = await customerController.getCustomers({});
+    const customers = await customerController.getCustomersByFilter({});
     res.render("../View/Customer/getCustomers",{customers})
 })
 
