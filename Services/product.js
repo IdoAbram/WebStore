@@ -1,8 +1,8 @@
-const Customer = require('../Model/Schemas/Customer');
+const Customer = require('../Model/Schemas/Product');
 
-const createCustomer = async (firstName, lastName,address,email,password) => {
+const createProduct = async (title, price,Supplier_Id,Description,shortDescription,reviews,AmountAvailable,IsAvailableSuppliers,Rating,Pictures,Tags) => {
 
-    const customer = new Customer({Name:firstName,lastName:lastName,address:address,moneySpent:0,wishList:[],shoppingCart:[],orders:[],email:email,password:password,creditCards:[]})
+    const customer = new Customer({Title:title,price:price,Supplier_Id:Supplier_Id,moneySpent:0,wishList:[],shoppingCart:[],orders:[],email:email,password:password,creditCards:[]})
 
 
     return await customer.save();
@@ -12,8 +12,8 @@ const getCustomerById = async (id) => {
     return await Customer.findById(id);
 };
 
-const getCustomers = async (filter) => {
-    return await Customer.find(filter);  // Return all customers that satsify nothing (Return Everyone)
+const getCustomers = async () => {
+    return await Customer.find({});  // Return all customers that satsify nothing (Return Everyone)
 };
 
 const updateCustomerName = async (id, firstName,lastName) => {
@@ -81,7 +81,7 @@ const deleteCustomersByName = async(name) =>{
 }
 
 const deleteAll = async() => {
-  await Customer.deleteMany({})
+  await Customer.deleteMany({});
 }
 
 const getCount = async() =>{
