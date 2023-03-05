@@ -1,110 +1,128 @@
-const Customer = require('../Model/Schemas/Product');
+const Product = require('../Model/Schemas/Product');
 
-const createProduct = async (title, price,Supplier_Id,Description,shortDescription,reviews,AmountAvailable,IsAvailableSuppliers,Rating,Pictures,Tags) => {
+const createProduct = async (title, price,Supplier_Id,Description,shortDescription,amountAvailable,pictures,tags) => {
 
-    const customer = new Customer({Title:title,price:price,Supplier_Id:Supplier_Id,moneySpent:0,wishList:[],shoppingCart:[],orders:[],email:email,password:password,creditCards:[]})
+    const product = new Product({Title:title,price:price,Supplier_Id:Supplier_Id,
+        Description:Description,shortDescription:shortDescription
+        ,Reviews:[],AmountAvailable:amountAvailable,IsAvailableSuppliers:true,Rating:5,Pictures:pictures,Tags:tags})
 
 
-    return await customer.save();
+    return await product.save();
 };
 
-const getCustomerById = async (id) => {
-    return await Customer.findById(id);
+const getProductById = async (id) => {
+    return await Product.findById(id);
 };
 
-const getCustomers = async () => {
-    return await Customer.find({});  // Return all customers that satsify nothing (Return Everyone)
+const getProducts = async () => {
+    return await Product.find({});  // Return all products that satsify nothing (Return Everyone)
 };
 
-const updateCustomerName = async (id, firstName,lastName) => {
+const updateProductTitle = async (id, title) => {
    
-    await Customer.findOneAndUpdate({_id:id},{Name:firstName,lastName:lastName});
+    await Product.findOneAndUpdate({_id:id},{Title:title});
 
 };
 
-const updateCustomerAddress = async (id, address) => {
+const updateProductPrice = async (id, price) => {
    
-    await Customer.findOneAndUpdate({_id:id},{address:address});
+    await Product.findOneAndUpdate({_id:id},{price:price});
 
 };
 
-const updateCustomerMoneySpent = async (id, money) => {
+const updateProductSupplierId = async (id, Supplier_Id) => {
    
-    await Customer.findOneAndUpdate({_id:id},{moneySpent:money});
+    await Product.findOneAndUpdate({_id:id},{Supplier_Id:Supplier_Id});
 
 };
 
-const updateCustomerWishList = async (id, WishList) => {
+const updateProductDescription = async (id, Description) => {
    
-    await Customer.findOneAndUpdate({_id:id},{WishList:WishList});
+    await Product.findOneAndUpdate({_id:id},{Description:Description});
 
 };
 
-const updateCustomerShoppingCart = async (id, shoppingCart) => {
+const updateProductShortDescription = async (id, shortDescription) => {
    
-    await Customer.findOneAndUpdate({_id:id},{shoppingCart:shoppingCart});
+    await Product.findOneAndUpdate({_id:id},{shortDescription:shortDescription});
 
 };
 
-const updateCustomerOrders = async (id, orders) => {
+const updateProductReviews = async (id, Reviews) => {
    
-    await Customer.findOneAndUpdate({_id:id},{orders:orders});
+    await Product.findOneAndUpdate({_id:id},{Reviews:Reviews});
 
 };
 
-const updateCustomerMail = async (id, email) => {
+const updateProductAmAvailable = async (id, amount) => {
    
-    await Customer.findOneAndUpdate({_id:id},{email:email});
+    await Product.findOneAndUpdate({_id:id},{AmountAvailable:amount});
 
 };
 
-const updateCustomerPassword = async (id, newPass) => {
+const updateProductAvailable = async (id, isAval) => {
    
-    await Customer.findOneAndUpdate({_id:id},{password:newPass});
+    await Product.findOneAndUpdate({_id:id},{IsAvailableSuppliers:isAval});
 
 };
 
-const updateCustomerCreditcards = async (id, creditcards) => {
+const updateProductRating = async (id, Rating) => {
    
-    await Customer.findOneAndUpdate({_id:id},{creditCards:creditcards});
+    await Product.findOneAndUpdate({_id:id},{Rating:Rating});
 
 };
 
-const deleteCustomer = async (id) => {
+
+const updateProductPictures = async (id, pics) => {
+   
+    await Product.findOneAndUpdate({_id:id},{Pictures:pics});
+
+};
+
+const updateProductTags = async (id, tags) => {
+   
+    await Product.findOneAndUpdate({_id:id},{Tags:tags});
+
+};
+
+
+const deleteProduct = async (id) => {
     
-    await Customer.deleteOne({_id:id})
+    await Product.deleteOne({_id:id})
 
 }
 
-const deleteCustomersByName = async(name) =>{
-    await Customer.delete({Name:name});
+const deleteProductsByName = async(name) =>{
+    await Product.delete({Name:name});
 }
 
 const deleteAll = async() => {
-  await Customer.deleteMany({});
+  await Product.deleteMany({});
 }
 
 const getCount = async() =>{
-    return await Customer.count();
+    return await Product.count();
 }
 
 
 
 module.exports = {
-    createCustomer,
-    getCustomerById,
-    getCustomers,
-    updateCustomerName,
-    updateCustomerAddress,
-    updateCustomerMoneySpent,
-    updateCustomerWishList,
-    updateCustomerShoppingCart,
-    updateCustomerOrders,
-    updateCustomerMail,
-    updateCustomerPassword,
-    updateCustomerCreditcards,
-    deleteCustomersByName,
-    deleteCustomer,
+    createProduct,
+    getProductById,
+    getProducts,
+    updateProductTitle,
+    updateProductPrice,
+    updateProductSupplierId,
+    updateProductDescription,
+    updateProductShortDescription,
+    updateProductReviews,
+    updateProductAmAvailable,
+    updateProductAvailable,
+    updateProductRating,
+    updateProductPictures,
+    updateProductTags,
+    deleteProductsByName,
+    deleteProduct,
     getCount,
     deleteAll
 }
