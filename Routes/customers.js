@@ -14,7 +14,7 @@ router.get('/create',async (req,res)=>{
 router.route('/create').post(customerController.createCustomer)
 
 router.route('/delete').get(function (req,res){
-    customerController.deleteAllCustomers
+    customerController.deleteAllCustomers()
     res.redirect("/customers/get")
 });
  
