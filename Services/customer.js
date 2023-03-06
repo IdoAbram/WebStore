@@ -1,57 +1,74 @@
-const Customer = require('../Model/Customer');
+const Customer = require('../Model/Schemas/Customer');
 
-const createCustomer = async (firstName, lastName,address,password) => {
-    const Customer = new Customer({
-        firstName : firstName,
-        lastName : lastName,
-        address : address,
-        password : password
-    });
+const createCustomer = async (firstName, lastName,address,email,password) => {
 
-    return await Customer.save();
+    const customer = new Customer({Name:firstName,lastName:lastName,address:address,moneySpent:0,wishList:[],shoppingCart:[],orders:[],email:email,password:password,creditCards:[]})
+
+
+    return await customer.save();
 };
 
 const getCustomerById = async (id) => {
     return await Customer.findById(id);
 };
 
-const getCustomers = async () => {
-    return await Customer.find({});  // Return all customers that satsify nothing (Return Everyone)
+const getCustomers = async (filter) => {
+    return await Customer.find(filter);  // Return all customers that satsify the filter (json format)
 };
 
 const updateCustomerName = async (id, firstName,lastName) => {
    
-    Customer.findOneAndUpdate({_id:id},{Name:firstName,lastName:lastName});
+    await Customer.findOneAndUpdate({_id:id},{Name:firstName,lastName:lastName});
 
 };
 
 const updateCustomerAddress = async (id, address) => {
    
-    Customer.findOneAndUpdate({_id:id},{address:address});
-
+    await Customer.findOneAndUpdate({_id:id},{address:address});
 };
 
 const updateCustomerMoneySpent = async (id, money) => {
    
-    Customer.findOneAndUpdate({_id:id},{moneySpent:money});
-
+    await Customer.findOneAndUpdate({_id:id},{moneySpent:money});
 };
 
 const updateCustomerWishList = async (id, WishList) => {
    
-    Customer.findOneAndUpdate({_id:id},{WishList:WishList});
-
+    await Customer.findOneAndUpdate({_id:id},{WishList:WishList});
 };
 
 const updateCustomerShoppingCart = async (id, shoppingCart) => {
    
-    Customer.findOneAndUpdate({_id:id},{shoppingCart:shoppingCart});
-
+    await Customer.findOneAndUpdate({_id:id},{shoppingCart:shoppingCart});
 };
 
 const updateCustomerOrders = async (id, orders) => {
    
-    Customer.findOneAndUpdate({_id:id},{orders:orders});
+    await Customer.findOneAndUpdate({_id:id},{orders:orders});
+
+};
+
+const updateCustomerMail = async (id, email) => {
+   
+    await Customer.findOneAndUpdate({_id:id},{email:email});
+
+};
+
+const updateCustomerPassword = async (id, newPass) => {
+   
+    await Customer.findOneAndUpdate({_id:id},{password:newPass});
+
+};
+
+const updateCustomerCreditcards = async (id, creditcards) => {
+   
+    await Customer.findOneAndUpdate({_id:id},{creditCards:creditcards});
+
+};
+
+const deleteCustomer = async (id) => {
+    
+    await Customer.deleteOne({_id:id})
 
 };
 
@@ -80,8 +97,17 @@ const deleteCustomer = async (id) => {
 }
 
 const deleteCustomersByName = async(name) =>{
-    Customer.delete({Name:name});
+    await Customer.delete({Name:name});
 }
+
+const deleteAll = async() => {
+  await Customer.deleteMany({});
+}
+
+const getCount = async() =>{
+    return await Customer.count();
+}
+
 
 module.exports = {
     createCustomer,
@@ -97,5 +123,7 @@ module.exports = {
     updateCustomerPassword,
     updateCustomerCreditcards,
     deleteCustomersByName,
-    deleteCustomer
+    deleteCustomer,
+    getCount,
+    deleteAll
 }

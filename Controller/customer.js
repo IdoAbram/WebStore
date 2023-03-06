@@ -1,102 +1,128 @@
-const customerService = require('../services/customers');
+const customerService = require('../Services/Customer');
 
-const createCustomer = async (req, res) => { //Could be done with the builder design pattern
-    const newCustomer = await customerService.createCustomer(req.body.firstName,req.body.lastName,req.body.address,req.body.password);
-    res.json(newCustomer);
+const createCustomer =  (req, res) => {
+    const newCustomer =  customerService.createCustomer(req.body.firstName,req.body.lastName,req.body.address,req.body.email,req.body.password);
+    return newCustomer;
 };
 
-const getCustomers = async (req, res) => { // The service should return Value Set
-    const customers = await customerService.getCustomers();
-    res.json(customers);
+const getCustomers =  (req, res) => { 
+    const customers =  customerService.getCustomers({});
+    return customers;
 };
 
-const getCustomerById = async (req, res) => { //The service should put all customers in hashmap
-    const customer = await customerService.getCustomerById(req.params.id);
-    if (!customer) {
-        return res.status(404).json({ errors: ['Customer not found'] });
+
+function getCustomersByFilter(filter){
+    const customers = customerService.getCustomers(filter);
+    return customers;
+}
+
+const getCustomerById = (req, res) => { 
+    var customer =  customerService.getCustomerById(req.params.id);
+
+    if(!customer){
+     customer = null;
     }
 
     return customer;
 };
 
-
 //Update the customer according to the change attribute with Proxy Design Pattern
+
+
+const updateAll =  (req,res) =>{
+
+
+  if(req.body.firstName && req.body.lastName)
+       updateCustomerName(req,res);
+  if(req.body.address)
+       updateCustomerAddress(req,res);
+  if(req.body.mail)
+       updateCustomerMail(req,res);
+  if(req.body.password)
+       updateCustomerPassword(req,res);
+  
+}
+
 const updateCustomerName = async (req, res) => { 
 
-
-    customerService.updateCustomerName(req.params.id,req.body.name,req.body.lastName);
-    res.json(customer);   
-
+    customerService.updateCustomerName(req.params.id,req.body.firstName,req.body.lastName);
 
 };
 
 const updateCustomerAddress = async (req, res) => { 
 
-  customerService.updateCustomerAddress(req.params.id,req.body.name);
-    res.json(customer);   
+    customerService.updateCustomerAddress(req.params.id,req.body.address);
+    
 
-  };
+};
 
-  const updateCustomerMoneySpent = async (req, res) => { 
+const updateCustomerMoneySpent = async (req, res) => { 
 
     customerService.updateCustomerMoneySpent(req.params.id,req.body.money);
-    res.json(customer);   
+   
 
-  };
+};
 
-  const updateCustomerWishList = async (req, res) => { 
+const updateCustomerWishList = async (req, res) => { 
 
     customerService.updateCustomerMoneySpent(req.params.id,req.body.wishList);
-    res.json(customer);   
+     
 
-  };
+};
 
-  const updateCustomerShoppingCart = async (req, res) => { 
+const updateCustomerShoppingCart = async (req, res) => { 
 
     customerService.updateCustomerMoneySpent(req.params.id,req.body.shoppingCart);
-    res.json(customer);   
+      
 
-  };
+};
   
 
-  const updateCustomerOrders = async (req, res) => { 
+const updateCustomerOrders = async (req, res) => { 
 
     customerService.updateCustomerMoneySpent(req.params.id,req.body.Orders);
-    res.json(customer);   
+     
 
-  };
+};
 
   const updateCustomerMail = async (req, res) => { 
 
     customerService.updateCustomerMail(req.params.id,req.body.mail);
-    res.json(customer);   
+    
 
   };
 
   const updateCustomerPassword = async (req, res) => { 
 
     customerService.updateCustomerPassword(req.params.id,req.body.password);
-    res.json(customer);   
+     
 
   };
   
   const updateCustomerCreditcard = async (req, res) => { 
 
-    customerService.updateCustomerPassword(req.params.id,req.body.credicards);
-    res.json(customer);   
+    customerService.updateCustomerPassword(req.params.id,req.body.creditcards);
+     
 
   };
+
+
+  const getCount = (req,res) => {
+    return customerService.getCount();
+  }
   
 
+  const deleteAllCustomers = (req,res)=>{
+     customerService.deleteAll();
+  }
   
 
-  const deleteCustomer = async (req, res) => {
-    const customer = await customerService.deleteCustomer(req.params.id);
+  const deleteCustomer = (req, res) => {
+    const customer = customerService.deleteCustomer(req.params.id);
     if (!customer) {
       return res.status(404).json({ errors: ['customer not found'] });
     }
   
-    res.send();
   };
 
   module.exports = {
@@ -112,5 +138,9 @@ const updateCustomerAddress = async (req, res) => {
     updateCustomerMail,
     updateCustomerPassword,
     updateCustomerCreditcard,
-    deleteCustomer
+    deleteCustomer,
+    getCount,
+    deleteAllCustomers,
+    updateAll,
+    getCustomersByFilter
   };
