@@ -6,15 +6,15 @@ const Product=new mongoose.schema({
     Supplier_Id: Number,
     Description: String,
     shortDescription: String,
-    Reviews: Array,
-    AmountAvailable: Double,
+    Reviews: [String],
+    AmountAvailable: Number,
     IsAvailableSuppliers: Boolean,
     Rating:{
-        type: Double,
+        type: Number,
         required: true,
         enum:[1,2,3,4,5]
     },
-    Pictures: Array,
+    Pictures: [String],
     Tags: String
   });
 
