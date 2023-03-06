@@ -1,5 +1,5 @@
-
 *{
+
     
     font-family: 'Raleway',sans-serif;
     
@@ -8,65 +8,20 @@
 body{
     background: #fff;
     font-family: 'Raleway',sans-serif;
+    margin: 0;
+    padding: 0;
     color: #fff;
-    background:url('Logo.png');
     
-    background-size: cover;
-}
-
-.banner{
-    background:url('Logo.png');
-    position: relative;
-    height: 100vh;
-    width: 100%;
     
+    
+    background:url('Logo.png');
     background-position: top;
     background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.banner .navbar{
-    background:url('Logo.png');
-    background-size: cover;
-    position: fixed;
-    width: 100%;
-    margin-top: 0%;
-    top: 0;
-    right: 0;
-    z-index: 100000;
-}
-
-
-
-
-
-.banner .navbar-brand{
-    background:url('Logo.png');
-    color: black;
-    padding-left: 10%;
-    font-size:1.8em;
-    font-weight: 700;
-    transition: 0.6s;
-}
-
-.banner .nav{
     
-    padding-right: 5%;
-}
-.banner .nav li a{
-   
-    color: #444;
-    font-size: 1.2em;
 }
 
-.banner .info{
-    
-    position: relative;
-    margin-top: 15%;
-    transform: translateY(-15%);
-    
-    color: #444;
-}
+
+
 .banner .info .gallery h3{
     text-align: center;
     font-size: 30px;
@@ -79,7 +34,6 @@ body{
 }
 
 .banner .info .gallery{
-    
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -87,6 +41,7 @@ body{
     justify-content: center;
     align-items: center;
     margin: 50px 0;
+    
 }
 
 .banner .info .content{
@@ -134,7 +89,6 @@ body{
     margin: 0;
 }
 .banner .info .content ul{
-    
     list-style: none;
     display: flex;
     justify-content: center;
@@ -176,52 +130,4 @@ body{
     margin-top: 5px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-}
-
-footer{
-    color:#444;
-    background-color: #fff;
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-footer .col{
-    margin-top: 2%;
-    display:flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 100px;
-    margin-left: 9%;
-}
-
-footer .logos{
-    color: black;
-    font-size:1.8em;
-    font-weight: 700;
-    margin-bottom: 30px;
-}
-
-footer h4{
-    font-size: 25px;
-    color: black;
-    padding-bottom: 20px;
-}
-
-footer p{
-    font-size: 17px;
-    margin: 0 0 8px 0;
-}
-
-footer a{
-    font-size: 17px;
-    text-decoration: none;
-    color:#444;
-    margin-bottom: 10px;
-}
-
-footer .copyright{
-    color:#444;
-    width: 100%;
-    text-align: center;
 }
