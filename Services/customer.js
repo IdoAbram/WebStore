@@ -13,7 +13,7 @@ const getCustomerById = async (id) => {
 };
 
 const getCustomers = async (filter) => {
-    return await Customer.find(filter);  // Return all customers that satsify nothing (Return Everyone)
+    return await Customer.find(filter);  // Return all customers that satsify the filter (json format)
 };
 
 const updateCustomerName = async (id, firstName,lastName) => {
