@@ -1,30 +1,17 @@
-let firstName, lastName, password;
-function logIn(){
-    if(document.cookie == ""){
-        document.cookie = "token=///";
-    }
-    if(isExist()){
-        console.log("exist");
-        test();
-        let cookievalue = firstName+"/"+lastName +"/"+password;
-        document.cookie = "token=/"+cookievalue;
-        //join to the home page with your account
-    }else{
-        document.getElementById("demo").innerHTML = "Wrong password or username";
-    }
-}
+const customerController = require("../../Controller/Customer");
 
-function isExist(){
-    firstName = document.getElementById("firstName").value;
-    lastName = document.getElementById("lastName").value;
-    password = document.getElementById("password").value;
-    //return database.contains(username,password)
-    return true;
+async function isExist(){
+    return (customerController.getCustomersByFilter(
+        {
+            Name: firstName,
+            lastName: lastName,
+            password: password
+        }
+    ) != null);
 }
 
 function isAllreadyLogin(){
-    let username = document.cookie.split("/");
-    return !(username[1].length == 0);
+    return !(document.cookie.split("/")[1].length == 0);
 }
 
 function signOut(){}
@@ -36,5 +23,25 @@ function test(){
         document.getElementById("demo").innerHTML = "allready looged in as: "+username[1]+" "+username[2];
     }else{
         document.getElementById("demo").innerHTML = "";
+    }
+}
+
+
+function logIn(){
+    let firstName, lastName, password;
+    firstName = document.getElementById("firstName").value;
+    lastName = document.getElementById("lastName").value;
+    password = document.getElementById("password").value;
+    if(document.cookie == ""){
+        document.cookie = "token=///";
+    }
+    if(isExist()){
+        console.log("exist");
+        test();
+        let cookievalue = firstName+"/"+lastName +"/"+password;
+        document.cookie = "token=/"+cookievalue;
+        //join to the home page with your account
+    }else{
+        document.getElementById("demo").innerHTML = "Wrong password or username";
     }
 }

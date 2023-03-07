@@ -1,10 +1,8 @@
 const express = require("express")
 const router = express.Router();
-const customerController = require('../Controller/Customer')
+const loginController = require("../Controller/loginConsroller");
 
-router.get('/',async (req,res)=>{
-    const customers = await customerController.getCustomers({});
-    res.render("../View/LoginPage/loginPage",{customers})
-})
+router.get('/',loginController.loginForm)
+router.post("/", loginController.login);
 
 module.exports = router;
