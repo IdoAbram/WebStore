@@ -1,7 +1,7 @@
 const productService = require('../Services/product');
 
 const createProduct = (req, res) => {
-    const newProduct =  productService.createProduct(req.body.price,req.body.suppID,req.body.Description,req.body.shortDescription,req.body.amountAvailable,req.body.pictures,req.body.tags);
+    const newProduct =  productService.createProduct(req.body.title,req.body.price,req.body.suppID,req.body.Description,req.body.shortDescription,req.body.amountAvailable,req.body.pictures,req.body.tags);
     return newProduct;
 };
 
