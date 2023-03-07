@@ -48,29 +48,7 @@ const updateCustomerOrders = async (id, orders) => {
 
 };
 
-const updateCustomerMail = async (id, email) => {
-   
-    await Customer.findOneAndUpdate({_id:id},{email:email});
 
-};
-
-const updateCustomerPassword = async (id, newPass) => {
-   
-    await Customer.findOneAndUpdate({_id:id},{password:newPass});
-
-};
-
-const updateCustomerCreditcards = async (id, creditcards) => {
-   
-    await Customer.findOneAndUpdate({_id:id},{creditCards:creditcards});
-
-};
-
-const deleteCustomer = async (id) => {
-    
-    await Customer.deleteOne({_id:id})
-
-};
 
 const updateCustomerMail = async (id, email) => {
    
