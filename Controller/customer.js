@@ -1,14 +1,12 @@
-const Customer = require('../Model/Schemas/Customer');
 const customerService = require('../Services/Customer');
 
-const createCustomer = async (req, res) => {
-   //Could be done with the builder design pattern
-    const newCustomer = await customerService.createCustomer(req.body.firstName,req.body.lastName,req.body.address,req.body.email,req.body.password);
+const createCustomer =  (req, res) => {
+    const newCustomer =  customerService.createCustomer(req.body.firstName,req.body.lastName,req.body.address,req.body.email,req.body.password);
     return newCustomer;
 };
 
-const getCustomers = async (req, res) => { // The service should return Value Set
-    const customers = await customerService.getCustomers({});
+const getCustomers =  (req, res) => { 
+    const customers =  customerService.getCustomers({});
     return customers;
 };
 
@@ -18,8 +16,8 @@ function getCustomersByFilter(filter){
     return customers;
 }
 
-const getCustomerById = async (req, res, next) => { //The service should put all customers in hashmap
-    var customer = await customerService.getCustomerById(req.params.id);
+const getCustomerById = (req, res) => { 
+    var customer =  customerService.getCustomerById(req.params.id);
 
     if(!customer){
      customer = null;
@@ -31,24 +29,23 @@ const getCustomerById = async (req, res, next) => { //The service should put all
 //Update the customer according to the change attribute with Proxy Design Pattern
 
 
-const updateAll = async (req,res) =>{
+const updateAll =  (req,res) =>{
 
 
   if(req.body.firstName && req.body.lastName)
-      await updateCustomerName(req,res);
+       updateCustomerName(req,res);
   if(req.body.address)
-      await updateCustomerAddress(req,res);
+       updateCustomerAddress(req,res);
   if(req.body.mail)
-      await updateCustomerMail(req,res);
+       updateCustomerMail(req,res);
   if(req.body.password)
-      await updateCustomerPassword(req,res);
+       updateCustomerPassword(req,res);
   
 }
 
 const updateCustomerName = async (req, res) => { 
 
     customerService.updateCustomerName(req.params.id,req.body.firstName,req.body.lastName);
-
 
 };
 
@@ -110,23 +107,22 @@ const updateCustomerOrders = async (req, res) => {
   };
 
 
-  const getCount = async (req,res) => {
-    return await customerService.getCount();
+  const getCount = (req,res) => {
+    return customerService.getCount();
   }
   
 
-  const deleteAllCustomers = async(req,res)=>{
-    await customerService.deleteAll();
+  const deleteAllCustomers = (req,res)=>{
+     customerService.deleteAll();
   }
   
 
-  const deleteCustomer = async (req, res) => {
-    const customer = await customerService.deleteCustomer(req.params.id);
+  const deleteCustomer = (req, res) => {
+    const customer = customerService.deleteCustomer(req.params.id);
     if (!customer) {
       return res.status(404).json({ errors: ['customer not found'] });
     }
   
-    res.send();
   };
 
   module.exports = {
