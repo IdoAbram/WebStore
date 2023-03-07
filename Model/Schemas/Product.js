@@ -1,21 +1,21 @@
 const mongoose = require("mongoose");
 
-const Product=new mongoose.schema({
+const Product = new mongoose.Schema({
     Title: String,
     price: Number,
     Supplier_Id: Number,
     Description: String,
     shortDescription: String,
-    Reviews: Array,
-    AmountAvailable: Double,
+    Reviews: [String],
+    AmountAvailable: Number,
     IsAvailableSuppliers: Boolean,
     Rating:{
-        type: Double,
+        type: Number,
         required: true,
         enum:[1,2,3,4,5]
     },
-    Pictures: Array,
-    Tags: String
+    Pictures: [String],
+    Tags: [String]
   });
 
   
