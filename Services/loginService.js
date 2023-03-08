@@ -5,4 +5,6 @@ async function login(fName,lName,password){
     return customer != null;
 }
 
-module.exports = {login}
+module.exports = {
+    login,
+}

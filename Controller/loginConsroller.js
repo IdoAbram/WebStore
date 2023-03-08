@@ -1,3 +1,4 @@
+const { request, response } = require("express");
 const loginService = require("../Services/loginService");
 
 function loginForm(req, res) { res.render("../View/LoginPage/loginPage", {}) }
@@ -7,13 +8,11 @@ async function login(req, res) {
   
     const result = await loginService.login(firstName, lastName, password)
     if (result) {
-        let coockieVal = "token=/"+firstName+"/"+lastName+"/"+password;
-        res.Cookies = coockieVal; 
-    
-      res.redirect("/customers/get")
+        writeCoockie(req,res,firstName, lastName, password);
+        res.redirect("/customers/get");
     }
     else
-      res.redirect("NotFound404")
+      res.redirect("NotFound404");
   }
 
   module.exports = {

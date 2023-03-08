@@ -9,6 +9,7 @@ mongoose.set('strictQuery', false);
 var path = require('path');
 
 
+
 mongoose.connect("mongodb://127.0.0.1:27017")
 
     const loginRouter = require('./Routes/login')
@@ -16,7 +17,8 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json());
     app.use(express.static(path.join(__dirname+'/View/LoginPage')))
-
+    app.use(express.static(path.join(__dirname+'/View/Customer')))
+    
     app.use('/customers',customerRouter);
     app.use('/login',loginRouter);
     app.listen(3000)
