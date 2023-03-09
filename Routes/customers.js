@@ -1,9 +1,9 @@
 const express = require("express")
 const router = express.Router();
-const customerController = require('../Controller/Customer')
+const customerController = require('../Controller/Customer') //Controller API for using the mongoose methods
 
 router.get('/get',async (req,res)=>{
-    const customers = await customerController.getCustomers({});
+    const customers = await customerController.getCustomersByFilter({});
     res.render("../View/Customer/getCustomers",{customers})
 })
 
@@ -13,8 +13,8 @@ router.get('/create',async (req,res)=>{
 
 router.route('/create').post(customerController.createCustomer)
 
-router.route('/delete').get(async function (req,res){
-    await customerController.deleteAllCustomers()
+router.route('/delete').get(function (req,res){
+    customerController.deleteAllCustomers()
     res.redirect("/customers/get")
 });
  

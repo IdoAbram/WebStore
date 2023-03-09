@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 app.set('view engine', 'ejs');
 const mongoose = require('mongoose');
 const Customer = require("./Model/Schemas/Customer")
+const Product = require("./Model/Schemas/Product")
 mongoose.set('strictQuery', false);
 
 
@@ -12,9 +13,11 @@ mongoose.connect("mongodb://127.0.0.1:27017",()=>{console.log("Connected")})
 
 
     const customerRouter = require('./Routes/customers')
+    const productRouter = require('./Routes/products')
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json());
     app.use('/customers',customerRouter);
+    app.use('/products',productRouter);
     app.listen(3000)
 
 run()
@@ -31,6 +34,7 @@ async function run(){
   */
 
     console.log(await Customer.count())
+    console.log(await Product.count())
     
 }
 
