@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const Product=new mongoose.schema({
+const Product = new mongoose.Schema({
     Title: String,
     price: Number,
     Supplier_Id: Number,
@@ -15,7 +15,7 @@ const Product=new mongoose.schema({
         enum:[1,2,3,4,5]
     },
     Pictures: [String],
-    Tags: String
+    Tags: [String]
   });
 
   
