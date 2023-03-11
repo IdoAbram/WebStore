@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 const Orders=new mongoose.schema({
-    PriceOfOrder: Double,
-    ShippingPrice: Double,
+    PriceOfOrder: Number,
+    ShippingPrice: Number,
     ShippingCompany: String,
     DateIssued: Date,
     ExpectedArrival: Date,
-    products:[Product]
+    products:[String] //Array of ids of products
   });
   
 

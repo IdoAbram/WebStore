@@ -6,10 +6,10 @@ const Review=new mongoose.Schema({
     ProductId:String,
     text:String,
     Rating:{
-      type:Double,
+      type:Number,
       enum:[1,2,3,4,5]
     },
-    Images_Videos:Array
+    Images_Videos:[String] //String of videos
   });
 
   module.exports = mongoose.model("review", Review);
