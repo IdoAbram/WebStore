@@ -1,0 +1,39 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+</head>
+
+
+<body>
+
+    <h1>Products</h1>
+    <ul>
+        <% for (p of products) { %>
+
+            <li><%= p.Title %> <%= p.price %> <%= p.Supplier_Id %> <%= p.Description %>
+                 <%= p.shortDescription %> <%= p.AmountAvailable %>
+                 <%= p.Tags %> 
+                 <%= p._id %> 
+                </li>
+
+
+            <% for (pic of p.Pictures) { %>
+                   <img src ="<%=pic%>">
+            <% } %>
+       
+        <%}%>
+
+    </ul>
+    
+
+</body>
+
+
+</html>
