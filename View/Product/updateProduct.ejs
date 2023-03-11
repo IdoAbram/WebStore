@@ -1,0 +1,112 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+</head>
+
+<body>
+
+    <h3>Update For <%=product.Title%> </h3>
+
+   <form method="post">
+
+    <table>
+
+    <tr>
+        <td>Title:</td>
+        <td>
+            <input type="text" placeholder=<%=product.Title%> name="title">
+        </td>
+    </tr>
+
+
+
+    <tr>
+        <td>Price:</td>
+        <td>
+            <input type="text" placeholder=<%=product.price%> name="price">
+        </td>
+
+    </tr>
+
+
+    <tr>
+        <td>Supplier Id:</td>
+        <td>
+            <input type="text" placeholder=<%=product.Supplier_Id%> name="suppID">
+        </td>
+
+    </tr>
+
+
+
+    <tr>
+        <td>Description:</td>
+        <td>
+            <input type="text" placeholder=<%=product.Description%> name="Description">
+        </td>
+
+    </tr>
+
+
+
+    <tr>
+        <td>Short Description:</td>
+        <td>
+            <input type="text" placeholder=<%=product.shortDescription%> name="shortDescription">
+        </td>
+
+    </tr>
+    
+
+
+
+    <tr>
+        <td>Amount Available:</td>
+        <td>
+            <input type="text" placeholder=<%=product.AmountAvailable%> name="amountAvailable">
+        </td>
+
+    </tr>
+
+
+
+
+    <tr>
+        <td>Pictures</td>
+        <td>
+            <input type="text" placeholder=<%=product.Pictures%> name="pictures">
+        </td>
+
+    </tr>
+
+
+
+
+    <tr>
+        <td>Tags:</td>
+        <td>
+            <input type="text" placeholder=<%=product.Tags%> name="tags">
+        </td>
+
+    </tr>
+
+
+   
+   
+</table>
+
+<button type="submit">Submit</button>
+
+</form>
+
+</body>
+
+
+</html>

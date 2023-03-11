@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const Review=new mongoose.schema({
+const Review=new mongoose.Schema({
     Title:String,
     userId:Number,
     ProductId:String,
