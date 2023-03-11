@@ -4,26 +4,32 @@ const app = express();
 const bodyParser = require('body-parser');
 app.set('view engine', 'ejs');
 const mongoose = require('mongoose');
-const Customer = require("./Model/Schemas/Customer");
+const Customer = require("./Model/Schemas/Customer")
+const Product = require("./Model/Schemas/Product")
+
 mongoose.set('strictQuery', false);
 var path = require('path');
-
-
 
 mongoose.connect("mongodb://127.0.0.1:27017")
 
     const loginRouter = require('./Routes/login')
     const customerRouter = require('./Routes/customers')
-    const homePagerouter = require('./Routes/HomePage')
+    const homePageRouter = require('./Routes/HomePage')
+    const productRouter = require('./Routes/products')
+
+
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json());
-    app.use(express.static(path.join(__dirname+'/View/LoginPage')))
+    app.use(express.static(path.join(__dirname+'/View')))
     app.use(express.static(path.join(__dirname+'/View/HomePage')))
-    app.use(express.static(path.join(__dirname+'/View/Customer')))
 
-    app.use('/homePage',homePagerouter);
+
+    app.use('/homePage',homePageRouter);
     app.use('/customers',customerRouter);
     app.use('/login',loginRouter);
+    app.use('/products',productRouter);
+
+
     app.listen(3000)
 
 run()
@@ -40,6 +46,7 @@ async function run(){
   */
 
     console.log(await Customer.count())
+    console.log(await Product.count())
     
 }
 

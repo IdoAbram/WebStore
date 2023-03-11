@@ -13,7 +13,7 @@ const getCustomerById = async (id) => {
 };
 
 const getCustomers = async (filter) => {
-    return await Customer.find(filter);  // Return all customers that satsify nothing (Return Everyone)
+    return await Customer.find(filter);  // Return all customers that satsify the filter (json format)
 };
 
 const updateCustomerName = async (id, firstName,lastName) => {
@@ -25,25 +25,21 @@ const updateCustomerName = async (id, firstName,lastName) => {
 const updateCustomerAddress = async (id, address) => {
    
     await Customer.findOneAndUpdate({_id:id},{address:address});
-
 };
 
 const updateCustomerMoneySpent = async (id, money) => {
    
     await Customer.findOneAndUpdate({_id:id},{moneySpent:money});
-
 };
 
 const updateCustomerWishList = async (id, WishList) => {
    
     await Customer.findOneAndUpdate({_id:id},{WishList:WishList});
-
 };
 
 const updateCustomerShoppingCart = async (id, shoppingCart) => {
    
     await Customer.findOneAndUpdate({_id:id},{shoppingCart:shoppingCart});
-
 };
 
 const updateCustomerOrders = async (id, orders) => {
@@ -52,27 +48,29 @@ const updateCustomerOrders = async (id, orders) => {
 
 };
 
+
+
 const updateCustomerMail = async (id, email) => {
    
-    await Customer.findOneAndUpdate({_id:id},{email:email});
+    Customer.findOneAndUpdate({_id:id},{email:email});
 
 };
 
 const updateCustomerPassword = async (id, newPass) => {
    
-    await Customer.findOneAndUpdate({_id:id},{password:newPass});
+    Customer.findOneAndUpdate({_id:id},{password:newPass});
 
 };
 
 const updateCustomerCreditcards = async (id, creditcards) => {
    
-    await Customer.findOneAndUpdate({_id:id},{creditCards:creditcards});
+    Customer.findOneAndUpdate({_id:id},{creditCards:creditcards});
 
 };
 
 const deleteCustomer = async (id) => {
     
-    await Customer.deleteOne({_id:id})
+    Customer.deleteOne({_id:id})
 
 }
 
@@ -81,13 +79,12 @@ const deleteCustomersByName = async(name) =>{
 }
 
 const deleteAll = async() => {
-  await Customer.deleteMany({});
+  await Customer.deleteMany({})
 }
 
 const getCount = async() =>{
     return await Customer.count();
 }
-
 
 
 module.exports = {
