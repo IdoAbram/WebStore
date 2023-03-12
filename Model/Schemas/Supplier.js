@@ -15,13 +15,13 @@ const Supplier = new mongoose.Schema({
     },
   
     products:{
-      type: [Product],
+      type: [String], // Ids of products
       required: true
     },
     
     moneyGiven: Number,
-    outGoingOrders: [Orders],
-    pastOrders: [Orders],
+    outGoingOrders: [String], // Ids of Orders
+    pastOrders: [String],
 
     location: String
   

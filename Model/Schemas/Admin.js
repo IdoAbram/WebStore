@@ -5,8 +5,8 @@ const Admin=new mongoose.schema({
     lastName: String,
     Email: String,
     password: String,
-    Priveleges:{
-      type: Array,
+    Privileges:{
+      type: Number,
       enum:[0,1,2]
     }
   });
