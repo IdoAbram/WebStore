@@ -21,7 +21,6 @@
                     <div class="col-md-12">
                         <div id="template" class="header">
                         </div>
-                        
                     </div>
                     <div class="col-md-6 offset-md-1 info">
                         <section class="container sproduct my-5">
@@ -29,24 +28,25 @@
                                 <div class="col-lg-5 col-md-12 col-12">
                                     <img class="img-fluid w-100 pb-1" src="<%= product.Pictures[0]%>">
                                     <div class="small-img-group row">
-                                        <% let i=1 %>
+                                        <% let i=0 %>
                                         <% for (p of product.Pictures) { %>
-                                            <% if (i!=1) { %>
+                                            <% if (i%3==0){%>
+                                                <br>
+                                            <%}%>
+                                            <% if (i!=0) { %>
                                                 <div class="small-img-col col">
                                                     <img src="<%= p %>" width="100%" class="small-img">
                                                 </div>
                                             <%}%>
-                                            <% if (i%3==0){%>
-                                                <br>
-                                            <%}%>
+                                            
                                             <% i++ %>
                                         <%}%>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-12 col-12">
                                     <h6>Home / T-Shirt</h6>
-                                    <h3 class="py-4"><%= p.Title %></h3>
-                                    <h2><%= p.Price %>$</h2>
+                                    <h3 class="py-4"> <%= product.Title %></h3>
+                                    <h2><%= product.price %>$</h2>
                                     <select class="my-3">
                                         <option value="">Select Size</option>
                                         <option value="">SM</option>

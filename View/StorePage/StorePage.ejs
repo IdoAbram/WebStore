@@ -11,11 +11,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
         <link href="../TemplatePage/TemplatePage.css" rel="stylesheet">
         <script src="../TemplatePage/TemplatePage.js"></script>
-        <link rel="stylesheet" href="../StorePageEjs/StorePage.css">
+        <link rel="stylesheet" href="../StorePage/StorePage.css">
     </head>
 
     <body>
-        <form method="post" action="http://localhost:8080//HomePage">
+        <form method="get" action="">
             <div class="container-fluid banner">
                 <div class="row ally">
                     <div class="col-md-12">
@@ -40,7 +40,8 @@
                                             <li><i class="fa fa-star"></i></li>
                                         <%}%>
                                     </ul>
-                                    <button class="buy" id="" href="/prPage/<%= p._id %>">Buy Now</button>
+                                    <a href="/store/prPage/<%= p._id %>" class="buy btn">Buy Now</a>
+                                    
                                 </div>
                             <%}%>
                         </div>
@@ -49,6 +50,7 @@
                 </div>
             </div>
         </form>
+        
 
         
 

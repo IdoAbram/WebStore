@@ -121,7 +121,7 @@ body{
 
 }
 
-.banner .info .content button{
+.banner .info .content a{
     text-align: center;
     font-size: 24px;
     background:url('Logo.png');
@@ -134,3 +134,5 @@ body{
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
 }
+
+

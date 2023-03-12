@@ -16,7 +16,7 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     const customerRouter = require('./Routes/customers')
     const productRouter = require('./Routes/products')
     const storeRouter = require('./Routes/store')
-    const productPageRouter = require('./Routes/prPage')
+    const productPageRouter = require('./Routes/store')
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json());
     app.use(express.static(path.join(__dirname+'/View')))
@@ -49,5 +49,6 @@ async function run(){
     console.log(await Product.count())
     
 }
+
 
 
