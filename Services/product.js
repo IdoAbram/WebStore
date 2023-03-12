@@ -4,7 +4,7 @@ const createProduct = async (title, price,Supplier_Id,Description,shortDescripti
 
     const product = new Product({Title:title,price:price,Supplier_Id:Supplier_Id,
         Description:Description,shortDescription:shortDescription
-        ,Reviews:[],AmountAvailable:amountAvailable,IsAvailableSuppliers:true,Rating:5,Pictures:pictures,Tags:tags})
+        ,Reviews:[],AmountAvailable:amountAvailable,IsAvailableSuppliers:true,Rating:5,Pictures:pictures.split(" "),Tags:tags.split(" ")})
 
 
     return await product.save();

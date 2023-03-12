@@ -40,6 +40,8 @@ const updateAll =  (req,res) =>{
        updateCustomerMail(req,res);
   if(req.body.password)
        updateCustomerPassword(req,res);
+  if(req.body.shoppingCart)
+       updateCustomerShoppingCart(req,res);
   
 }
 
@@ -65,14 +67,14 @@ const updateCustomerMoneySpent = async (req, res) => {
 
 const updateCustomerWishList = async (req, res) => { 
 
-    customerService.updateCustomerMoneySpent(req.params.id,req.body.wishList);
+    customerService.updateCustomerWishList(req.params.id,req.body.wishList);
      
 
 };
 
 const updateCustomerShoppingCart = async (req, res) => { 
 
-    customerService.updateCustomerMoneySpent(req.params.id,req.body.shoppingCart);
+    customerService.updateCustomerShoppingCart(req.params.id,req.body.shoppingCart);
       
 
 };
@@ -80,7 +82,7 @@ const updateCustomerShoppingCart = async (req, res) => {
 
 const updateCustomerOrders = async (req, res) => { 
 
-    customerService.updateCustomerMoneySpent(req.params.id,req.body.Orders);
+    customerService.updateCustomerOrders(req.params.id,req.body.Orders);
      
 
 };
@@ -101,7 +103,7 @@ const updateCustomerOrders = async (req, res) => {
   
   const updateCustomerCreditcard = async (req, res) => { 
 
-    customerService.updateCustomerPassword(req.params.id,req.body.creditcards);
+    customerService.updateCustomerCreditcards(req.params.id,req.body.creditcards);
      
 
   };
