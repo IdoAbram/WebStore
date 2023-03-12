@@ -33,13 +33,7 @@ body{
     right: 0;
     z-index: 100000;
 }
-.banner .info{
-    position: relative;
-    margin-top: 15%;
-    transform: translateY(-15%);
-    
-    color: #444;
-}
+
 .banner .navbar-brand{
     background:url('Logo.png');
     color: black;
@@ -51,13 +45,10 @@ body{
 .banner .nav{
     margin-right: 10%;
 }
+
 .banner .nav li a{
     color: #444;
     font-size: 1.2em;
-}
-.banner .info{
-    margin-top: 15%;
-    transform: translateY(-15%);
 }
 
 .banner .info h1{
