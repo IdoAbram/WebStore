@@ -25,6 +25,13 @@ body{
     margin-left: 10%;
 }
 
+.banner .name-brand{
+    color: black;
+    font-size:1em;
+    font-weight: 700;
+    margin-left: 10%;
+}
+
 .banner .nav{
     margin-right: 10%;
 }

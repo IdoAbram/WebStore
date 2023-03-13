@@ -7,16 +7,37 @@ router.get('/',async (req,res)=>{
     res.render("../View/HomePage/HomePage")
 })
 
-router.get('/user/:id',async (req,res)=>{
-    const customer = await customerController.getCustomerById(req,res);
-    if(!customer){
+router.get('/customer/:id',async (req,res)=>{
+    const user = await customerController.getCustomerById(req,res);
+    if(!user){
         await res.json({message:"Not Found"})
         return;
     }
 
-    custID = req.params.id
-    res.render("../View/HomePage/HomePageUser",{custID,customer})
+    id = req.params.id
+    res.render("../View/HomePage/HomePageCustomer",{id,user})
+})
 
+router.get('/admin/:id',async (req,res)=>{
+    const user = await customerController.getCustomerById(req,res);/////supposed 2 b admin controller
+    if(!user){
+        await res.json({message:"Not Found"})
+        return;
+    }
+
+    id = req.params.id
+    res.render("../View/HomePage/HomePageAdmin",{id,user})
+})
+
+router.get('/supplier/:id',async (req,res)=>{
+    const user = await customerController.getCustomerById(req,res);/////supposed 2 b supplier controller
+    if(!user){
+        await res.json({message:"Not Found"})
+        return;
+    }
+
+    id = req.params.id
+    res.render("../View/HomePage/HomePageSupplier",{id,user})
 })
 
 module.exports = router;
