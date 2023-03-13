@@ -6,19 +6,23 @@ app.set('view engine', 'ejs');
 const mongoose = require('mongoose');
 const Customer = require("./Model/Schemas/Customer")
 const Product = require("./Model/Schemas/Product")
+var path=require('path')
 mongoose.set('strictQuery', false);
 
 
-mongoose.connect("mongodb://127.0.0.1:27017",()=>{console.log("Connected")})
+mongoose.connect("mongodb://127.0.0.1:27017")
 
 
     const customerRouter = require('./Routes/customers')
     const productRouter = require('./Routes/products')
+    const cartRouter=require('./Routes/cart')
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json());
+    app.use(express.static(path.join(__dirname +'/View')));
     app.use('/customers',customerRouter);
     app.use('/products',productRouter);
-    app.listen(3000)
+    app.use('/cart',cartRouter)
+    app.listen(2741)
 
 run()
 
