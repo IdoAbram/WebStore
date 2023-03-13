@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const GiftCard=new mongoose.schema({
     typeOfDiscount:{
       type:String,
-      enum:["Precentages","Numbers"]
+      enum:["Percentages","Numbers"]
     },
-    price:Double,
+    price:Number,
     code:String,
-    Desription: String
+    Description: String
   });
 
   module.exports = mongoose.model("giftCard",GiftCard);

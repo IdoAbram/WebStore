@@ -14,8 +14,8 @@ const getProductById = async (id) => {
     return await Product.findById(id);
 };
 
-const getProducts = async () => {
-    return await Product.find({});  // Return all products that satsify nothing (Return Everyone)
+const getProducts = async (filter) => {
+    return await Product.find(filter);  // Return all products that satsify nothing (Return Everyone)
 };
 
 const updateProductTitle = async (id, title) => {
