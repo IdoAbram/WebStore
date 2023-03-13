@@ -5,18 +5,18 @@ const createSupplier =  (req, res) => {
     return newSupplier;
 };
 
-const getCustomers =  (req, res) => { 
+const getSuppliers =  (req, res) => { 
     const supplier =  supplierService.getSupplier({});
     return supplier;
 };
 
 
-function getCustomersByFilter(filter){
-    const supplier = supplierService.getSupplier(filter);
+function getSuppliersByFilter(filter){
+    const supplier = supplierService.getSuppliers(filter);
     return supplier;
 }
 
-const getCustomerById = (req, res) => { 
+const getSupplierById = (req, res) => { 
     var supplier =  supplierService.getSupplierById(req.params.id);
 
     if(!supplier){
@@ -32,8 +32,8 @@ const deleteAllSuppliers = (req,res)=>{
 
  module.exports = {
     createSupplier,
-    getCustomers,
-    getCustomersByFilter,
-    getCustomerById,
+    getSuppliers,
+    getSuppliersByFilter,
+    getSupplierById,
     deleteAllSuppliers
  }
