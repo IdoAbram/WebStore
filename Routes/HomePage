@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router();
 const customerController = require('../Controller/customer');
+const adminController = require('../Controller/admin')
 
 
 router.get('/',async (req,res)=>{
@@ -19,7 +20,7 @@ router.get('/customer/:id',async (req,res)=>{
 })
 
 router.get('/admin/:id',async (req,res)=>{
-    const user = await customerController.getCustomerById(req,res);/////supposed 2 b admin controller
+    const user = await adminController.getAdminById(req,res);
     if(!user){
         await res.json({message:"Not Found"})
         return;

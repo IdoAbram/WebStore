@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const Admin=new mongoose.schema({
+const Admin=new mongoose.Schema({
     Name: String,
     lastName: String,
     Email: String,

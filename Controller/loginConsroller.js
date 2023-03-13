@@ -1,6 +1,8 @@
 const { request, response } = require("express");
 const loginService = require("../Services/loginService");
 const customerController = require('../Controller/customer');
+const adminController = require('../Controller/admin');
+
 
 function loginForm(req, res) { res.render("../View/LoginPage/loginPage", {}) }
 
@@ -10,15 +12,13 @@ async function login(req, res) {
     const result = await loginService.login(firstName, lastName, password)
     if (result == "customer") {
       const customer = await customerController.getCustomersByFilter({Name: firstName,lastName: lastName,password:password});
-      //res.session.customer = customer[0]._id;
       res.redirect("/homepage/customer/"+customer[0]._id);
     }
     else if (result == "admin") {
-      res.cookie('id',customer[0]._id);
-      //res.redirect("/homepage/admin/"+customer[0]._id);
+      const admin = await adminController.getAdminsByFilter({Name: firstName,lastName: lastName,password:password});
+      res.redirect("/homepage/admin/"+admin[0]._id);
     }
     else if (result == "supplier") {
-      res.cookie('id',customer[0]._id);
       //res.redirect("/homepage/supplier/"+customer[0]._id);
     }
     else{
@@ -27,10 +27,8 @@ async function login(req, res) {
   }
 
   function logout(req, res) {
-    // res.session.destroy(()=>{
-    //   res.redirect("/homepage/");
-    // });
     res.redirect("/homepage/");
+
   }
 
 
