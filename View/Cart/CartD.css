@@ -55,3 +55,6 @@ body{
 .hide{
     display: none;
 }
+.remove{
+    pointer-events: none;
+}

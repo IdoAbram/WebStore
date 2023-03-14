@@ -18,6 +18,7 @@ router.get('/:id',async (req,res)=>{
 
     const customer = await (cartController.getCustomerById(req,res));
     const products=customer.shoppingCart
+    const id=req.params.id
 
     const allProducts = await productController.getProductsByFilter({});
 
@@ -30,8 +31,7 @@ router.get('/:id',async (req,res)=>{
             }
         }
     }
-    res.render("../View/Cart/CartM",{finalProducts})
+    res.render("../View/Cart/CartM",{finalProducts,id})
 })
-
 
 module.exports = router

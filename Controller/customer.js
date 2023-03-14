@@ -1,4 +1,5 @@
 const customerService = require('../Services/Customer');
+const { getProductById } = require('./product');
 
 const createCustomer =  (req, res) => {
     const newCustomer =  customerService.createCustomer(req.body.firstName,req.body.lastName,req.body.address,req.body.email,req.body.password);
@@ -75,10 +76,19 @@ const updateCustomerWishList = async (req, res) => {
 const updateCustomerShoppingCart = async (req, res) => { 
 
     customerService.updateCustomerShoppingCart(req.params.id,req.body.shoppingCart);
-      
 
 };
   
+/*const addToCart = async (req, res) => { 
+
+  var products=[]
+  for(pro of req.body.shoppingCart){
+    products.push(pro)
+  }
+  products.push(req.params.id)
+  customerService.updateCustomerShoppingCart(req.params.id,products);
+    
+};*/
 
 const updateCustomerOrders = async (req, res) => { 
 
@@ -136,6 +146,7 @@ const updateCustomerOrders = async (req, res) => {
     updateCustomerMoneySpent,
     updateCustomerWishList,
     updateCustomerShoppingCart,
+    //addToCart,
     updateCustomerOrders,
     updateCustomerMail,
     updateCustomerPassword,
