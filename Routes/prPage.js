@@ -1,20 +1,20 @@
-// const express = require("express")
-// const router = express.Router();
-// const productController = require('../Controller/Product')
+const express = require("express")
+const router = express.Router();
+const productController = require('../Controller/Product')
 
 
 
 
-// router.route('/prPage/:id').get(async (req,res)=>{
-//     const product = await productController.getProductById(req,res);
-//     if(!product){
-//         await res.json({message:"Not Found"})
-//         return;
-//     }
+router.route('/:id').get(async (req,res)=>{
+    const product = await productController.getProductById(req,res);
+    if(!product){
+        await res.json({message:"Not Found"})
+        return;
+    }
 
-//     productID = req.params.id
-//     res.render("../View/GenericProductPage/productPage",{productID,product})
+    productID = req.params.id
+    res.render("../View/GenericProductPage/productPage",{productID,product})
 
-// })
+})
 
-// module.exports = router
+module.exports = router
