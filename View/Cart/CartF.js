@@ -57,9 +57,13 @@ function decrease(event){
 function removeFromCart(event){
     const ids = event.target.dataset.id.split(" ");
     const prod=document.getElementById(ids[0]);
+    const check=document.getElementById(ids[3]);
+
 
     var totalPrice=document.getElementById("total");
-    totalPrice.value-=document.getElementById(ids[1]).value
+    if(check.value==1){
+        totalPrice.value-=document.getElementById(ids[1]).value
+    }
 
     prod.classList.add("hide");
     

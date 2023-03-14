@@ -3,8 +3,11 @@ body{
     padding: 0;
     background: #fff;
     font-family: 'Raleway',sans-serif;
-    color: #fff;
-    overflow: hidden;
+    color: #444;
+    background:url('Logo.png');
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .banner{
     height: 100vh;
@@ -21,6 +24,13 @@ body{
 .banner .navbar-brand{
     color: black;
     font-size:1.8em;
+    font-weight: 700;
+    margin-left: 10%;
+}
+
+.banner .name-brand{
+    color: black;
+    font-size:1em;
     font-weight: 700;
     margin-left: 10%;
 }
@@ -45,4 +55,51 @@ body{
 }
 .banner .info p{
     color:#444;
+    margin-bottom: 50%;
+}
+
+footer{
+    background-color: #fff;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer .col{
+    margin-top: 2%;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 100px;
+    margin-left: 9%;
+}
+
+footer .logos{
+    color: black;
+    font-size:1.8em;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+footer h4{
+    font-size: 25px;
+    color: black;
+    padding-bottom: 20px;
+}
+
+footer p{
+    font-size: 17px;
+    margin: 0 0 8px 0;
+}
+
+footer a{
+    font-size: 17px;
+    text-decoration: none;
+    color:#444;
+    margin-bottom: 10px;
+}
+
+footer .copyright{
+    width: 100%;
+    text-align: center;
 }

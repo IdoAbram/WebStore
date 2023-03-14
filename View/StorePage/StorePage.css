@@ -1,0 +1,138 @@
+*{
+
+    
+    font-family: 'Raleway',sans-serif;
+    box-sizing: border-box;
+    
+}
+
+body{
+    background: #fff;
+    font-family: 'Raleway',sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    
+    
+    
+    background:url('Logo.png');
+    background-position: top;
+    background-size: cover;
+    
+}
+
+
+
+
+.banner .info .gallery h3{
+    text-align: center;
+    font-size: 30px;
+    margin: 0;
+    padding-top: 10px;
+}
+
+.banner .info .gallery a{
+    text-decoration: none;
+}
+
+
+.banner .info .gallery{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+}
+
+.banner .info .content{
+    background:url('Logo.png');
+    background-size: cover;
+    width:27%;
+    margin: 15px;
+    box-sizing: border-box;
+    float: left;
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+    padding-top: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+    0 10px 10px rgba(0,0,0,0.22);
+    transition: .4s;
+    
+}
+
+.banner .info .content:hover{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16),
+    0 3px 6px rgba(0,0,0,0.23);
+    transform: translate(0px,-8px);
+}
+.banner .info .content img{
+    width: 100%;
+    height: min-content;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    border-radius: 10%;
+}
+
+.banner .info .content p{
+    
+    text-align: center;
+    color: #444;
+    padding-top: 0 5px;
+}
+
+.banner .info .content h6{
+    
+    font-size: 26px;
+    text-align: center;
+    color: rgb(4, 80, 4);
+    margin: 0;
+}
+.banner .info .content ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 0;
+    padding-left: 0;
+}
+
+.banner .info .content li{
+    padding-top: 3px;
+}
+
+.banner .info .content .fa{
+    font-size: 26px;
+    transition: .4s;
+    margin: 3px;
+}
+
+.banner .info .content .checked{
+    color: #ff9f43;
+
+}
+.banner .info .content .fa:hover{
+    transform: scale(1.3);
+    transition: .6s;
+
+}
+
+.banner .info .content a{
+    text-align: center;
+    font-size: 24px;
+    background:url('Logo.png');
+    width: 100%;
+    padding:15px ;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    margin-top: 5px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+
