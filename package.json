@@ -9,6 +9,7 @@
     "express-session": "^1.17.3",
     "mongoose": "^7.0.0",
     "nodemon": "^2.0.20",
-    "session": "^0.1.0"  
+    "npm": "^9.6.1",
+    "session": "^0.1.0"
   }
 }

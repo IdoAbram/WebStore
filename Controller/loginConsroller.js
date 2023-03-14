@@ -8,19 +8,19 @@ const supplierController = require('../Controller/supplier');
 function loginForm(req, res) { res.render("../View/LoginPage/loginPage", {}) }
 
 async function login(req, res) {
-    const { firstName, lastName, password } = req.body
+    const { email, password } = req.body
 
-    const result = await loginService.login(firstName, lastName, password)
+    const result = await loginService.login(email,password);
     if (result == "customer") {
-      const customer = await customerController.getCustomersByFilter({Name: firstName,lastName: lastName,password:password});
+      const customer = await customerController.getCustomersByFilter({password: password,email: email});
       res.redirect("/homepage/customer/"+customer[0]._id);
     }
     else if (result == "admin") {
-      const admin = await adminController.getAdminsByFilter({Name: firstName,lastName: lastName,password:password});
+      const admin = await adminController.getAdminsByFilter({password: password,Email: email});
       res.redirect("/homepage/admin/"+admin[0]._id);
     }
     else if (result == "supplier") {
-      const supplier = await supplierController.getSuppliersByFilter({Name: firstName,lastName: lastName,password:password});
+      const supplier = await supplierController.getSuppliersByFilter({password: password,email: email});
       res.redirect("/homepage/supplier/"+supplier[0]._id);
     }
     else{
@@ -30,7 +30,6 @@ async function login(req, res) {
 
   function logout(req, res) {
     res.redirect("/homepage/");
-
   }
 
 

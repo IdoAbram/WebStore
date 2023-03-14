@@ -32,7 +32,7 @@ router.get('/admin/:id',async (req,res)=>{
 })
 
 router.get('/supplier/:id',async (req,res)=>{
-    const user = await supplierController.getSupplierById(req,res);/////supposed 2 b supplier controller
+    const user = await supplierController.getSupplierById(req,res);
     if(!user){
         await res.json({message:"Not Found"})
         return;
