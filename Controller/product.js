@@ -1,7 +1,7 @@
 const productService = require('../Services/product');
 
 const createProduct = (req, res) => {
-    const newProduct =  productService.createProduct(req.body.title,req.body.price,req.body.suppID,req.body.Description,req.body.shortDescription,req.body.amountAvailable,req.body.pictures,req.body.tags);
+    const newProduct =  productService.createProduct(req.body.title,req.body.price,req.body.suppID,req.body.Description,req.body.shortDescription,req.body.amountAvailable,req.body.pictures,req.body.tags,req.body.Sizes);
     return newProduct;
 };
 
@@ -46,11 +46,17 @@ const updateAll =  (req,res) =>{
        updateProductPictures(req,res);
   if(req.body.tags)
        updateProductTags(req,res);
+  if(req.body.Sizes)
+       updateProductSizes(req,res);
      
   
   
   
 }
+
+const updateProductSizes = async (req, res) => { 
+  productService.updateProductSizes(req.params.id,req.body.Sizes);
+};
 
 const updateProductTitle = async (req, res) => { 
     productService.updateProductTitle(req.params.id,req.body.title);
