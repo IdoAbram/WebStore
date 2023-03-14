@@ -1,13 +1,19 @@
+*{
+    font-family: 'Raleway',sans-serif;
+}
+
+
 body{
     margin: 0;
     padding: 0;
     background: #fff;
     font-family: 'Raleway',sans-serif;
-    color: #444;
+    color: #fff;
+    
     background:url('Logo.png');
     background-position: top;
     background-size: cover;
-    background-repeat: no-repeat;
+    
 }
 .banner{
     height: 100vh;
@@ -18,33 +24,31 @@ body{
     background-repeat: no-repeat;
 }
 .banner .navbar{
-    margin-top: 4%;
+    background:url('Logo.png');
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    margin-top: 0%;
+    top: 0;
+    right: 0;
+    z-index: 100000;
 }
 
 .banner .navbar-brand{
+    background:url('Logo.png');
     color: black;
     font-size:1.8em;
     font-weight: 700;
-    margin-left: 10%;
-}
-
-.banner .name-brand{
-    color: black;
-    font-size:1em;
-    font-weight: 700;
-    margin-left: 10%;
+    margin-left: 6%;
 }
 
 .banner .nav{
     margin-right: 10%;
 }
+
 .banner .nav li a{
     color: #444;
     font-size: 1.2em;
-}
-.banner .info{
-    margin-top: 15%;
-    transform: translateY(-15%);
 }
 
 .banner .info h1{
@@ -55,10 +59,11 @@ body{
 }
 .banner .info p{
     color:#444;
-    margin-bottom: 50%;
+    
 }
 
 footer{
+    width: 100%;
     background-color: #fff;
     display:flex;
     flex-wrap: wrap;
@@ -71,7 +76,7 @@ footer .col{
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 100px;
-    margin-left: 9%;
+    margin-left: 6%;
 }
 
 footer .logos{
@@ -87,7 +92,7 @@ footer h4{
     padding-bottom: 20px;
 }
 
-footer p{
+footer .col p{
     font-size: 17px;
     margin: 0 0 8px 0;
 }
