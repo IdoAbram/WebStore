@@ -42,3 +42,7 @@ body{
 .input1{
     color: red;
 }
+
+.no-scroll{
+    overflow: hidden;
+}
