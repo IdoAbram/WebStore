@@ -6,12 +6,12 @@ app.set('view engine', 'ejs');
 const mongoose = require('mongoose');
 const Customer = require("./Model/Schemas/Customer")
 const Product = require("./Model/Schemas/Product")
+mongoose.set('strictQuery', false);
+var path = require('path');
 const Admin = require('./Model/Schemas/Admin');
 const Supplier = require('./Model/Schemas/Supplier');
 
 
-mongoose.set('strictQuery', false);
-var path = require('path');
 
 mongoose.connect("mongodb://127.0.0.1:27017")
 
@@ -22,19 +22,21 @@ const loginRouter = require('./Routes/login')
     const homePageRouter = require('./Routes/HomePage')
     const storeRouter = require('./Routes/store')
     const productPageRouter = require('./Routes/prPage')
-    app.use(bodyParser.urlencoded({extended: false}))
-    app.use(bodyParser.json());
+    const cartRouter=require('./Routes/cart')
     app.use(express.static(path.join(__dirname+'/View')))
     app.use(express.static(path.join(__dirname+'/View/HomePage')))
     app.use(express.static(path.join(__dirname+'/View/GenericProductPage')))
+    app.use(bodyParser.urlencoded({extended: false}))
+    app.use(bodyParser.json());
     app.use('/customers',customerRouter);
     app.use('/login',loginRouter);
     app.use('/products',productRouter);
     app.use('/homePage',homePageRouter);
     app.use('/store',storeRouter);
     app.use('/prPage',productPageRouter);
-
+    app.use('/cart',cartRouter)
     app.listen(3000)
+
 run()
 
 
