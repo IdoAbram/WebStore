@@ -8,6 +8,7 @@ const supplierService = require('../Services/supplier');
 router.get('/', async (req,res)=>{    
     const type =req.session.userType;
     const userID = req.session.user;
+    const first=false;
     let user=null;
     if(type=="customer"){
         user = await customerService.getCustomerById(userID);
@@ -23,7 +24,7 @@ router.get('/', async (req,res)=>{
     }
     
 
-    res.render("../View/Info/info",{type,user});
+    res.render("../View/Info/info",{type,user,first});
 })
 
 
