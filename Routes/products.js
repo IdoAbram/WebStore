@@ -14,7 +14,6 @@ router.get('/create',async (req,res)=>{
 router.route('/create').post(productController.createProduct)
 
 
-
 router.route('/delete').get(function (req,res){
     productController.deleteAllProducts()
     res.redirect("/products/get")
