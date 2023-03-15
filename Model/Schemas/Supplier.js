@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-var  Orders = mongoose.model('orders')
 
 const Supplier = new mongoose.Schema({
 
@@ -22,9 +21,9 @@ const Supplier = new mongoose.Schema({
     moneyGiven: Number,
     outGoingOrders: [String], // Ids of Orders
     pastOrders: [String],
-
-    location: String
-  
+    email: String, 
+    location: String,
+    password: String
   
   });
 

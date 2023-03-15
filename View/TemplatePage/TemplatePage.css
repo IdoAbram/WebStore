@@ -1,0 +1,111 @@
+*{
+    font-family: 'Raleway',sans-serif;
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    font-family: 'Raleway',sans-serif;
+    color: #fff;
+    
+    background:url('Logo.png');
+    background-position: top;
+    background-size: cover;
+    
+}
+.banner{
+    height: 100vh;
+    width: 100%;
+    background:url('Logo.png');
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.banner .navbar{
+    background:url('Logo.png');
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    margin-top: 0%;
+    top: 0;
+    right: 0;
+    z-index: 100000;
+}
+
+.banner .navbar-brand{
+    background:url('Logo.png');
+    color: black;
+    font-size:1.8em;
+    font-weight: 700;
+    margin-left: 6%;
+}
+
+.banner .nav{
+    margin-right: 10%;
+}
+
+.banner .nav li a{
+    color: #444;
+    font-size: 1.2em;
+}
+
+.banner .info h1{
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #444;
+    letter-spacing: 2px;
+}
+.banner .info p{
+    color:#444;
+    
+}
+
+footer{
+    width: 100%;
+    background-color: #fff;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+footer .col{
+    margin-top: 2%;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 100px;
+    margin-left: 6%;
+}
+
+footer .logos{
+    color: black;
+    font-size:1.8em;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+footer h4{
+    font-size: 25px;
+    color: black;
+    padding-bottom: 20px;
+}
+
+footer .col p{
+    font-size: 17px;
+    margin: 0 0 8px 0;
+}
+
+footer a{
+    font-size: 17px;
+    text-decoration: none;
+    color:#444;
+    margin-bottom: 10px;
+}
+
+footer .copyright{
+    width: 100%;
+    text-align: center;
+}
