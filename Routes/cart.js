@@ -25,8 +25,8 @@ router.get('/:id',async (req,res)=>{
     let finalProducts=[]
 
     for(let i=0;i<allProducts.length;i++){
-        for(let j=0;j<products.length;j++){
-            if(products[j]==allProducts[i]._id){
+        if(products.includes(allProducts[i]._id)){
+            if(!finalProducts.includes(allProducts[i])){
                 finalProducts.push(allProducts[i]);
             }
         }
