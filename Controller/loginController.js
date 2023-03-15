@@ -10,11 +10,13 @@ function loginForm(req, res) { res.render("../View/LoginPage/loginPage", {}) }
 async function login(req, res) {
     const { email, password } = req.body
     
+    
     let result = await loginService.login(email,password);
-    if(result == null){
+    if(result== null){
       result="guest";
     }
     req.session.userType =result;
+    req.session.isFirst=true;
     if (result == "customer") {
       const customer = await customerController.getCustomersByFilter({password: password,email: email});
       req.session.user = customer[0]._id;

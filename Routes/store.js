@@ -9,6 +9,7 @@ router.get('/', async (req,res)=>{
     const products = await productController.getProductsByFilter({});
     const type =req.session.userType;
     const userID = req.session.user;
+    const first=false;
     let user=null;
     if(type=="customer"){
         user = await customerService.getCustomerById(userID);
@@ -24,7 +25,7 @@ router.get('/', async (req,res)=>{
     }
     
 
-    res.render("../View/StorePage/StorePage",{products,type,user})
+    res.render("../View/StorePage/StorePage",{products,type,user,first})
 })
 
 // router.route('/:id').get(async (req,res)=>{
