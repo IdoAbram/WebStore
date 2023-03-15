@@ -29,9 +29,11 @@ const loginRouter = require('./Routes/login')
     const storeRouter = require('./Routes/store')
     const productPageRouter = require('./Routes/prPage')
     const cartRouter=require('./Routes/cart')
+    const infoRouter=require('./Routes/info')
     app.use(express.static(path.join(__dirname+'/View')))
     app.use(express.static(path.join(__dirname+'/View/HomePage')))
     app.use(express.static(path.join(__dirname+'/View/GenericProductPage')))
+    app.use(express.static(path.join(__dirname+'/View/Info')))
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json());
     app.use('/customers',customerRouter);
@@ -40,7 +42,7 @@ const loginRouter = require('./Routes/login')
     app.use('/homePage',homePageRouter);
     app.use('/store',storeRouter);
     app.use('/prPage',productPageRouter);
-
+    app.use('/info',infoRouter)
     app.listen(3000)
 
 run()
