@@ -20,10 +20,10 @@ const getGiftCardById = (req, res) => {
     const giftCard = giftCardService.getGiftCardById(req.params.id)
 
     if(!giftCard){
-        customer = null;
+        giftCard = null;
     }
    
-    return customer;
+    return giftCard;
 }
 
 
