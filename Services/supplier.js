@@ -59,10 +59,6 @@ const updateSupplierPassword= async (id,password) => {
 }
 
 
-
-
-
-
 module.exports = {
     createSupplier,
     getSupplierById,
