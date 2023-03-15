@@ -1,44 +1,41 @@
 const express = require("express")
 const router = express.Router();
-const customerController = require('../Controller/customer');
-const adminController = require('../Controller/admin');
-const supplierController = require('../Controller/supplier');
+const customerService = require('../Services/customer');
+const adminService = require('../Services/admin');
+const supplierService = require('../Services/supplier');
 
 
 router.get('/',async (req,res)=>{
     res.render("../View/HomePage/HomePage")
 })
 
-router.get('/customer/:id',async (req,res)=>{
-    const user = await customerController.getCustomerById(req,res);
+router.get('/customer/',async (req,res)=>{
+    const id = req.session.user;
+    const user = await customerService.getCustomerById(id);
     if(!user){
         await res.json({message:"Not Found"})
         return;
     }
-
-    id = req.params.id
     res.render("../View/HomePage/HomePageCustomer",{id,user})
 })
 
-router.get('/admin/:id',async (req,res)=>{
-    const user = await adminController.getAdminById(req,res);
+router.get('/admin/',async (req,res)=>{
+    const id = req.session.user;
+    const user = await adminService.getAdminById(id);
     if(!user){
         await res.json({message:"Not Found"})
         return;
     }
-
-    id = req.params.id
     res.render("../View/HomePage/HomePageAdmin",{id,user})
 })
 
-router.get('/supplier/:id',async (req,res)=>{
-    const user = await supplierController.getSupplierById(req,res);
+router.get('/supplier/',async (req,res)=>{
+    const id = req.session.user;
+    const user = await supplierService.getSupplierById(id);
     if(!user){
         await res.json({message:"Not Found"})
         return;
     }
-
-    id = req.params.id
     res.render("../View/HomePage/HomePageSupplier",{id,user})
 })
 

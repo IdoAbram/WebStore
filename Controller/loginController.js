@@ -1,8 +1,8 @@
 const { request, response } = require("express");
 const loginService = require("../Services/loginService");
-const customerController = require('../Controller/customer');
-const adminController = require('../Controller/admin');
-const supplierController = require('../Controller/supplier');
+const customerController = require('./customer');
+const adminController = require('./admin');
+const supplierController = require('./supplier');
 
 
 function loginForm(req, res) { res.render("../View/LoginPage/loginPage", {}) }
@@ -11,17 +11,21 @@ async function login(req, res) {
     const { email, password } = req.body
     
     const result = await loginService.login(email,password);
+    req.session.userType =result;
     if (result == "customer") {
       const customer = await customerController.getCustomersByFilter({password: password,email: email});
-      res.redirect("/homepage/customer/"+customer[0]._id);
+      req.session.user = customer[0]._id;
+      res.redirect("/homepage/customer/");
     }
     else if (result == "admin") {
       const admin = await adminController.getAdminsByFilter({password: password,Email: email});
-      res.redirect("/homepage/admin/"+admin[0]._id);
+      req.session.user = admin[0]._id;
+      res.redirect("/homepage/admin/");
     }
     else if (result == "supplier") {
       const supplier = await supplierController.getSuppliersByFilter({password: password,email: email});
-      res.redirect("/homepage/supplier/"+supplier[0]._id);
+      req.session.user = supplier[0]._id;
+      res.redirect("/homepage/supplier/");
     }
     else{
       res.render("../View/LoginPage/loginPage",{})
@@ -29,7 +33,9 @@ async function login(req, res) {
   }
 
   function logout(req, res) {
-    res.redirect("/homepage/");
+    req.session.destroy(() => {
+      res.redirect("/homepage/");
+    });
   }
 
 
