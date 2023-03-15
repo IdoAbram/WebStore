@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
 const GiftCard=new mongoose.schema({
-    typeOfDiscount:{
-      type:String,
-      enum:["Percentages","Numbers"]
-    },
+    Discount: Number,
     price:Number,
     code:String,
     Description: String
