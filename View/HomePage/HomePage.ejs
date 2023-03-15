@@ -4,41 +4,117 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
         <link href="/HomePage.css" rel="stylesheet">
-        <link href="../TemplatePage/TemplatePage.css" rel="stylesheet">
-        <script src="../TemplatePage/TemplatePage.js"></script>
+        
     </head>
     <body>
             <div class="container-fluid banner">
                 <div class="row">
                     <div class="col-md-12">
-                        <nav class="navbar">
-                            <div class="navbar-brand">Mavoch</div>
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Store</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Info</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">GiftCards</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/login">Sign In</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <% if(type=="customer") { %>
+                            <nav class="navbar">
+                                <div class="col">
+                                    <div class="navbar-brand">Mavoch</div>
+                                    <div class="name-brand">hello <%=user.Name%> <%=user.lastName%></div>
+                                </div>
+                                
+                                <ul class="nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link btn" href="../store">Store</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/homepage">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/info">Info</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Cart</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">GiftCards</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/login/signOut">Sign Out</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            
+                        <% } %>
+                        <% if(type=="admin") { %>
+                            <nav class="navbar">
+                                <div class="navbar-brand">Mavoch</div>
+                                <ul class="nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" type="submit" href="../store">Store</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Info</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Delete user</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Create worker</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Delete worker</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Workers</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/login/signOut">Sign Out</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            
+                            <div class="name-brand">hello <%=user.Name%> <%=user.lastName%></div>
+                        <% } %>  
+                         
+                        <% if(type=="supplier") { %>
+                            <nav class="navbar">
+                                <div class="navbar-brand">Mavoch</div>
+                                <ul class="nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" type="submit" href="../store">Store</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Sell new item</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">sell list</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/login/signOut">Sign Out</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            
+                            <div class="name-brand">hello <%=user.Name%> <%=user.lastName%></div>
+                        <% } %>
+                        <% if((type=="guest")||(user==null)) { %>
+                            <nav class="navbar">
+                                <div class="navbar-brand">Mavoch</div>
+                                <ul class="nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../store">Store</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Info</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">GiftCards</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/login">Sign In</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        <% } %>
                     </div>
-                    <div class="col-md-6 offset-md-3 info">
-                        <h1 class="text-center">Mavoch</h1>
-                        <p class="text-center">
-                            Best Online Store In The World
-                        </p>
-                    </div>
-                    <div id="footer" class="footer"></div>
                 </div>
             </div>
     </body>
