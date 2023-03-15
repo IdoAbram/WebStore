@@ -15,7 +15,8 @@ const Product = new mongoose.Schema({
         enum:[1,2,3,4,5]
     },
     Pictures: [String],
-    Tags: [String]
+    Tags: [String],
+    Sizes: [String]
   });
 
   

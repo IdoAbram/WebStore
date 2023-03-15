@@ -42,4 +42,9 @@ router.get('/supplier/:id',async (req,res)=>{
     res.render("../View/HomePage/HomePageSupplier",{id,user})
 })
 
+router.post('/',async (req,res)=>{
+    const products = await productController.getProductsByFilter({});
+    res.render("../View/StorePage/StorePage",{products})
+})
+
 module.exports = router;

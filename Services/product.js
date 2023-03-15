@@ -1,10 +1,10 @@
 const Product = require('../Model/Schemas/Product');
 
-const createProduct = async (title, price,Supplier_Id,Description,shortDescription,amountAvailable,pictures,tags) => {
+const createProduct = async (title, price,Supplier_Id,Description,shortDescription,amountAvailable,pictures,tags,Sizes) => {
 
     const product = new Product({Title:title,price:price,Supplier_Id:Supplier_Id,
         Description:Description,shortDescription:shortDescription
-        ,Reviews:[],AmountAvailable:amountAvailable,IsAvailableSuppliers:true,Rating:5,Pictures:pictures.split(" "),Tags:tags.split(" ")})
+        ,Reviews:[],AmountAvailable:amountAvailable,IsAvailableSuppliers:true,Rating:5,Pictures:pictures.split(" "),Tags:tags.split(" "),Sizes:Sizes.split(" ")})
 
 
     return await product.save();
@@ -14,9 +14,14 @@ const getProductById = async (id) => {
     return await Product.findById(id);
 };
 
+
 const getProducts = async (filter) => {
     return await Product.find(filter);  // Return all products that satsify nothing (Return Everyone)
 };
+
+const updateProductSizes = async (id,title)=>{
+    await Product.findOneAndUpdate({_id:id},{Sizes:sizes});
+}
 
 const updateProductTitle = async (id, title) => {
    
@@ -110,6 +115,7 @@ module.exports = {
     createProduct,
     getProductById,
     getProducts,
+    updateProductSizes,
     updateProductTitle,
     updateProductPrice,
     updateProductSupplierId,

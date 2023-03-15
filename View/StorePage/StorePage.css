@@ -3,6 +3,7 @@
     
     font-family: 'Raleway',sans-serif;
     box-sizing: border-box;
+    color: #444;
     
 }
 
@@ -75,6 +76,7 @@ body{
     margin: 0 auto;
     display: block;
     border-radius: 10%;
+    height: 280px;
 }
 
 .banner .info .content p{

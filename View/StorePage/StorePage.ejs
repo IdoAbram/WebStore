@@ -28,7 +28,7 @@
                             <% for (p of products) { %>
                                 
                                 <div class="content">
-                                    <img src ="<%= p.Pictures[0]%>">
+                                    <img src ="<%= p.Pictures[0]%>" style="max-height: 100%;">
                                     <h3><%= p.Title %></h3>
                                     <p><%= p.shortDescription %></p>
                                     <h6><%= p.price %>$</h6>
@@ -41,12 +41,15 @@
                                         <%}%>
                                     </ul>
                                     <a href="/prPage/<%= p._id %>" class="buy btn">Buy Now</a>
-                                    
                                 </div>
                             <%}%>
                         </div>
                     </div>
-                    <div id="footer" class="footer"></div>
+                    <% var data = 0; %>
+
+                    <div id="footer1" class="footer">
+                        <Object class="no-scroll" data="../TemplatePage/TemplateFoot.html" width="100%" height="280%"></Object>
+                    </div>
                 </div>
             </div>
         </form>
