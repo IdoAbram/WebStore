@@ -9,7 +9,6 @@ const Product = require("./Model/Schemas/Product")
 const Admin = require('./Model/Schemas/Admin');
 const Supplier = require('./Model/Schemas/Supplier');
 
-const session = require('express-session');
 
 mongoose.set('strictQuery', false);
 var path = require('path');
@@ -34,6 +33,7 @@ const loginRouter = require('./Routes/login')
     app.use('/homePage',homePageRouter);
     app.use('/store',storeRouter);
     app.use('/prPage',productPageRouter);
+
     app.listen(3000)
 run()
 

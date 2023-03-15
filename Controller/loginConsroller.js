@@ -9,7 +9,7 @@ function loginForm(req, res) { res.render("../View/LoginPage/loginPage", {}) }
 
 async function login(req, res) {
     const { email, password } = req.body
-
+    
     const result = await loginService.login(email,password);
     if (result == "customer") {
       const customer = await customerController.getCustomersByFilter({password: password,email: email});
