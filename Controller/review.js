@@ -36,10 +36,6 @@ const updateReviewUserId = async (req, res) => {
     ReviewService.updateReviewUserId(req.params.id,req.body.userId);
 };
 
-const updateReviewProductId = async (req, res) => {
-    ReviewService.updateReviewDiscount(req.params.id,req.body.ProductId);
-};
-
 const updateReviewText = async (req, res) => {
     ReviewService.updateReviewDiscount(req.params.id,req.body.text);
 };
