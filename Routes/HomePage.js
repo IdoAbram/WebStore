@@ -8,9 +8,30 @@ const supplierService = require('../Services/supplier');
 router.get('/',async (req,res)=>{
     const type = req.session.userType;
     const id = req.session.user;
-    const user = await customerService.getCustomerById(id);
+    var first=null;
+    if(req.session.isFirst==null){
+        first=true;
+    }
+    else{
+        first=req.session.isFirst
+    }
     
-    res.render("../View/HomePage/HomePage",{id,user,type})
+    let user=null;
+    if(type=="customer"){
+        user = await customerService.getCustomerById(userID);
+    }
+    else if(type=="admin"){
+        user= await adminService.getAdminById(userID);
+    }
+    else if(type=="supplier"){
+        user= await supplierService.getSupplierById(userID);
+    }
+    else{
+        user=null;
+    }
+    
+    
+    res.render("../View/HomePage/HomePage",{id,user,type,first})
 })
 
 
