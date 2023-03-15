@@ -1,6 +1,6 @@
-const Customer = require("../Model/Schemas/Customer");
-const Admin = require("../Model/Schemas/Admin");
-const Supplier = require("../Model/Schemas/Supplier");
+const Customer = require("../../Model/Schemas/Customer");
+const Admin = require("../../Model/Schemas/Admin");
+const Supplier = require("../../Model/Schemas/Supplier");
 
 async function login(email, password){
     const customer = await Customer.findOne({password: password,email: email});

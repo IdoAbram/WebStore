@@ -1,8 +1,8 @@
 const { request, response } = require("express");
-const loginService = require("../Services/loginService");
-const customerController = require('./customer');
-const adminController = require('./admin');
-const supplierController = require('./supplier');
+const loginService = require("../../Services/LoginService/loginService");
+const customerController = require('../customer');
+const adminController = require('../admin');
+const supplierController = require('../supplier');
 
 
 function loginForm(req, res) { res.render("../View/LoginPage/loginPage", {}) }
