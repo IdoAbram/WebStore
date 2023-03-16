@@ -13,7 +13,13 @@ const Customer = require("./Model/Schemas/Customer");
 const Product = require("./Model/Schemas/Product");
 const Admin = require('./Model/Schemas/Admin');
 const Supplier = require('./Model/Schemas/Supplier');
+const session = require('express-session');
 
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: false,
+  }));
 
 
 mongoose.connect("mongodb://127.0.0.1:27017")
@@ -26,9 +32,11 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     const storeRouter = require('./Routes/store')
     const productPageRouter = require('./Routes/prPage')
     const cartRouter=require('./Routes/cart')
+    const infoRouter=require('./Routes/info')
     app.use(express.static(path.join(__dirname+'/View')))
     app.use(express.static(path.join(__dirname+'/View/HomePage')))
     app.use(express.static(path.join(__dirname+'/View/GenericProductPage')))
+    app.use(express.static(path.join(__dirname+'/View/Info')))
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json());
     app.use('/customers',customerRouter);
@@ -39,6 +47,7 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use('/prPage',productPageRouter);
     app.use('/cart',cartRouter)
 
+    app.use('/info',infoRouter)
     app.listen(3000)
 
 run()
@@ -49,6 +58,13 @@ async function run(){
     const customer = new Customer({Name:"Alon",lastName:"Michaeli",address:"MM",moneySpent:10.0,wishList:["Hello"],shoppingCart:["Hello"],orders:["Hello"],email:"111@gmail.com",password:"1234",creditCards:["Hello"]})
     const customer2 = new Customer({Name:"Ido",lastName: "Shimon",address: "George IV",moneySpent: 1004.4,wishList: ["HogLegacy"],shoppingCart: ["Aleph"],orders:["An Order"],email:"idodi5@gmail.com",password:"213123",creditcards:["334234","43223"]})
 
+    
+   /*
+    await customer.save().then(()=> console.log("Saved Alon"));
+    await customer2.save().then(()=>console.log("Saved Ido"))
+  */
+ //await admin1.save();
+ //await supplier.save();
 
     console.log(await Customer.count())
     console.log(await Product.count())
