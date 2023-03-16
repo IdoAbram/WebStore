@@ -6,26 +6,37 @@
 
 <body>
 
+    <div id="template1" class="header">
+        <%- include ('../HomePage/HomePage.ejs') %>
+    </div>
 
+    <br>
+
+    <h1 style="text-align: center;">Admin Chat</h1>
+
+
+    <h4><%=user.Name%></h4>
 
     <div id="messageBox" style="width: 400px;height: 400px; border-style:groove"></div>
+
     <input type="text" class="message" placeholder="Type here!"></input>
+    
     <button onclick="sendMessage()">Send Message</button>
 
     <script>
         const socket = io('http://localhost:3001')
         
         const sendMessage = () => {
-            socket.emit('message',document.getElementsByClassName("message")[0].value);
+            socket.emit('message',document.querySelector("h4").innerHTML + " : "+document.getElementsByClassName("message")[0].value);
         }
 
         socket.on('message',(data)=>{
 
-            var x = document.querySelector("div").innerHTML
+            var x = document.getElementById("messageBox").innerHTML
             x += data +"<br>"
             
 
-            document.querySelector("div").innerHTML=x
+            document.getElementById("messageBox").innerHTML=x
         });
 
 
