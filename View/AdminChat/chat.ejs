@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <script src ="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+</head>
+
+<body>
+
+
+
+    <div id="messageBox" style="width: 400px;height: 400px; border-style:groove"></div>
+    <input type="text" class="message" placeholder="Type here!"></input>
+    <button onclick="sendMessage()">Send Message</button>
+
+    <script>
+        const socket = io('http://localhost:3001')
+        
+        const sendMessage = () => {
+            socket.emit('message',document.getElementsByClassName("message")[0].value);
+        }
+
+        socket.on('message',(data)=>{
+
+            var x = document.querySelector("div").innerHTML
+            x += data +"<br>"
+            
+
+            document.querySelector("div").innerHTML=x
+        });
+
+
+
+    </script>
+
+</body>
+
+
+</html>

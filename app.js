@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 app.set('view engine', 'ejs');
 const mongoose = require('mongoose');
 var path = require('path');
+
+
+
 mongoose.set('strictQuery', false);
 const Customer = require("./Model/Schemas/Customer");
 const Product = require("./Model/Schemas/Product");
@@ -16,7 +19,7 @@ const Supplier = require('./Model/Schemas/Supplier');
 mongoose.connect("mongodb://127.0.0.1:27017")
 
 
-const loginRouter = require('./Routes/login')
+    const loginRouter = require('./Routes/login')
     const customerRouter = require('./Routes/customers')
     const productRouter = require('./Routes/products')
     const homePageRouter = require('./Routes/HomePage')
@@ -35,6 +38,7 @@ const loginRouter = require('./Routes/login')
     app.use('/store',storeRouter);
     app.use('/prPage',productPageRouter);
     app.use('/cart',cartRouter)
+
     app.listen(3000)
 
 run()
