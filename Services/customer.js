@@ -48,8 +48,6 @@ const updateCustomerOrders = async (id, orders) => {
 
 };
 
-
-
 const updateCustomerMail = async (id, email) => {
    
     Customer.findOneAndUpdate({_id:id},{email:email});

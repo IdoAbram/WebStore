@@ -79,16 +79,6 @@ const updateCustomerShoppingCart = async (req, res) => {
 
 };
   
-/*const addToCart = async (req, res) => { 
-
-  var products=[]
-  for(pro of req.body.shoppingCart){
-    products.push(pro)
-  }
-  products.push(req.params.id)
-  customerService.updateCustomerShoppingCart(req.params.id,products);
-    
-};*/
 
 const updateCustomerOrders = async (req, res) => { 
 
@@ -146,7 +136,6 @@ const updateCustomerOrders = async (req, res) => {
     updateCustomerMoneySpent,
     updateCustomerWishList,
     updateCustomerShoppingCart,
-    //addToCart,
     updateCustomerOrders,
     updateCustomerMail,
     updateCustomerPassword,

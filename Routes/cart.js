@@ -5,16 +5,6 @@ const cartController = require('../Controller/customer')
 
 
 router.get('/:id',async (req,res)=>{
-   /* const Product = await productController.getProducts(req,res);
-    if(!Product){
-        await res.json({message:"Not Found"})
-        return;
-    }
-
-    const customer = await (cartController.getCustomerById(req,res));
-    const products=customer.shoppingCart
-
-    await res.render("../View/Cart/CartM",{products,Product})*/
 
     const customer = await (cartController.getCustomerById(req,res));
     const products=customer.shoppingCart
