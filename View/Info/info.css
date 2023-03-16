@@ -1,3 +1,6 @@
+body{
+    text-align: center;
+}
 #myCanvas {
     position: absolute;
     top: 10%;
@@ -6,6 +9,13 @@
     z-index: -1;
 }
 h1 {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+
+h2 {
     position: relative;
     z-index: 2;
     text-align: center;
@@ -23,3 +33,9 @@ h1 {
     max-width: 100%;
     max-height: 100%;
   }
+
+  canvas{
+    width: 400px;
+    height: 400px;
+  }
+  
