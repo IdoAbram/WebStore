@@ -10,26 +10,41 @@ function loginForm(req, res) { res.render("../View/LoginPage/loginPage", {}) }
 async function login(req, res) {
     const { email, password } = req.body
     
-    const result = await loginService.login(email,password);
+    
+    let result = await loginService.login(email,password);
+    if(result== null){
+      result="guest";
+    }
+    req.session.userType =result;
+    req.session.isFirst=true;
     if (result == "customer") {
       const customer = await customerController.getCustomersByFilter({password: password,email: email});
-      res.redirect("/homepage/customer/"+customer[0]._id);
+      req.session.user = customer[0]._id;
+      res.redirect("/homepage/");
     }
     else if (result == "admin") {
       const admin = await adminController.getAdminsByFilter({password: password,Email: email});
-      res.redirect("/homepage/admin/"+admin[0]._id);
+      req.session.user = admin[0]._id;
+      res.redirect("/homepage/");
     }
     else if (result == "supplier") {
       const supplier = await supplierController.getSuppliersByFilter({password: password,email: email});
-      res.redirect("/homepage/supplier/"+supplier[0]._id);
+      req.session.user = supplier[0]._id;
+      res.redirect("/homepage/");
     }
     else{
+
       res.render("../View/LoginPage/loginPage",{})
     }
   }
 
   function logout(req, res) {
-    res.redirect("/homepage/");
+    
+    req.session.destroy(() => {
+      
+      res.redirect("/homepage/");
+    });
+    
   }
 
 

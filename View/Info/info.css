@@ -1,0 +1,25 @@
+#myCanvas {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+h1 {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set the height of the container to the height of the viewport */
+  }
+  
+  video {
+    max-width: 100%;
+    max-height: 100%;
+  }

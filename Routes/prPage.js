@@ -1,24 +1,39 @@
 const express = require("express")
 const router = express.Router();
 const productController = require('../Controller/Product')
-const customerController= require('../Controller/customer')
-const productService = require('../Services/product')
-const customerService = require('../Services/Customer')
+const customerService = require('../Services/customer');
+const adminService = require('../Services/admin');
+const supplierService = require('../Services/supplier');
 
 
 
 router.route('/:id').get(async (req,res)=>{
     
     const product= await productController.getProductById(req,res);
-    
+    const type =req.session.userType;
+    const userID = req.session.user;
+    const first=false;
+    let user=null;
+    if(type=="customer"){
+        user = await customerService.getCustomerById(userID);
+    }
+    else if(type=="admin"){
+        user= await adminService.getAdminById(userID);
+    }
+    else if(type=="supplier"){
+        user= await supplierService.getSupplierById(userID);
+    }
+    else{
+        user=null;
+    }
 
     if(!product){
         await res.json({message:"Not Found"})
         return;
     }
-    productID = req.params.id;
+    
 
-    res.render("../View/GenericProductPage/productPage",{productID,product})
+    res.render("../View/GenericProductPage/productPage",{type,product,user,first})
 })
 
 
