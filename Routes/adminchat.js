@@ -5,17 +5,24 @@ const adminService = require("../Services/admin")
 
 router.get('/', async (req,res)=>{
 
-    const type =req.session.userType;
+
+
+    const type = req.session.userType;
     const userID = req.session.user;
     const first = req.session.first;
 
     let user = null
 
-   if(type === "admin")
+   if(type === "admin"){
     user = await adminService.getAdminById(userID);
    
 
     res.render("../View/AdminChat/chat",{user,type,first})
+   }
+   else{
+    res.render("../View/sorry/sorry")
+   }
+
 
 })
 

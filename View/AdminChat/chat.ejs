@@ -14,20 +14,30 @@
 
     <h1 style="text-align: center;">Admin Chat</h1>
 
+    
+   
+
+    <h3>Currently Connected <p id="numberOnline"></p></h3>
 
     <h4><%=user.Name%></h4>
 
-    <div id="messageBox" style="width: 400px;height: 400px; border-style:groove"></div>
+    <div style="display: flex; align-items: left; justify-content: center;">
 
-    <input type="text" class="message" placeholder="Type here!"></input>
+    <div id="messageBox" style="width: 800px;height: 600px; border-style:groove; overflow:auto;white-space: nowrap; text-align: left;"></div>
+        
+
+    </div>
     
-    <button onclick="sendMessage()">Send Message</button>
+    <br>
+    <input type="text" class="message" placeholder="Type here!" style="display: block; margin: 0 auto;"></input>
+    <br>
+    <button onclick="sendMessage()" style="display: block; margin: 0 auto;">Send Message</button>
 
     <script>
         const socket = io('http://localhost:3001')
         
         const sendMessage = () => {
-            socket.emit('message',document.querySelector("h4").innerHTML + " : "+document.getElementsByClassName("message")[0].value);
+            socket.emit('message',"<b>"+document.querySelector("h4").innerHTML + "</b> : "+document.getElementsByClassName("message")[0].value +" <b>"+new Date().toLocaleTimeString()+"</b>");
         }
 
         socket.on('message',(data)=>{
@@ -38,6 +48,10 @@
 
             document.getElementById("messageBox").innerHTML=x
         });
+
+        socket.on('updateOnlineCount',(count)=>{
+            document.getElementById("numberOnline").innerHTML = count;
+        })
 
 
 
