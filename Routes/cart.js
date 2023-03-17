@@ -24,17 +24,18 @@ router.get('/',async (req,res)=>{
 
 router.route('/removeFromCart/:id').get(async (req,res)=>{
     const id=req.session.user;
+    
     const productID=req.params.id;
     const customer = await customerService.getCustomerById(id);
     
     if(customer.shoppingCart!==null){
-        let products= productController.removeFromCart(customer.shoppingCart,productID);
         
+        let products= productController.removeFromCart(customer.shoppingCart,productID);
         customerService.updateCustomerShoppingCart(id,products);
         res.redirect('/cart');
     }
     else{
-        res.redirect('homePage');
+        res.redirect('/homepage');
     }
     
     
