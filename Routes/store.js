@@ -5,6 +5,8 @@ const customerService = require('../Services/customer');
 const adminService = require('../Services/admin');
 const supplierService = require('../Services/supplier');
 
+
+
 router.get('/', async (req,res)=>{
     const products = await productController.getProductsByFilter({});
     const type =req.session.userType;

@@ -40,6 +40,7 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use(express.static(path.join(__dirname+'/View/Info')))
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json());
+    app.use('/cart',cartRouter);
     app.use('/customers',customerRouter);
     app.use('/login',loginRouter);
     app.use('/products',productRouter);

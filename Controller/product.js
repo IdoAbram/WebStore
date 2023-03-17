@@ -16,6 +16,33 @@ function getProductsByFilter(filter){
     return products;
 }
 
+function getProductsByIds(allProducts,products){
+  let finalProducts=[];
+
+  
+
+  if(products!=null){
+      for(let i=0;i<allProducts.length;i++){
+          if(products.includes(allProducts[i]._id)){
+              if(!finalProducts.includes(allProducts[i])){
+                  finalProducts.push(allProducts[i]);
+              }
+          }
+      }
+  }
+  return finalProducts;
+}
+
+function removeFromCart(cart,id){
+  let final=[];
+  for(let i=0;i<cart.length;i++){
+    if(cart[i]!=id){
+        final.push(cart[i]);
+    }
+  }
+  return(final);
+}
+
 const getProductById =  (req, res) => { 
     var product =  productService.getProductById(req.params.id);
 
@@ -131,5 +158,7 @@ const updateProductAmAvailable = async (req, res) => {
     getCount,
     deleteAllProducts,
     updateAll,
-    getProductsByFilter
+    getProductsByFilter,
+    removeFromCart,
+    getProductsByIds
   };

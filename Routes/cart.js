@@ -1,27 +1,46 @@
 const express = require("express")
 const router = express.Router();
 const productController = require('../Controller/product')
-const cartController = require('../Controller/customer')
+const customerService = require('../Services/customer')
 
 
-router.get('/:id',async (req,res)=>{
-
-    const customer = await (cartController.getCustomerById(req,res));
-    const products=customer.shoppingCart
-    const id=req.params.id
-
+router.get('/',async (req,res)=>{
+    const id=req.session.user;
+    const customer = await customerService.getCustomerById(id);
+    let products;
+    if(customer.shoppingCart!=null){
+        products=customer.shoppingCart;
+    }
+    const type =req.session.userType;
+    const user = await customerService.getCustomerById(id);
+    let first = false;
     const allProducts = await productController.getProductsByFilter({});
 
-    let finalProducts=[]
+    let finalProducts=productController.getProductsByIds(allProducts,products);
+    
+    res.render("../View/Cart/CartM",{finalProducts,id,type,user,first})
+})
 
-    for(let i=0;i<allProducts.length;i++){
-        for(let j=0;j<products.length;j++){
-            if(products[j]==allProducts[i]._id){
-                finalProducts.push(allProducts[i]);
-            }
-        }
+
+router.route('/removeFromCart/:id').get(async (req,res)=>{
+    const id=req.session.user;
+    const productID=req.params.id;
+    const customer = await customerService.getCustomerById(id);
+    
+    if(customer.shoppingCart!==null){
+        let products= productController.removeFromCart(customer.shoppingCart,productID);
+        
+        customerService.updateCustomerShoppingCart(id,products);
+        res.redirect('/cart');
     }
-    res.render("../View/Cart/CartM",{finalProducts,id})
+    else{
+        res.redirect('homePage');
+    }
+    
+    
+    
+    
+    
 })
 
 module.exports = router
