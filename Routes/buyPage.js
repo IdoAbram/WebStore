@@ -1,4 +1,10 @@
-const express = require("express")
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 const router = express.Router();
 const productController = require('../Controller/product')
 const cartController = require('../Controller/customer')
@@ -20,11 +26,7 @@ router.get('/:id',async (req,res)=>{
             }
         }
     }
-    //const total = req.session.total;
-    var total = document.getElementById("total").value;
-
-
-    res.render("../View/BuyPage/buyPageM",{finalProducts,customer,id, req,total})
+    const total=req.session.total
+    res.render("../View/BuyPage/buyPageM",{finalProducts,customer,id ,total})
 })
-
 module.exports = router

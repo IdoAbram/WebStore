@@ -47,7 +47,6 @@
                             <input placeholder="don`t forget the cvv">
                             <a type="button" class="btn btn-success" data-id="value from input" onclick="" href="/cart/<%= customer._id %>">Back to cart</a></td>
                         </div>
-
                         <table class="table"  id="bp">
                             <tbody>
                               <tr >
@@ -78,8 +77,7 @@
                                 <th scope="row">5</th>
                                 <th>Total with shipping:</th>
                                 <td><%= total %></td>
-                                <%= console.log(total) %>
-                                <td><button type="button" class="btn btn-light" data-id="" onclick="paid(event)">Pay now</button></td>
+                                <td><button type="button" class="btn btn-light" data-id="customer" onclick="paid(event)">Pay now</button></td>
                               </tr>
                             </tbody>
                           </table>

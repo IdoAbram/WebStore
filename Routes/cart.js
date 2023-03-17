@@ -20,11 +20,8 @@ router.get('/:id',async (req,res)=>{
             }
         }
     }
-
-    var total = req.body.total;
-    req.session.total = total;
     
-    res.render("../View/Cart/CartM",{finalProducts,id, total, req, customer})
+    res.render("../View/Cart/CartM",{finalProducts,id, req, customer})
 })
 
 module.exports = router
