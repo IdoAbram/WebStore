@@ -16,7 +16,7 @@ app.use(session({
     secret: 'your-secret-key',
     resave: false,
     saveUninitialized: false,
-  }));
+}));
 
 
 mongoose.connect("mongodb://127.0.0.1:27017")
@@ -29,6 +29,7 @@ const loginRouter = require('./Routes/login')
     const storeRouter = require('./Routes/store')
     const productPageRouter = require('./Routes/prPage')
     const cartRouter=require('./Routes/cart')
+    const buyPageRouter=require('./Routes/buyPage')
     app.use(express.static(path.join(__dirname+'/View')))
     app.use(express.static(path.join(__dirname+'/View/HomePage')))
     app.use(express.static(path.join(__dirname+'/View/GenericProductPage')))
@@ -40,7 +41,8 @@ const loginRouter = require('./Routes/login')
     app.use('/homePage',homePageRouter);
     app.use('/store',storeRouter);
     app.use('/prPage',productPageRouter);
-
+    app.use('/cart',cartRouter);
+    app.use('/buyPage',buyPageRouter);
     app.listen(3000)
 
 run()

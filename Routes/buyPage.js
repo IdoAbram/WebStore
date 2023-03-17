@@ -14,17 +14,17 @@ router.get('/:id',async (req,res)=>{
     let finalProducts=[]
 
     for(let i=0;i<allProducts.length;i++){
-        if(products.includes(allProducts[i]._id)){
-            if(!finalProducts.includes(allProducts[i]._id)){
+        for(let j=0;j<products.length;j++){
+            if(products[j]==allProducts[i]._id){
                 finalProducts.push(allProducts[i]);
             }
         }
     }
+    //const total = req.session.total;
+    var total = document.getElementById("total").value;
 
-    var total = req.body.total;
-    req.session.total = total;
-    
-    res.render("../View/Cart/CartM",{finalProducts,id, total, req, customer})
+
+    res.render("../View/BuyPage/buyPageM",{finalProducts,customer,id, req,total})
 })
 
 module.exports = router
