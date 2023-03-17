@@ -1,3 +1,6 @@
+
+
+
 function func(event){
     var imgSec = event.target;
 
@@ -6,3 +9,4 @@ function func(event){
     firstImg.src = imgSec.src;
     imgSec.src = firstSrc;
 }
+

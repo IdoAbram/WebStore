@@ -14,7 +14,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <link rel="stylesheet" href="/GenericProductPage/ProductPage.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="/GenericProductPage/productPage.js"></script>
+        <script src="/GenericProductPage/productPage1.js"></script>
+        
+        
         
 	    
         
@@ -69,15 +71,22 @@
                                     <%}%>
                                     </select>
                                     <br>
-                                    <% if(type==="customer"||type==="admin"||type==="supplier") { %>
-                                        <button type="button" class="btn btn-warning">Add To Cart</button>
+                                    <% if(type==="customer") { %>
+                                        <a href="/prPage/<%= product._id %>/addToCart" class="btn btn-warning">Add To Cart</a>
+                                        <% if(isAdded) { %>
+                                            <p>
+                                                Added!!!
+                                            </p>
+                                        <% } %>
                                     <% } %>
+                                    
                                     
                                     
                                     <h4 class="mt-5 mb-5">Product Details</h4>
                                     <span><%= product.Description %>
                                     </span>
                                 </div>
+                                
 
                                 
                                 

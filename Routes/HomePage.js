@@ -18,13 +18,13 @@ router.get('/',async (req,res)=>{
     
     let user=null;
     if(type=="customer"){
-        user = await customerService.getCustomerById(userID);
+        user = await customerService.getCustomerById(id);
     }
     else if(type=="admin"){
-        user= await adminService.getAdminById(userID);
+        user= await adminService.getAdminById(id);
     }
     else if(type=="supplier"){
-        user= await supplierService.getSupplierById(userID);
+        user= await supplierService.getSupplierById(id);
     }
     else{
         user=null;
