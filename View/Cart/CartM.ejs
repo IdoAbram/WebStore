@@ -11,29 +11,9 @@
             <div class="container-fluid banner">
                 <div class="row">
                     <div class="col-md-12">
-                        <nav class="navbar">
-                            <div class="navbar-brand">Mavoch</div>
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Store</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Info</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Cart</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">GiftCards</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Sign In</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div id="template1" class="header">
+                            <%- include ('../HomePage/HomePage.ejs') %>
+                        </div>
                     </div>
                     <div class="col-md-8 offset-md-2 info text-center cart">
                         <h1>Shopping Cart</h1>
@@ -72,44 +52,22 @@
 
                                             <button type="button" class="btn btn-light" id="<%= pro._id +5 %>" data-id="<%= pro._id +1 %> <%= pro._id +2%>" onclick="increase(event)">+</button>
                                         </td>
-                                        <td><button type="button" class="btn btn-danger" data-id="<%= pro._id %> <%= pro._id +2%> id <%= pro._id +3%>"  onclick="removeFromCart(event)">Delete</button></td>
+                                        <td><a type="button" class="btn btn-danger" data-id="<%= pro._id %> <%= pro._id +2%> id <%= pro._id +3%>"  onclick="removeFromCart(event)" href="/cart/removeFromCart/<%= pro._id %>">Delete</a></td>
                                         <td>
                                             $ <input type="text" value="<%= pro.price %>" id="<%= pro._id +2%>" disabled="disabled" class="change"/> 
                                         </td>
                                     </tr>
                                 <% } %>
 
-                                <tr id="1">
-                                    <td>
-                                        <label class="container">
-                                            <input type="checkbox" value="1" checked="checked" id="4"data-id="1 3 4 5 6" onclick="remove(event)">
-                                            <span class="checkmark"></span>
-                                          </label>
-                                    </td>
-                                    <td><img src="<%= pro.Pictures[0] %>" style="width: 300px; height: 200px;"></td>
-                                    <td><%= pro.Title %></td>
-                                    <td><%= pro.shortDescription %></td>
-                                    <td><%= pro.AmountAvailable %></td>
-                                    <td>
-                                        <button type="button" class="btn btn-light" id="5" data-id="2 3" onclick="decrease(event)">-</button>
-                                        
-                                        <input type="text" value="1" id="2" disabled="disabled" class="change"/>
-
-                                        <button type="button" class="btn btn-light" id="6" data-id="2 3" onclick="increase(event)">+</button>
-                                    </td>
-                                    <td><button type="button" class="btn btn-danger" data-id="1 3 id 4"  onclick="removeFromCart(event)">Delete</button></td>
-                                    <td>
-                                        $ <input type="text" value="50" id="3" disabled="disabled" class="change"/> 
-                                    </td>
-                                </tr>
-                                <% total+= 50  %>
+                                
 
                                 <tr>
                                     <th>Total:</th>
                                     <td>
                                         $ <input type="text" value="<%= total %>" id="total" disabled="disabled" class="change"/>
                                     </td>
-                                    <td><button type="button" class="btn btn-danger" data-id="" onclick="">Buy Now</button></td>
+                                    
+                                    
                                 </tr>
                             </tbody>
                         </table>
