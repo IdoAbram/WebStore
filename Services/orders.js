@@ -17,6 +17,29 @@ const getOrders = async (filter) => {
 };
 
 const updateOrdersPriceOfOrder = async (id, priceOfOrder) => {
+
+    await Customer.findOneAndUpdate({_id:id},{PriceOfOrder:priceOfOrder});
+};
+
+const updateOrdersShippingPrice = async (id, price) => {
+    await Customer.findOneAndUpdate({_id:id},{ShippingPrice:price});
+};
+
+const updateOrdersShippingCompany = async (id, shipCompany) => {
+    await Customer.findOneAndUpdate({_id:id},{ShippingCompany:shipCompany});
+};
+
+const updateOrdersDateIssued = async (id, dateIssued) => {
+    await Customer.findOneAndUpdate({_id:id},{DateIssued:dateIssued});
+};
+
+const updateOrdersExpectedArrival = async (id, dateArrival) => {
+    await Customer.findOneAndUpdate({_id:id},{ExpectedArrival:dateArrival});
+};
+
+const updateOrdersProducts = async (id, products) => {
+    await Customer.findOneAndUpdate({_id:id},{products:products});
+=======
     await Orders.findOneAndUpdate({_id:id},{PriceOfOrder:priceOfOrder});
 };
 

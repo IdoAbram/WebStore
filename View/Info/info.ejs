@@ -3,19 +3,25 @@
   <head>
     <title>Info</title>
     <link href="/info.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
   </head>
   <body>
     <div id="template1" class="header">
-      <%- include ('../HomePage/HomePage.ejs') %>
-  </div>
+         <%- include ('../HomePage/HomePage.ejs') %>
+    </div>
     <h1>Info</h1>
-      <canvas id="myCanvas" width="200" height="200"></canvas>
-      <br>
-      <div class="video-container">
-        <video width="960" height="720" controls>
-          <source src="WhatsApp Video 2023-02-28 at 1.55.22 PM.mp4" type="video/mp4">
-        </video>
-      </div>
+      <h2>Our stock</h2>
+      <div style="display: flex; align-items: center; justify-content: center; ">
+      <div style="width: 50rem; height: 25rem;"><canvas id="ma-chart" width="200" height="200"></canvas></div>
+    </div>
+    <br><br><br>
+    <h2>About us</h2>
+    <div class="video-container">
+      <video width="960" height="720" controls>
+        <source src="WhatsApp Video 2023-02-28 at 1.55.22 PM.mp4" type="video/mp4">
+      </video>
+    </div>
       <script src="/info.js"></script>
   </body>
 </html>
