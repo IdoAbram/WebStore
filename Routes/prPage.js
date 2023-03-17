@@ -1,63 +1,77 @@
 const express = require("express")
 const router = express.Router();
-const productController = require('../Controller/Product')
-const customerController= require('../Controller/customer')
-const productService = require('../Services/product')
-const customerService = require('../Services/Customer')
+const productController = require('../Controller/Product');
+const cartController = require('../Controller/customer');
+const customerService = require('../Services/customer');
+const adminService = require('../Services/admin');
+const supplierService = require('../Services/supplier');
 
 
-
-
-router.route('/:idPr/:idCu').get(async (req,res)=>{
-    productID = req.params.idPr;
-    customerID=req.params.idCu;
-    const product= await productService.getProductById(productID);
-    var customer1=0;
-
-    if(customerID!='guest'){
-
-        customer1 = await customerService.getCustomerById(productID);
-    }
-    const customer=customer1;
-    
-
-    if(!product){
-        await res.json({message:"Not Found"})
-        return;
-    }
-    res.render("../View/GenericProductPage/productPage",{customer,product})
-
-
-
-})
-
-// router.route('/:idPr/guest').get(async (req,res)=>{
-    
-//     const product= await productController.getProductById(req,res);
-//     const custoemr=0;
-
-//     if(!product){
-//         await res.json({message:"Not Found"})
-//         return;
-//     }
-//     productID = req.params.id;
-
-//     res.render("../View/GenericProductPage/productPage",{customer,product})
-// })
 
 router.route('/:id').get(async (req,res)=>{
     
     const product= await productController.getProductById(req,res);
+    const type =req.session.userType;
+    const userID = req.session.user;
+    let isAdded=false;
+    const first=false;
+
+    let user=null;
+    
+    if(type=="customer"){
+        user = await customerService.getCustomerById(userID);
+    }
+    else if(type=="admin"){
+        user= await adminService.getAdminById(userID);
+    }
+    else if(type=="supplier"){
+        user= await supplierService.getSupplierById(userID);
+    }
+    else{
+        user=null;
+    }
+    if(user!=null&&type=="customer"){
+        const cart = user.shoppingCart;
+        if(cart.includes(product._id))
+        {
+            isAdded=true;
+        }
+    }
     
 
     if(!product){
         await res.json({message:"Not Found"})
         return;
     }
-    productID = req.params.id;
+    
 
-    res.render("../View/GenericProductPage/productPage",{productID,product})
+    res.render("../View/GenericProductPage/productPage",{type,product,user,first,isAdded})
 })
+
+router.route('/:id/addToCart').get(async (req,res)=>{
+    const product= await productController.getProductById(req,res);
+    const userID = req.session.user;
+    const user = await customerService.getCustomerById(userID);
+    let cart;
+    const type =req.session.userType;
+    req.session.added = true;
+    const first=false;
+    if(user.shoppingCart!=null){
+        cart=user.shoppingCart;
+    }
+    else{
+        cart=[];
+    }
+    
+    
+    cart.push(req.params.id);
+    customerService.updateCustomerShoppingCart(userID,cart);
+    let isAdded=true;
+    res.redirect("/prPage/"+product._id);
+    
+})
+
+
 
 
 module.exports = router

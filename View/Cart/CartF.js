@@ -1,4 +1,28 @@
+function callIncrease(id) {
+    $.ajax({
+      type: "GET",
+      url: "/cart/increaseTotalPrice/"+id,
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+}
 
+function callDecrease(id) {
+    $.ajax({
+      type: "GET",
+      url: "/cart/decreaseTotalPrice/"+id,
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+}
 
 function increase(event){
     const ids = event.target.dataset.id.split(" ");
@@ -24,6 +48,8 @@ function increase(event){
     price.value = crValue;
 
     totalPrice.value=parseInt(totalPrice.value)+crValue
+
+    callIncrease(ids[2])
 }
 
 function decrease(event){
@@ -52,6 +78,8 @@ function decrease(event){
         currentValue = currentValue - 1;
 
     textField.value = currentValue;
+
+    callDecrease(ids[2])
 }
 
 function removeFromCart(event){

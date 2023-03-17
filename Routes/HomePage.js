@@ -6,42 +6,56 @@ const supplierService = require('../Services/supplier');
 
 
 router.get('/',async (req,res)=>{
-    res.render("../View/HomePage/HomePage")
-})
-
-router.get('/customer/',async (req,res)=>{
+    const type = req.session.userType;
     const id = req.session.user;
-    const user = await customerService.getCustomerById(id);
-    if(!user){
-        await res.json({message:"Not Found"})
-        return;
+    var first=null;
+    if(req.session.isFirst==null){
+        first=true;
     }
-    res.render("../View/HomePage/HomePageCustomer",{id,user})
+    else{
+        first=req.session.isFirst
+    }
+    
+    let user=null;
+    if(type=="customer"){
+        user = await customerService.getCustomerById(id);
+    }
+    else if(type=="admin"){
+        user= await adminService.getAdminById(id);
+    }
+    else if(type=="supplier"){
+        user= await supplierService.getSupplierById(id);
+    }
+    else{
+        user=null;
+    }
+    
+    
+    res.render("../View/HomePage/HomePage",{id,user,type,first})
 })
 
-router.get('/admin/',async (req,res)=>{
-    const id = req.session.user;
-    const user = await adminService.getAdminById(id);
-    if(!user){
-        await res.json({message:"Not Found"})
-        return;
-    }
-    res.render("../View/HomePage/HomePageAdmin",{id,user})
-})
 
-router.get('/supplier/',async (req,res)=>{
-    const id = req.session.user;
-    const user = await supplierService.getSupplierById(id);
-    if(!user){
-        await res.json({message:"Not Found"})
-        return;
-    }
-    res.render("../View/HomePage/HomePageSupplier",{id,user})
-})
 
-router.post('/',async (req,res)=>{
-    const products = await productController.getProductsByFilter({});
-    res.render("../View/StorePage/StorePage",{products})
-})
+// router.get('/admin/',async (req,res)=>{
+//     const id = req.session.user;
+//     const user = await adminService.getAdminById(id);
+//     if(!user){
+//         await res.json({message:"Not Found"})
+//         return;
+//     }
+//     res.render("../View/HomePage/HomePageAdmin",{id,user})
+// })
+
+// router.get('/supplier/',async (req,res)=>{
+//     const id = req.session.user;
+//     const user = await supplierService.getSupplierById(id);
+//     if(!user){
+//         await res.json({message:"Not Found"})
+//         return;
+//     }
+//     res.render("../View/HomePage/HomePageSupplier",{id,user})
+// })
+
+
 
 module.exports = router;

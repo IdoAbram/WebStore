@@ -8,33 +8,13 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
-        <form method="post" action="http://localhost:8080//HomePage">
+        <form method="post" action='/buyPage'>
             <div class="container-fluid banner">
                 <div class="row">
                     <div class="col-md-12">
-                        <nav class="navbar">
-                            <div class="navbar-brand">Mavoch</div>
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Store</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Info</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Cart</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">GiftCards</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Sign In</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div id="template1" class="header">
+                            <%- include ('../HomePage/HomePage.ejs') %>
+                        </div>
                     </div>
                     <div class="col-md-8 offset-md-2 info text-center cart">
                         <h1>Shopping Cart</h1>
@@ -52,9 +32,9 @@
                               </tr>
                             </thead>
                             <tbody>
-                                <% req.session.total=0 %>
+                                <% total=0 %>
                                 <% for (pro of finalProducts) { %>
-                                    <% req.session.total+= pro.price  %>
+                                    <% total+= pro.price  %>
                                     <tr id="<%= pro._id %>">
                                         <td>
                                             <label class="container">
@@ -67,27 +47,31 @@
                                         <td><%= pro.shortDescription %></td>
                                         <td><%= pro.AmountAvailable %></td>
                                         <td>
-                                            <button type="button" class="btn btn-light" id="<%= pro._id +4 %>" data-id="<%= pro._id +1 %> <%= pro._id +2%>" onclick="decrease(event)">-</button>
+                                            <button type="button" class="btn btn-light" id="<%= pro._id +4 %>" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %>" onclick="decrease(event)">-</button>
                                             
                                             <input type="text" value="1" id="<%= pro._id +1 %>" disabled="disabled" class="change"/>
 
-                                            <button type="button" class="btn btn-light" id="<%= pro._id +5 %>" data-id="<%= pro._id +1 %> <%= pro._id +2%>" onclick="increase(event)">+</button>
+                                            <a type="button" class="btn btn-light" id="<%= pro._id +5 %>" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %>" onclick="increase(event)">+</a>
                                         </td>
-                                        <td><button type="button" class="btn btn-danger" data-id="<%= pro._id %> <%= pro._id +2%> id <%= pro._id +3%>"  onclick="removeFromCart(event)">Delete</button></td>
+                                        <td><a type="button" class="btn btn-danger" data-id="<%= pro._id %> <%= pro._id +2%> id <%= pro._id +3%>"  onclick="removeFromCart(event)" href="/cart/removeFromCart/<%= pro._id %>">Delete</a></td>
                                         <td>
                                             $ <input type="text" value="<%= pro.price %>" id="<%= pro._id +2%>" disabled="disabled" class="change"/> 
                                         </td>
                                     </tr>
                                 <% } %>
+
                                 <tr>
                                     <th>Total:</th>
                                     <td>
-                                        $ <input type="text" value="<%= req.session.total %>" id="total" disabled="disabled" class="change"/>
+                                        $ <input type="text" value="<%= total %>" id="total" disabled="disabled" class="change"/>
                                     </td>
-                                    <td><a type="button" id="move" class="btn btn-danger" onclick="" href="/buyPage/<%= customer._id %>">Buy Now</a></td>
+                                    <td><a type="button" class="btn btn-danger" data-id="" onclick="" href="/buyPage">Buy Now</a></td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div id="footer1" class="footer">
+                        <Object class="no-scroll" data="../TemplatePage/TemplateFoot.html" width="100%" height="280%"></Object>
                     </div>
                 </div>
             </div>

@@ -35,6 +35,7 @@ const loginRouter = require('./Routes/login')
     app.use(express.static(path.join(__dirname+'/View/GenericProductPage')))
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json());
+    app.use('/cart',cartRouter);
     app.use('/customers',customerRouter);
     app.use('/login',loginRouter);
     app.use('/products',productRouter);
