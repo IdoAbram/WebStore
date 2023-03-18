@@ -4,6 +4,7 @@ const productController = require('../Controller/product')
 const customerService = require('../Services/customer')
 
 
+<<<<<<< HEAD
 router.get('/',async (req,res)=>{
     const id=req.session.user;
     const customer = await customerService.getCustomerById(id);
@@ -14,6 +15,14 @@ router.get('/',async (req,res)=>{
     const type =req.session.userType;
     const user = await customerService.getCustomerById(id);
     let first = false;
+=======
+router.get('/:id',async (req,res)=>{
+
+    const customer = await (cartController.getCustomerById(req,res));
+    const products=customer.shoppingCart
+    const id=req.params.id
+
+>>>>>>> c85ba1881af0ddbc4e4e5ebd81b46d6363da6def
     const allProducts = await productController.getProductsByFilter({});
 
     let finalProducts=productController.getProductsByIds(allProducts,products);

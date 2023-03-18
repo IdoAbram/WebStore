@@ -35,6 +35,8 @@ router.route('/update/:id').post(async (req,res)=>{
     customerController.updateAll(req,res);
 })
 
+
+
 function setCustomer(req,res,next){
     const userId = req.id;
 }

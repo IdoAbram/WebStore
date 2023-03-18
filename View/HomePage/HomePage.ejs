@@ -19,13 +19,13 @@
                                 
                                 <ul class="nav">
                                     <li class="nav-item">
-                                        <a class="nav-link btn" href="../store">Store</a>
+                                        <a class="nav-link" href="../store">Store</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="">Home</a>
+                                        <a class="nav-link" href="/homepage">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Info</a>
+                                        <a class="nav-link" href="/info">Info</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="../cart">Cart</a>
@@ -42,13 +42,16 @@
                         <% } %>
                         <% if(type=="admin") { %>
                             <nav class="navbar" >
-                                <div class="navbar-brand">Mavoch</div>
+                                <div class="col">
+                                    <div class="navbar-brand">Mavoch</div>
+                                    <div class="name-brand">hello <%=user.Name%> <%=user.lastName%></div>
+                                </div>
                                 <ul class="nav">
                                     <li class="nav-item">
                                         <a class="nav-link" type="submit" href="../store">Store</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Info</a>
+                                        <a class="nav-link" href="/info">Info</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Delete user</a>
@@ -63,17 +66,23 @@
                                         <a class="nav-link" href="#">Workers</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link" href="/homepage">Home</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link" href="/login/signOut">Sign Out</a>
                                     </li>
                                 </ul>
                             </nav>
                             
-                            <div class="name-brand">hello <%=user.Name%> <%=user.lastName%></div>
+                            
                         <% } %>  
                          
                         <% if(type=="supplier") { %>
                             <nav class="navbar" >
-                                <div class="navbar-brand">Mavoch</div>
+                                <div class="col">
+                                    <div class="navbar-brand">Mavoch</div>
+                                    <div class="name-brand">hello <%=user.Name%> <%=user.lastName%></div>
+                                </div>
                                 <ul class="nav">
                                     <li class="nav-item">
                                         <a class="nav-link" type="submit" href="../store">Store</a>
@@ -85,12 +94,16 @@
                                         <a class="nav-link" href="#">sell list</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link" href="/info">Info</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/homepage">Home</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link" href="/login/signOut">Sign Out</a>
                                     </li>
                                 </ul>
                             </nav>
-                            
-                            <div class="name-brand">hello <%=user.Name%> <%=user.lastName%></div>
                         <% } %>
                         <% if((type=="guest")||(user==null)) { %>
                             <nav class="navbar">
@@ -100,10 +113,10 @@
                                         <a class="nav-link" href="../store">Store</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Home</a>
+                                        <a class="nav-link" href="/homepage">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Info</a>
+                                        <a class="nav-link" href="/info">Info</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">GiftCards</a>
