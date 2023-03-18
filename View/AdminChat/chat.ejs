@@ -69,13 +69,11 @@
         }
 
         socket.on('message', (data) => {
-            if (inputBox.value != "") {
-                var x = document.getElementById("messageBox").innerHTML;
-                x = '<p class="animate-write">' + data + '</p>' + x;
-                document.getElementById("messageBox").innerHTML = x;
-                inputBox.value = ""
-                btn.disabled = true
-            }
+            var x = document.getElementById("messageBox").innerHTML;
+            x = '<p class="animate-write">' + data + '</p>' + x;
+            document.getElementById("messageBox").innerHTML = x;
+            inputBox.value = ""
+            btn.disabled = true
         });
 
         socket.on('updateOnlineCount', (count) => {
