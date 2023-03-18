@@ -29,7 +29,7 @@ const getSupplierById = (req, res) => {
 
 const deleteAllSuppliers = (req,res)=>{
     supplierService.deleteAll();
- }
+}
 
 
 

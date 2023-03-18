@@ -23,7 +23,7 @@
     </head>
 
     <body>
-        <form method="post" action="http://localhost:8080//HomePage">
+        <form method="post">
             <div class="container-fluid banner">
                 <div class="row">
                     <div class="col-md-12">
@@ -54,12 +54,22 @@
                                         <%}%>
                                         
                                     <%}%>
+
                                         
                                     
                                 </div>
                                 
-                                <div class="col-lg-3 col-md-12 col-12">
+                                <div class="col-lg-3 col-md-12 col-12 desc">
                                     <h6><%= product.shortDescription %></h6>
+                                    <div class="stars">
+                                        <% for (let i=0;i!=product.Rating;i++){ %>
+                                            <li><i class="fa fa-star checked"></i></li>
+                                        <%}%>
+                                        <% for (let i=0;i!=5-product.Rating;i++){ %>
+                                            <li><i class="fa fa-star"></i></li>
+                                        <%}%>
+                                    </div>
+                                    
                                     <h3 class="py-4"> <%= product.Title %></h3>
                                     <h2><%= product.price %>$</h2>
                                     <% if (product.Sizes.length!=0) { %>
@@ -85,8 +95,52 @@
                                     <h4 class="mt-5 mb-5">Product Details</h4>
                                     <span><%= product.Description %>
                                     </span>
+
+
                                 </div>
+                                <% if(type==="customer") { %>
+                                    <h4>Rate Our Product:
+                                        <div class="stars">
+                                            <input type="radio" class="inp" name="i1" id="i1">
+                                            <input type="radio" class="inp" name="i2" id="i2">
+                                            <input type="radio" class="inp" name="i3" id="i3">
+                                            <input type="radio" class="inp" name="i4" id="i4">
+                                            <input type="radio" class="inp" name="i5" id="i5">
+                                            
+                                            <li><i class="fa fa-star" id="1" onclick="stars(1)" name="s1"></i></li>
+                                            <li><i class="fa fa-star" id="2" onclick="stars(2)" name="s2"></i></li>
+                                            <li><i class="fa fa-star" id="3" onclick="stars(3)" name="s3"></i></li>
+                                            <li><i class="fa fa-star" id="4" onclick="stars(4)" name="s4"></i></li>
+                                            <li><i class="fa fa-star" id="5" onclick="stars(5)" name="s5"></i></li>
+                                        </div>
+                                    </h4>
+                                    
+                                    <div class="review">
+                                        
+                                        <textarea id="revBox" name="review" rows="3" cols="5" placeholder="Type your comments here..." style="resize: none;"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning" style="width: 10rem; align-items: center;">Send Your Review</button>
+
+                                <% } %>
+
+                                <% for(rev of reviews) { %>
+                                    <h3 class="stars rating"><%= rev. Title %>:
+                                        <% for (let i=0;i!=rev.Rating;i++){ %>
+                                            <li><i class="fa fa-star checked"></i></li>
+                                        <% } %>
+                                        <% for (let i=0;i!=5-rev.Rating;i++){ %>
+                                            <li><i class="fa fa-star"></i></li>
+                                        <% } %>
+                                    </h3>
+                                    <h6><%= rev.text %></h6>
+                                    <div class="stars">
+                                        
+                                    </div>
+                                <% } %>
                                 
+
+
+
 
                                 
                                 
