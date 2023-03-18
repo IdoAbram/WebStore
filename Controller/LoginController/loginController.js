@@ -3,6 +3,7 @@ const loginService = require("../../Services/LoginService/loginService");
 const customerController = require('../customer');
 const adminController = require('../admin');
 const supplierController = require('../supplier');
+const adminService = require('../../Services/admin')
 
 
 function loginForm(req, res) { 
@@ -69,10 +70,29 @@ async function login(req, res) {
     }
     res.redirect('/login')
   }
+
+  function createAdmin(req,res){
+    adminController.createAdmin1Privilage(req,res);
+    res.redirect('/login/createAdmin')
+  }
+
+  async function adminPage(req,res){
+
+      const type = "admin";
+      const userId = req.session.user;
+      const user = await adminService.getAdminById(userId);
+      const first = false;
+      res.render("../View/Admin/createAdmin", {first,user,type})  
+  }
+
+
+
   module.exports = {
     login,
     loginForm,
     logout,
     registerForm,
-    register
+    register,
+    createAdmin,
+    adminPage
   }

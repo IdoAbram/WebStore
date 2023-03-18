@@ -56,15 +56,11 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="/info">Info</a>
                                     </li>
+                                    <% if(user.Privileges==2) { %>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Delete user</a>
+                                        <a class="nav-link" href="/login/createAdmin">Create admin</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Create worker</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Delete worker</a>
-                                    </li>
+                                    <% } %>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Workers</a>
                                     </li>
