@@ -12,6 +12,10 @@ router.get('/',async (req,res)=>{
         products=customer.shoppingCart;
     }
     const type =req.session.userType;
+    if(type == "supplier" || type == "admin"){
+        res.render("../View/sorry/sorry")
+        return;
+    }
     const user = await customerService.getCustomerById(id);
     let first = false;
     const allProducts = await productController.getProductsByFilter({});

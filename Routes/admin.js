@@ -12,15 +12,21 @@ router.get('/get',async (req,res)=>{
     let user=null;
     if(type=="customer"){
         user = await customerService.getCustomerById(userID);
+        res.render("../View/sorry/sorry")
+        return;
     }
     else if(type=="admin"){
         user= await adminService.getAdminById(userID);
     }
     else if(type=="supplier"){
         user= await supplierService.getSupplierById(userID);
+        res.render("../View/sorry/sorry")
+        return;
     }
     else{
         user=null;
+        res.render("../View/sorry/sorry")
+        return;
     }
     const Admins = await adminController.getAdminsByFilter({Privileges: "1"});
     res.render("../View/Admin/getAdmin",{Admins,user,type,first})
