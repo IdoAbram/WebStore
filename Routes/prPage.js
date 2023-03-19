@@ -42,7 +42,7 @@ router.route('/:id').get(async (req,res)=>{
     }
     if(user!=null&&type=="customer"){
         const cart = user.shoppingCart;
-        if(cart.includes(product._id))
+        if(cart.has(product._id))
         {
             isAdded=true;
         }
@@ -76,7 +76,7 @@ router.route('/:id/addToCart').get(async (req,res)=>{
     }
     
     
-    cart.push(req.params.id);
+    cart.set(req.params.id,1);
     customerService.updateCustomerShoppingCart(userID,cart);
     let isAdded=true;
     res.redirect("/prPage/"+product._id);
