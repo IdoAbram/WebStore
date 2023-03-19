@@ -24,7 +24,7 @@ app.use(session({
 
 mongoose.connect("mongodb://127.0.0.1:27017")
 
-
+    const AdminRouter = require('./Routes/admin')
     const loginRouter = require('./Routes/login')
     const customerRouter = require('./Routes/customers')
     const productRouter = require('./Routes/products')
@@ -38,8 +38,10 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use(express.static(path.join(__dirname+'/View/HomePage')))
     app.use(express.static(path.join(__dirname+'/View/GenericProductPage')))
     app.use(express.static(path.join(__dirname+'/View/Info')))
+    app.use(express.static(path.join(__dirname+'/View/Admin')))
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json());
+    app.use('/cart',cartRouter);
     app.use('/customers',customerRouter);
     app.use('/login',loginRouter);
     app.use('/products',productRouter);
@@ -49,6 +51,7 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use('/cart',cartRouter)
     app.use('/info',infoRouter)
     app.use('/chat',chatRouter)
+    app.use('/admin',AdminRouter)
     app.listen(3000)
     server.listen(3001,()=>{console.log("Server running...")})
    
@@ -74,6 +77,3 @@ run()
 async function run(){
 
 }
-
-
-

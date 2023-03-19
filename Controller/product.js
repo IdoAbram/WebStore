@@ -1,7 +1,7 @@
 const productService = require('../Services/product');
 
 const createProduct = (req, res) => {
-    const newProduct =  productService.createProduct(req.body.title,req.body.price,req.body.suppID,req.body.Description,req.body.shortDescription,req.body.amountAvailable,req.body.pictures,req.body.tags,req.body.Sizes);
+    const newProduct =  productService.createProduct(req.body.title,req.body.price,req.session.user,req.body.Description,req.body.shortDescription,req.body.amountAvailable,req.body.pictures,req.body.tags,req.body.Sizes);
     return newProduct;
 };
 
@@ -14,6 +14,33 @@ const getProducts = (req, res) => {
 function getProductsByFilter(filter){
     const products = productService.getProducts(filter);
     return products;
+}
+
+function getProductsByIds(allProducts,products){
+  let finalProducts=[];
+
+  
+
+  if(products!=null){
+      for(let i=0;i<allProducts.length;i++){
+          if(products.includes(allProducts[i]._id)){
+              if(!finalProducts.includes(allProducts[i])){
+                  finalProducts.push(allProducts[i]);
+              }
+          }
+      }
+  }
+  return finalProducts;
+}
+
+function removeFromCart(cart,id){
+  let final=[];
+  for(let i=0;i<cart.length;i++){
+    if(cart[i]!=id){
+        final.push(cart[i]);
+    }
+  }
+  return(final);
 }
 
 const getProductById =  (req, res) => { 
@@ -131,5 +158,7 @@ const updateProductAmAvailable = async (req, res) => {
     getCount,
     deleteAllProducts,
     updateAll,
-    getProductsByFilter
+    getProductsByFilter,
+    removeFromCart,
+    getProductsByIds
   };
