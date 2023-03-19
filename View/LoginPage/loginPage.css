@@ -55,6 +55,11 @@
     width: 1rem;
   }
   
+  td{
+    margin-top: 10px;
+    animation: fadeIn 1s ease-in-out;
+  }
+
   .buttom {
     width: 20rem;
     margin-top: 10px;
