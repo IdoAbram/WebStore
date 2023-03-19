@@ -43,7 +43,7 @@ const updateAdminPrivileges = async (id, privileges) => {
 
 const deleteAdmin = async (id) => {
     
-    Admin.deleteOne({_id:id})
+    await Admin.deleteOne({_id:id})
 
 }
 
