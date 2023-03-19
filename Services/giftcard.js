@@ -16,19 +16,19 @@ const getGiftCards = async (filter) => {
 };
 
 const updateGiftCardDiscount = async (id, Discount) => {
-    await Customer.findOneAndUpdate({_id:id},{Discount:Discount});
+    await GiftCard.findOneAndUpdate({_id:id},{Discount:Discount});
 };
 
 const updateGiftCardPrice = async (id, price) => {
-    await Customer.findOneAndUpdate({_id:id},{price:price});
+    await GiftCard.findOneAndUpdate({_id:id},{price:price});
 };
 
 const updateGiftCardCode = async (id, code) => {
-    await Customer.findOneAndUpdate({_id:id},{code:code});
+    await GiftCard.findOneAndUpdate({_id:id},{code:code});
 };
 
 const updateGiftCardDescription = async (id, Description) => {
-    await Customer.findOneAndUpdate({_id:id},{Description:Description});
+    await GiftCard.findOneAndUpdate({_id:id},{Description:Description});
 };
 
 module.exports = {

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <script src ="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+</head>
+
+<body>
+
+    <div id="template1" class="header">
+        <%- include ('../HomePage/HomePage.ejs') %>
+    </div>
+
+    <br>
+
+    <h1 style="text-align: center;">Admin Chat</h1>
+
+    
+   
+
+    <h3>Currently Connected <p id="numberOnline"></p></h3>
+
+    <h4><%=user.Name%></h4>
+
+    <div style="display: flex; align-items: left; justify-content: center;">
+
+    <div id="messageBox" style="width: 800px;height: 600px; border-style:groove; overflow:auto;white-space: nowrap; text-align: left;"></div>
+        
+
+    </div>
+    
+    <br>
+    <input type="text" class="message" placeholder="Type here!" style="display: block; margin: 0 auto;"></input>
+    <br>
+    <button onclick="sendMessage()" style="display: block; margin: 0 auto;">Send Message</button>
+
+    <script>
+        const socket = io('http://localhost:3001')
+        
+        const sendMessage = () => {
+            socket.emit('message',"<b>"+document.querySelector("h4").innerHTML + "</b> : "+document.getElementsByClassName("message")[0].value +" <b>"+new Date().toLocaleTimeString()+"</b>");
+        }
+
+        socket.on('message',(data)=>{
+
+            var x = document.getElementById("messageBox").innerHTML
+            x += data +"<br>"
+            
+
+            document.getElementById("messageBox").innerHTML=x
+        });
+
+        socket.on('updateOnlineCount',(count)=>{
+            document.getElementById("numberOnline").innerHTML = count;
+        })
+
+
+
+    </script>
+
+</body>
+
+
+</html>

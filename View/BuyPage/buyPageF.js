@@ -10,3 +10,8 @@ function credit(event){
     const back=document.getElementById("credit")
     back.classList.remove("hide")
 }
+function pictures(event){
+    const ids = event.target.dataset.id.split(" ");
+
+    
+}

@@ -1,3 +1,4 @@
+//these functions change the total sum in the database
 function callIncrease(id) {
     $.ajax({
       type: "GET",
@@ -24,62 +25,65 @@ function callDecrease(id) {
     });
 }
 
-function increase(event){
-    const ids = event.target.dataset.id.split(" ");
+//increasing the total on the page
+function increase(event,map){
+  //getting different ids
+  const ids = event.target.dataset.id.split(" ");
 
-    var quantity = document.getElementById( ids[0] );
-    var currentValue = parseInt(quantity.value);
+  //handling and increasing the quantity
+  let quantity = document.getElementById( ids[0] );
+  let currentValue = parseInt(quantity.value);
+  currentValue = currentValue + 1;
+  quantity.value = currentValue;
 
-    currentValue = currentValue + 1;
+  //handling the price
+  var price = document.getElementById( ids[1] );
+  var crValue = parseInt(price.value);
 
-    quantity.value = currentValue;
+  //updating the total sum v1
+  var totalPrice=document.getElementById("total");
+  totalPrice.value=parseInt(totalPrice.value)-crValue
 
+  //updating the price
+  crValue = crValue + (crValue/(currentValue-1));
+  price.value = crValue;
 
+  //updating the total sum v2
+  totalPrice.value=parseInt(totalPrice.value)+crValue
 
-
-    var price = document.getElementById( ids[1] );
-    var crValue = parseInt(price.value);
-
-    var totalPrice=document.getElementById("total");
-    totalPrice.value=parseInt(totalPrice.value)-crValue
-
-    crValue = crValue + (crValue/(currentValue-1));
-
-    price.value = crValue;
-
-    totalPrice.value=parseInt(totalPrice.value)+crValue
-
-    callIncrease(ids[2])
+  //database total sum
+  callIncrease(ids[2])
 }
 
+//decreasing the total on the page
 function decrease(event){
-    const ids = event.target.dataset.id.split(" ");
+  //getting different ids
+  const ids = event.target.dataset.id.split(" ");
 
-    var textField = document.getElementById( ids[0] );
-    var currentValue = parseInt(textField.value);
+  //handling and decreasing the quantity
+  var textField = document.getElementById( ids[0] );
+  var currentValue = parseInt(textField.value);
 
-    var totalPrice=document.getElementById("total");
+  //handling the price
+  var price = document.getElementById( ids[1] );
+  var crValue = parseInt(price.value);
 
-    var price = document.getElementById( ids[1] );
-    var crValue = parseInt(price.value);
+  //updating the total sum v1
+  var totalPrice=document.getElementById("total");
+  totalPrice.value=parseInt(totalPrice.value)-crValue
 
-    totalPrice.value=parseInt(totalPrice.value)-crValue
-
-    if(currentValue>1){
-        crValue = crValue - (crValue/(currentValue));
-    }
-
-    price.value = crValue;
-
-    totalPrice.value=parseInt(totalPrice.value)+crValue
-
-
-    if(currentValue>1)
-        currentValue = currentValue - 1;
-
-    textField.value = currentValue;
-
+  //updating quantity
+  if(currentValue>1){
+    crValue = crValue - (crValue/(currentValue));
+    currentValue = currentValue - 1;
+    //database total price
     callDecrease(ids[2])
+  }
+  textField.value = currentValue;
+
+  //updating total and original price
+  price.value = crValue;
+  totalPrice.value=parseInt(totalPrice.value)+crValue
 }
 
 function removeFromCart(event){

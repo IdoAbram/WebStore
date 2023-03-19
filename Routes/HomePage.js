@@ -8,7 +8,7 @@ const supplierService = require('../Services/supplier');
 router.get('/',async (req,res)=>{
     const type = req.session.userType;
     const id = req.session.user;
-    var first=null;
+    let first=null;
     if(req.session.isFirst==null){
         first=true;
     }
@@ -31,9 +31,8 @@ router.get('/',async (req,res)=>{
     }
     
     
-    res.render("../View/HomePage/HomePage",{id,user,type,first})
+    res.render("../View/HomePage/HomePage",{user,type,first})
 })
-
 
 
 // router.get('/admin/',async (req,res)=>{

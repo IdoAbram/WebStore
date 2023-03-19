@@ -38,7 +38,7 @@
                                     <tr id="<%= pro._id %>">
                                         <td>
                                             <label class="container">
-                                                <input type="checkbox" value="1" checked="checked" id="<%= pro._id +3%>"data-id="<%= pro._id %> <%= pro._id +2%> <%= pro._id +3%> <%= pro._id +4 %> <%= pro._id +5 %>" onclick="remove(event)">
+                                                <input type="checkbox" value="1" checked="checked" id="<%= pro._id +3%>" data-id="<%= pro._id %> <%= pro._id +2%> <%= pro._id +3%> <%= pro._id +4 %> <%= pro._id +5 %>" onclick="remove(event)">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </td>
@@ -49,9 +49,9 @@
                                         <td>
                                             <button type="button" class="btn btn-light" id="<%= pro._id +4 %>" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %>" onclick="decrease(event)">-</button>
                                             
-                                            <input type="text" value="1" id="<%= pro._id +1 %>" disabled="disabled" class="change"/>
+                                            <input type="text" id="<%= pro._id +1 %>" value="<%= 1 %>" disabled="disabled" class="change"/>
 
-                                            <a type="button" class="btn btn-light" id="<%= pro._id +5 %>" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %>" onclick="increase(event)">+</a>
+                                            <button type="button" class="btn btn-light" id="<%= pro._id +5 %>" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %>" onclick="increase(event)">+</button>
                                         </td>
                                         <td><a type="button" class="btn btn-danger" data-id="<%= pro._id %> <%= pro._id +2%> id <%= pro._id +3%>"  onclick="removeFromCart(event)" href="/cart/removeFromCart/<%= pro._id %>">Delete</a></td>
                                         <td>
@@ -59,13 +59,12 @@
                                         </td>
                                     </tr>
                                 <% } %>
-
                                 <tr>
                                     <th>Total:</th>
                                     <td>
                                         $ <input type="text" value="<%= total %>" id="total" disabled="disabled" class="change"/>
                                     </td>
-                                    <td><a type="button" class="btn btn-danger" data-id="" onclick="" href="/buyPage">Buy Now</a></td>
+                                    <td><a type="button" class="btn btn-danger" data-id="finalProducts" onclick="pictures(event)" href="/buyPage">Buy Now</a></td>
                                 </tr>
                             </tbody>
                         </table>
