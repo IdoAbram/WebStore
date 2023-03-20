@@ -148,6 +148,8 @@ const updateProductAmAvailable = async (req, res) => {
   
   };
 
+
+
   module.exports = {
     createProduct,
     getProducts,

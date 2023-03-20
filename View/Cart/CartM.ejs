@@ -6,10 +6,10 @@
         
         <link href="../Cart/CartD.css" rel="stylesheet">
         <script src="../Cart/CartF.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js%22%3E"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
-        <form method="post" action="http://localhost:8080//HomePage">
+        <form method="post" action='/buyPage'>
             <div class="container-fluid banner">
                 <div class="row">
                     <div class="col-md-12">
@@ -35,7 +35,7 @@
                             <tbody>
                                 <% total=0 %>
                                 <% for (pro of finalProducts) { %>
-                                    <% total+= pro.price  %>
+                                    <% total+= pro.price*map.get(pro._id)  %>
                                     <tr id="<%= pro._id %>">
                                         <td>
                                             <label class="container">
@@ -50,13 +50,13 @@
                                         <td>
                                             <button type="button" class="btn btn-light" id="<%= pro._id +4 %>" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %>" onclick="decrease(event)">-</button>
                                             
-                                            <input type="text" id="<%= pro._id +1 %>" value="<%= 1 %>" disabled="disabled" class="change"/>
+                                            <input type="text" id="<%= pro._id +1 %>" value="<%= map.get(pro._id) %>" disabled="disabled" class="change"/>
 
                                             <button type="button" class="btn btn-light" id="<%= pro._id +5 %>" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %>" onclick="increase(event)">+</button>
                                         </td>
                                         <td><a type="button" class="btn btn-danger" data-id="<%= pro._id %> <%= pro._id +2%> id <%= pro._id +3%>"  onclick="removeFromCart(event)" href="/cart/removeFromCart/<%= pro._id %>">Delete</a></td>
                                         <td>
-                                            $ <input type="text" value="<%= pro.price %>" id="<%= pro._id +2%>" disabled="disabled" class="change"/> 
+                                            $ <input type="text" value="<%= pro.price*map.get(pro._id) %>" id="<%= pro._id +2%>" disabled="disabled" class="change"/> 
                                         </td>
                                     </tr>
                                 <% } %>

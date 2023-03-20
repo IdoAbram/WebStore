@@ -11,16 +11,8 @@ const reviewController=require('../Controller/review');
 
 
 router.route('/:id').get(async (req,res)=>{
-    
-    
-    
-
-
     const product= await productController.getProductById(req,res);
     const reviews= await reviewController.getReviewsByFilter({ProductId:req.params.id});
-
-    
-    
     const type =req.session.userType;
     const userID = req.session.user;
     let isAdded=false;
@@ -41,14 +33,12 @@ router.route('/:id').get(async (req,res)=>{
         user=null;
     }
     if(user!=null&&type=="customer"){
-        const cart = user.shoppingCart;
-        if(cart.has(product._id))
+        let cart =JSON.stringify(Array.from(user.shoppingCart.keys()));
+        if(cart.includes((product._id)))
         {
             isAdded=true;
         }
     }
-    
-
     if(!product){
         await res.json({message:"Not Found"})
         return;
@@ -78,7 +68,6 @@ router.route('/:id/addToCart').get(async (req,res)=>{
     
     cart.set(req.params.id,1);
     customerService.updateCustomerShoppingCart(userID,cart);
-    let isAdded=true;
     res.redirect("/prPage/"+product._id);
     
 })

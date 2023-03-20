@@ -19,7 +19,7 @@ app.use(session({
     secret: 'your-secret-key',
     resave: false,
     saveUninitialized: false,
-  }));
+}));
 
 
 mongoose.connect("mongodb://127.0.0.1:27017")
@@ -32,6 +32,7 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     const storeRouter = require('./Routes/store')
     const productPageRouter = require('./Routes/prPage')
     const cartRouter=require('./Routes/cart')
+    const buyPageRouter=require('./Routes/buyPage')
     const infoRouter=require('./Routes/info')
     const chatRouter=require('./Routes/adminchat')
     app.use(express.static(path.join(__dirname+'/View')))
@@ -47,6 +48,8 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use('/homePage',homePageRouter);
     app.use('/store',storeRouter);
     app.use('/prPage',productPageRouter);
+    app.use('/cart',cartRouter);
+    app.use('/buyPage',buyPageRouter);
     app.use('/cart',cartRouter)
     app.use('/info',infoRouter)
     app.use('/chat',chatRouter)

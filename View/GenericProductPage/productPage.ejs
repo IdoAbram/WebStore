@@ -82,11 +82,12 @@
                                     </select>
                                     <br>
                                     <% if(type==="customer") { %>
-                                        <a href="/prPage/<%= product._id %>/addToCart" class="btn btn-warning">Add To Cart</a>
+                                        <% if(!isAdded) { %>
+                                            <a href="/prPage/<%= product._id %>/addToCart" class="btn btn-warning">Add To Cart</a>
+                                        <% } %>
+                                        
                                         <% if(isAdded) { %>
-                                            <p>
-                                                Added!!!
-                                            </p>
+                                            <a href="/cart" class="btn btn-warning">Go To Cart</a>
                                         <% } %>
                                     <% } %>
                                     
