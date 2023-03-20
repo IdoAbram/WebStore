@@ -35,11 +35,13 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     const buyPageRouter=require('./Routes/buyPage')
     const infoRouter=require('./Routes/info')
     const chatRouter=require('./Routes/adminchat')
+    const giftcardRouter = require('./Routes/giftCards');
     app.use(express.static(path.join(__dirname+'/View')))
     app.use(express.static(path.join(__dirname+'/View/HomePage')))
     app.use(express.static(path.join(__dirname+'/View/GenericProductPage')))
     app.use(express.static(path.join(__dirname+'/View/Info')))
     app.use(express.static(path.join(__dirname+'/View/Admin')))
+    app.use(express.static(path.join(__dirname+'/View/GiftCards')))
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json());
     app.use('/cart',cartRouter);
@@ -55,6 +57,7 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use('/info',infoRouter)
     app.use('/chat',chatRouter)
     app.use('/admin',AdminRouter)
+    app.use('/giftCards',giftcardRouter)
     app.listen(3000)
     server.listen(3001,()=>{console.log("Server running...")})
    

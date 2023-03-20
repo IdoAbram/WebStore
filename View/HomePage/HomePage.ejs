@@ -31,7 +31,7 @@
                                         <a class="nav-link" href="../cart">Cart</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">GiftCards</a>
+                                        <a class="nav-link" href="../giftCards">GiftCards</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="/login/signOut">Sign Out</a>
@@ -57,13 +57,16 @@
                                         <a class="nav-link" href="/info">Info</a>
                                     </li>
                                     <% if(user.Privileges==2) { %>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/login/createAdmin">Create admin</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/admin/get">Workers</a>
-                                    </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/login/createAdmin">Create admin</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/admin/get">Workers</a>
+                                        </li>
                                     <% } %>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../giftCards">GiftCards</a>
+                                    </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="/homepage">Home</a>
                                     </li>
@@ -116,9 +119,6 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="/info">Info</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">GiftCards</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="/login">Sign In</a>
