@@ -15,7 +15,6 @@ async function login(req, res) {
     if(result== null){
       result="guest";
     }
-    req.session.total=0
     req.session.userType =result;
     req.session.isFirst=true;
     if (result == "customer") {

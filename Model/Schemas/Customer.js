@@ -23,7 +23,7 @@ const Customer = new mongoose.Schema({
   }, // As above (Hashset)
   orders: [String], // As above (Order id which will be in a hashset)
   email: String, 
-
+  
   password: {
     type: String,
     required: true,

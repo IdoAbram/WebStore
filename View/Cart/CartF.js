@@ -25,16 +25,42 @@ function callDecrease(id) {
     });
 }
 
+function increaseQuantity(id) {
+  $.ajax({
+    type: "GET",
+    url: "/cart/increaseQuantity/"+id,
+    success: function(data) {
+      console.log(data);
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
+
+function decreaseQuantity(id) {
+  $.ajax({
+    type: "GET",
+    url: "/cart/decreaseQuantity/"+id,
+    success: function(data) {
+      console.log(data);
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
+
 //increasing the total on the page
-function increase(event,map){
+function increase(event){
   //getting different ids
   const ids = event.target.dataset.id.split(" ");
 
   //handling and increasing the quantity
-  let quantity = document.getElementById( ids[0] );
-  let currentValue = parseInt(quantity.value);
-  currentValue = currentValue + 1;
-  quantity.value = currentValue;
+  let currentValue=document.getElementById(ids[0]).value
+  currentValue=parseInt(currentValue)+1
+  document.getElementById(ids[0]).value=currentValue
+  increaseQuantity(ids[2])//the code doesnt get in it + when it does i change the number alone
 
   //handling the price
   var price = document.getElementById( ids[1] );
@@ -75,11 +101,11 @@ function decrease(event){
   //updating quantity
   if(currentValue>1){
     crValue = crValue - (crValue/(currentValue));
-    currentValue = currentValue - 1;
+    textField.value = currentValue-1;
+    decreaseQuantity(ids[2])
     //database total price
     callDecrease(ids[2])
   }
-  textField.value = currentValue;
 
   //updating total and original price
   price.value = crValue;

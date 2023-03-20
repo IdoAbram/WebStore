@@ -47,3 +47,52 @@ body{
 .no-scroll{
     overflow: hidden;
 }
+
+.review{
+    padding-top: 2rem;
+}
+
+#revBox{
+    width: 70%;
+}
+
+.banner .info .stars{
+    list-style: none;
+    display: flex;
+    margin-top: 1rem;
+    
+    padding-left: 0;
+    max-width: 100%;
+}
+
+.inp{
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.sub{
+    width:10em;
+}
+
+
+.banner .info li{
+    padding-top: 3px;
+}
+
+.banner .info .fa{
+    font-size: 26px;
+    transition: .4s;
+    margin: 3px;
+}
+
+.banner .info .checked{
+    color: #ff9f43;
+
+}
+.banner .info .fa:hover{
+    transform: scale(1.3);
+    transition: .6s;
+
+}

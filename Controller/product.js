@@ -75,6 +75,8 @@ const updateAll =  (req,res) =>{
        updateProductTags(req,res);
   if(req.body.Sizes)
        updateProductSizes(req,res);
+  if(req.body.Rating)
+       updateProductRating(req,res);
      
   
   
@@ -121,6 +123,10 @@ const updateProductAmAvailable = async (req, res) => {
   const updateProductTags = async (req, res) => { 
     productService.updateProductTags(req.params.id,req.body.tags);
   };
+
+  const updateProductRating = async (req,res) =>{
+    productService.updateProductRating(req.params.id,req.body.Rating);
+  }
   
 
 
@@ -162,5 +168,6 @@ const updateProductAmAvailable = async (req, res) => {
     updateAll,
     getProductsByFilter,
     removeFromCart,
-    getProductsByIds
+    getProductsByIds,
+    updateProductRating
   };

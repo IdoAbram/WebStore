@@ -27,6 +27,10 @@ const getReviewById = (req, res) => {
     return Review;
 }
 
+const deleteAllReviews = (req,res)=>{
+    ReviewService.deleteAll();
+}
+
 
 const updateReviewTitle = async (req, res) => {
      ReviewService.updateReviewTitle(req.params.id,req.body.Title);
