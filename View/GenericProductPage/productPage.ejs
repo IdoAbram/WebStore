@@ -62,17 +62,20 @@
                                 <div class="col-lg-3 col-md-12 col-12 desc">
                                     <h6><%= product.shortDescription %></h6>
                                     <div class="stars">
-                                        <% for (let i=0;i!=product.Rating;i++){ %>
-                                            <li><i class="fa fa-star checked"></i></li>
-                                        <%}%>
-                                        <% for (let i=0;i!=5-product.Rating;i++){ %>
-                                            <li><i class="fa fa-star"></i></li>
-                                        <%}%>
+                                        <% if(product.Rating!=0) { %>
+                                            <% for (let i=0;i!=product.Rating;i++){ %>
+                                                <li><i class="fa fa-star checked"></i></li>
+                                            <%}%>
+                                            <% for (let i=0;i!=5-product.Rating;i++){ %>
+                                                <li><i class="fa fa-star"></i></li>
+                                            <%}%>
+                                        <% } %>
+                                        
                                     </div>
                                     
                                     <h3 class="py-4"> <%= product.Title %></h3>
                                     <h2><%= product.price %>$</h2>
-                                    <% if (product.Sizes.length!=0) { %>
+                                    <% if (product.Sizes.length < 1 ) { %>
                                         <select class="my-3">
                                             <option value="">Select Size</option>
                                             <% for( size of product.Sizes) { %>

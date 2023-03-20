@@ -2,17 +2,18 @@ const mongoose = require("mongoose");
 
 const Product = new mongoose.Schema({
     Title: String,
-    price: Number,
+    price:{
+      type: Number,
+      required: true,
+    } ,
     Supplier_Id: String,
     Description: String,
     shortDescription: String,
     Reviews: [String],
-    AmountAvailable: Number,
-    IsAvailableSuppliers: Boolean,
     Rating:{
         type: Number,
         required: true,
-        enum:[1,2,3,4,5]
+        enum:[0,1,2,3,4,5]
     },
     Pictures: [String],
     Tags: [String],

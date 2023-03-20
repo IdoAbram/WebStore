@@ -35,11 +35,13 @@
                                     <p><%= p.shortDescription %></p>
                                     <h6><%= p.price %>$</h6>
                                     <ul>
-                                        <% for (let i=0;i!=p.Rating;i++){ %>
-                                            <li><i class="fa fa-star checked"></i></li>
-                                        <%}%>
-                                        <% for (let i=0;i!=5-p.Rating;i++){ %>
-                                            <li><i class="fa fa-star"></i></li>
+                                        <% if(p.Rating!=0) { %>
+                                            <% for (let i=0;i!=p.Rating;i++){ %>
+                                                <li><i class="fa fa-star checked"></i></li>
+                                            <%}%>
+                                            <% for (let i=0;i!=5-p.Rating;i++){ %>
+                                                <li><i class="fa fa-star"></i></li>
+                                            <%}%>
                                         <%}%>
                                     </ul>
                                     <a href="/prPage/<%= p._id %>" class="buy btn">Buy Now</a>
