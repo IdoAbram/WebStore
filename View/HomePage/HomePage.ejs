@@ -48,23 +48,22 @@
                                 </div>
                                 <ul class="nav">
                                     <li class="nav-item">
+                                        <a class="nav-link" type="submit" href="/chat">chat</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link" type="submit" href="../store">Store</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="/info">Info</a>
                                     </li>
+                                    <% if(user.Privileges==2) { %>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Delete user</a>
+                                        <a class="nav-link" href="/login/createAdmin">Create admin</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Create worker</a>
+                                        <a class="nav-link" href="/admin/get">Workers</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Delete worker</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Workers</a>
-                                    </li>
+                                    <% } %>
                                     <li class="nav-item">
                                         <a class="nav-link" href="/homepage">Home</a>
                                     </li>
@@ -88,10 +87,10 @@
                                         <a class="nav-link" type="submit" href="../store">Store</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Sell new item</a>
+                                        <a class="nav-link" href="/products/create">Sell new item</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">sell list</a>
+                                        <a class="nav-link" href="/products/getforsup">sell list</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="/info">Info</a>
