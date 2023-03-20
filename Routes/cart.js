@@ -75,7 +75,7 @@ router.get('/decreaseQuantity/:id',async(req,res)=>{
     const id=req.session.user;
     const customer = await customerService.getCustomerById(id);
 
-    let map=customer.shoppingCart
+    let map=customer.shoppingCart;
     let currentValue=map.get(req.params.id)
     currentValue = parseInt(currentValue) - 1;
     map.delete(req.params.id)
