@@ -32,7 +32,7 @@
                                     <h3>Gift Card</h3>
                                     <p><%= card.Description %></p>
                                     <h6><%= card.price %>$</h6>
-                                    <a href="/giftCards/<%= card._id %>" class="buy btn">Buy Now</a>
+                                    <a onclick="CardPaid.js" href="/giftCards/<%= card._id %>" class="buy btn">Buy Now</a>
                                 </div>
                             <% } %>
                             

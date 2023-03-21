@@ -4,3 +4,8 @@ function func(){
     const hidden = document.getElementById("hidden");
     hidden.classList.remove("hide");
 }
+
+
+function buy(){
+    
+}

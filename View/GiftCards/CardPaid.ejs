@@ -28,7 +28,7 @@
                     <div class="col-md-6 offset-md-3 info" style="padding-top: 8%;">
                         <div class="gallery">
                             <div id="reveal">
-                                <a class="btn-danger btn" onclick="func()">Reveal Code</a>
+                                <a class="btn-danger btn" onclick="func()">Complete Payment And Reveal Code</a>
                             </div>
                             
                             
@@ -36,6 +36,7 @@
                                 <% if(card!=null) { %>
                                     <h2><%= card._id %></h2>
                                     <h2>This is your code: Keep It Safe</h2>
+                                    <a class="btn-danger btn" href="/homePage">Back To HomePage</a>
                                 <% } %>
                             </div>
                         </div>

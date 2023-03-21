@@ -1,3 +1,4 @@
+const { json } = require("body-parser");
 const express = require("express")
 const router = express.Router();
 const productController = require('../Controller/product')
@@ -16,11 +17,16 @@ router.get('/',async (req,res)=>{
     }
     const type =req.session.userType;
     const user = await customerService.getCustomerById(id);
+    let all = [];
+    all = await productController.getProductsByFilter({});
     let first = false;
     let finalProducts=[];
     for(let i=0;i<products.length;i++){
         let pr= await productService.getProductById(products[i]);
-        finalProducts.push(pr);
+        if(pr!=null){
+            finalProducts.push(pr);
+        }
+        
     }
     
     res.render("../View/Cart/CartM",{finalProducts,id,type,user,first,map})
@@ -47,8 +53,10 @@ router.route('/removeFromCart/:id').get(async (req,res)=>{
     
     if(customer.shoppingCart!==null){
         
-        let products= productController.removeFromCart(customer.shoppingCart,productID);
-        customerService.updateCustomerShoppingCart(id,products);
+        let map = customer.shoppingCart;
+        map.delete(productID);
+        
+        customerService.updateCustomerShoppingCart(id,map);
         res.redirect('/cart');
     }
     else{

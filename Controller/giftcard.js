@@ -1,7 +1,7 @@
 const giftCardService = require('../Services/Giftcard');
 
 const createGiftCard =  (req, res) => {
-    const newGiftCard =  giftCardService.createGiftCard(req.body.price,req.body.Description);
+    const newGiftCard =  giftCardService.createGiftCard(req.body.price,req.body.Description,req.body.isBought);
     return newGiftCard;
 };
 

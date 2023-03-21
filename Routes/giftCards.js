@@ -20,7 +20,7 @@ router.get('/', async (req,res)=>{
     const first=false;
     let giftCards=[];
     
-    giftCards=await giftCardsService.getGiftCards({});
+    giftCards=await giftCardsService.getGiftCards({isBought:false});
     
     res.render("../View/GiftCards/GiftCards",{type,giftCards,user,first,isAdded})
 })
@@ -50,7 +50,7 @@ router.route('/:id').get(async (req,res)=>{
     }
     let card=null;
     if(m!=null){
-        card= await giftCardsService.createGiftCard(m.price,m.Description);
+        card= await giftCardsService.createGiftCard(m.price,m.Description,true);
     }
     res.render("../View/GiftCards/CardPaid",{type,card,user,first,isAdded})
 })

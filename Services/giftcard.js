@@ -1,8 +1,11 @@
 const GiftCard = require('../Model/Schemas/GiftCard');
 
-const createGiftCard = async (price,Description) => {
+const createGiftCard = async (price,Description,isBought) => {
+    if(!isBought){
+        isBought=false;
+    }
 
-    const giftCard = new GiftCard({price:price,Description:Description})
+    const giftCard = new GiftCard({price:price,Description:Description,isBought:isBought})
 
     return await giftCard.save();
 };
