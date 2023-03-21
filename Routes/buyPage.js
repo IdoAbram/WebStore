@@ -23,4 +23,15 @@ router.get('/',async (req,res)=>{
 
     res.render("../View/BuyPage/buyPageM",{finalProducts,customer,id ,total,user,type})
 })
+
+router.get('/moneySpent/:total',async(req,res)=>{
+    const id=req.session.user;
+    const customer = await customerService.getCustomerById(id);
+    let total=customer.moneySpent
+    total=parseInt(total)+parseInt(req.params.total)
+    customerService.updateCustomerMoneySpent(id,total)
+    //i need to find who already did it
+    res.redirect('/buyPage')
+})
+
 module.exports = router

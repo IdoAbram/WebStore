@@ -56,29 +56,30 @@ function increase(event){
   //getting different ids
   const ids = event.target.dataset.id.split(" ");
 
-  //handling and increasing the quantity
-  let currentValue=document.getElementById(ids[0]).value
-  currentValue=parseInt(currentValue)+1
-  document.getElementById(ids[0]).value=currentValue
-  increaseQuantity(ids[2])//the code doesnt get in it + when it does i change the number alone
+  //checking if the number is below the amount available
+    //handling and increasing the quantity
+    let currentValue=document.getElementById(ids[0]).value
+    currentValue=parseInt(currentValue)+1
+    document.getElementById(ids[0]).value=currentValue
+    increaseQuantity(ids[2])//the code doesnt get in it + when it does i change the number alone
 
-  //handling the price
-  var price = document.getElementById( ids[1] );
-  var crValue = parseInt(price.value);
+    //handling the price
+    var price = document.getElementById( ids[1] );
+    var crValue = parseInt(price.value);
 
-  //updating the total sum v1
-  var totalPrice=document.getElementById("total");
-  totalPrice.value=parseInt(totalPrice.value)-crValue
+    //updating the total sum v1
+    var totalPrice=document.getElementById("total");
+    totalPrice.value=parseInt(totalPrice.value)-crValue
 
-  //updating the price
-  crValue = crValue + (crValue/(currentValue-1));
-  price.value = crValue;
+    //updating the price
+    crValue = crValue + (crValue/(currentValue-1));
+    price.value = crValue;
 
-  //updating the total sum v2
-  totalPrice.value=parseInt(totalPrice.value)+crValue
+    //updating the total sum v2
+    totalPrice.value=parseInt(totalPrice.value)+crValue
 
-  //database total sum
-  callIncrease(ids[2])
+    //database total sum
+    callIncrease(ids[2])
 }
 
 //decreasing the total on the page
