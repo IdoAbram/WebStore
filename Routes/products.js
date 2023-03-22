@@ -4,6 +4,7 @@ const productController = require('../Controller/product') //Controller API for 
 const customerService = require('../Services/customer');
 const adminService = require('../Services/admin');
 const supplierService = require('../Services/supplier');
+const productService = require('../Services/product')
 
 router.get('/get',async (req,res)=>{
     const products = await productController.getProductsByFilter({});
@@ -58,7 +59,13 @@ router.get('/create',async (req,res)=>{
 })
 
 router.route('/create').post(function(req,res){
-    productController.createProduct(req,res);
+    let tags = "";
+    if(req.body.sports == 'on'){tags+= " sports"}
+    if(req.body.kids == 'on'){tags+= " kids"}
+    if(req.body.technology == 'on'){tags += " technology"}
+    if(req.body.clothes == 'on'){tags += " clothes"}
+    if(req.body.home == 'on'){tags +=" home"}
+    productService.createProduct(req.body.title,req.body.price,req.session.user,req.body.Description,req.body.shortDescription,req.body.amountAvailable,req.body.pictures,tags,req.body.Sizes);
     res.redirect('/products/create');
 })
 

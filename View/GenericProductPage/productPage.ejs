@@ -75,7 +75,7 @@
                                     
                                     <h3 class="py-4"> <%= product.Title %></h3>
                                     <h2><%= product.price %>$</h2>
-                                    <% if (product.Sizes.length < 1 ) { %>
+                                    <% if (product.Sizes.length > 1 ) { %>
                                         <select class="my-3">
                                             <option value="">Select Size</option>
                                             <% for( size of product.Sizes) { %>
@@ -124,7 +124,6 @@
                                         <textarea id="revBox" name="review" rows="3" cols="5" placeholder="Type your comments here..." style="resize: none;"></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-warning" style="width: 10rem; align-items: center;">Send Your Review</button>
-
                                 <% } %>
 
                                 <% for(rev of reviews) { %>

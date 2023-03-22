@@ -1,11 +1,11 @@
 const Orders = require('../Model/Schemas/Orders');
 
-const createOrders = async (priceOfOrder, shippingPrice,shippingCompany,dateIssued,expectedArrival,products) => {
+const createOrders = async (priceOfOrder, shippingPrice,shippingCompany,dateIssued,expectedArrival,products,UserId) => {
 
-    const Orders = new Orders({PriceOfOrder:priceOfOrder,ShippingPrice:shippingPrice,
-        ShippingCompany:shippingCompany,DateIssued:dateIssued,ExpectedArrival:expectedArrival,products:products})
+    const orders = new Orders({PriceOfOrder:priceOfOrder,ShippingPrice:shippingPrice,
+        ShippingCompany:shippingCompany,DateIssued:dateIssued,ExpectedArrival:expectedArrival,products:products,UserId:UserId})
 
-    return await Orders.save();
+    return await orders.save();
 };
 
 const getOrdersById = async (id) => {
@@ -18,28 +18,6 @@ const getOrders = async (filter) => {
 
 const updateOrdersPriceOfOrder = async (id, priceOfOrder) => {
 
-    await Customer.findOneAndUpdate({_id:id},{PriceOfOrder:priceOfOrder});
-};
-
-const updateOrdersShippingPrice = async (id, price) => {
-    await Customer.findOneAndUpdate({_id:id},{ShippingPrice:price});
-};
-
-const updateOrdersShippingCompany = async (id, shipCompany) => {
-    await Customer.findOneAndUpdate({_id:id},{ShippingCompany:shipCompany});
-};
-
-const updateOrdersDateIssued = async (id, dateIssued) => {
-    await Customer.findOneAndUpdate({_id:id},{DateIssued:dateIssued});
-};
-
-const updateOrdersExpectedArrival = async (id, dateArrival) => {
-    await Customer.findOneAndUpdate({_id:id},{ExpectedArrival:dateArrival});
-};
-
-const updateOrdersProducts = async (id, products) => {
-    await Customer.findOneAndUpdate({_id:id},{products:products});
-=======
     await Orders.findOneAndUpdate({_id:id},{PriceOfOrder:priceOfOrder});
 };
 
@@ -63,6 +41,9 @@ const updateOrdersProducts = async (id, products) => {
     await Orders.findOneAndUpdate({_id:id},{products:products});
 };
 
+const deleteAll = async() => {
+    await Orders.deleteMany({});
+  }
 
 
 
@@ -75,5 +56,6 @@ module.exports = {
     updateOrdersShippingCompany,
     updateOrdersDateIssued,
     updateOrdersExpectedArrival,
-    updateOrdersProducts
+    updateOrdersProducts,
+    deleteAll
 }

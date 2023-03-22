@@ -40,3 +40,34 @@
         lastRequestTime = Date.now();//updating the last request
       })
   }
+/////////////////////////////map////////////////////////////////
+let markers;
+fetch('/customers/addresses')
+        .then(res => res.json())
+        .then(addresses => {
+          markers = addresses;
+          console.log("before");
+          console.log(markers);
+          createMap(addresses)
+        })
+
+    function createMap(markers){
+        console.log("after");
+        console.log(markers);
+        const myCenter = { lat: 31.9650241, lng: 34.7817688 };
+        let map;
+
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: myCenter,
+            zoom: 10,
+        });
+        markers.forEach(m => {
+            let geocoder = new google.maps.Geocoder();
+            geocoder.geocode({'address': m}, function(results, status) {
+              new google.maps.Marker({
+              position: results[0].geometry.location,
+              map: map
+            });
+          });
+       })
+  }

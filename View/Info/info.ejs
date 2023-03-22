@@ -10,31 +10,33 @@
     <div id="template1" class="header1">
          <%- include ('../HomePage/HomePage.ejs') %>
     </div>
+    <div class="container1">
+      <h1>Info</h1>
+        <% if(type == "admin"){%>
+          <h2 style="display: block;">map of customers</h2>
+          <div  style="display: flex; align-items: center; justify-content: center; " id="map"></div>
+          <%}%>
+        <br>
+    </div>
     <div class="container">
-    <h1>Info</h1>
-      <h2>Our stock</h2>
-      <div style="display: flex; align-items: center; justify-content: center; ">
-      <div style="width: 50rem; height: 25rem;"><canvas id="ma-chart" width="200" height="200"></canvas></div>
-    </div>
-    <br><br><br>
-    <h2>About us</h2>
-    <div class="video-container">
-      <video width="960" height="720" controls>
-        <source src="WhatsApp Video 2023-02-28 at 1.55.22 PM.mp4" type="video/mp4">
-      </video>
-    </div>
+        <h2 style="display: block;">Our stock</h2>
+        <div style="display: flex; align-items: center; justify-content: center; ">
+        <div style="width: 50rem; height: 25rem;"><canvas id="ma-chart" width="200" height="200"></canvas></div>
     </div>
     <footer id="footer-place"></footer>
     <%- include ('../TemplatePage/Footer.ejs') %>
+  
+  
+      <script>
+          window.onload = function() {
+              var footer = document.querySelector('.theFoot');
+              var placeholder = document.querySelector('#footer-place');
+              placeholder.parentNode.insertBefore(footer, placeholder.nextSibling);
+          }
+      </script>
 
-
-    <script>
-        window.onload = function() {
-            var footer = document.querySelector('.theFoot');
-            var placeholder = document.querySelector('#footer-place');
-            placeholder.parentNode.insertBefore(footer, placeholder.nextSibling);
-        }
-    </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCj-7roIP9DhPdiKXSDJLOsZKJ7WB2Tyk8&callback=initMap&v=weekly" defer></script>
+      
       <script src="/info.js"></script>
   </body>
 </html>
