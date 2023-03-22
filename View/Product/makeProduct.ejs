@@ -126,6 +126,17 @@
 
 
    </form>
+   <footer id="footer-place"></footer>
+    <%- include ('../TemplatePage/Footer.ejs') %>
+
+
+    <script>
+        window.onload = function() {
+            var footer = document.querySelector('.theFoot');
+            var placeholder = document.querySelector('#footer-place');
+            placeholder.parentNode.insertBefore(footer, placeholder.nextSibling);
+        }
+    </script>
 
    <script>
     let sports = false,clothes = false,home = false,kids = false,technology = false;

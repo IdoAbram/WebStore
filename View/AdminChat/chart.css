@@ -29,6 +29,18 @@ body {
 }
 
 
+
+@font-face {
+    font-family: Chat;
+    src: url(type.ttf);
+}
+
+
+#messageBox{
+    font-family: Chat;
+}
+
+
 /* Animation styles */
 
 

@@ -140,7 +140,13 @@
     margin-top: 5px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-} 
+}
+
+
+.form-check{
+    display: inline-block;
+    margin-top: 1.5rem;
+}
 
 input  {
     width: 30rem;
@@ -150,8 +156,3 @@ input  {
     border-bottom: 2px solid #007bff;
     font-size: 1.1rem;
   }
-
-.form-check{
-    display: inline-block;
-    margin-top: 1.5rem;
-}

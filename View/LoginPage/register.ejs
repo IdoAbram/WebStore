@@ -19,21 +19,21 @@
     
     <h1>Sign up</h1>
 
-    <input type="text" placeholder="First Name" name="firstName"><br>
-    <input type="text" placeholder="Last Name" name="lastName"><br>
-    <input type="text" placeholder="Address" name="address"><br>
-    <input type="text" placeholder="Mail" name="email"><br>
+    <input pattern="[A-Za-z ]+" type="text" placeholder="First Name" name="firstName" title="Only Letters!" required><br>
+    <input pattern="[A-Za-z ]+" type="text" placeholder="Last Name" name="lastName" title="Only Letters!" required><br>
+    <input pattern="[A-Za-z ]+" type="text" placeholder="City" name="address" required><br>
+    <input type="text" placeholder="Mail" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Email not valid"><br>
     <input type="text" placeholder="Password" name="password"><br>
   <div class="form-check">
   <input style="width: 1rem;" class="form-check-input" type="radio" name="customer" id="flexRadioDefault1" onclick="checkSup()" checked>
   <label class="form-check-label" for="flexRadioDefault1">
-    I'm customer
+    I'm a Customer
   </label>
 </div><br>
 <div class="form-check">
   <input style="width: 1rem;" class="form-check-input" type="radio" name="supplier" id="flexRadioDefault2" onclick="checkCus()" >
   <label class="form-check-label" for="flexRadioDefault2">
-    I'm supplier
+    I'm a Supplier
   </label>
 </div>
     <br>

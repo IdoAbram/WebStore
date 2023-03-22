@@ -1,10 +1,13 @@
 const GiftCard = require('../Model/Schemas/GiftCard');
 
-const createGiftCard = async (Discount, price,code,Description) => {
+const createGiftCard = async (price,Description,isBought) => {
+    if(!isBought){
+        isBought=false;
+    }
 
-    const GiftCard = new GiftCard({Discount:Discount,price:price,code:code,Description:Description})
+    const giftCard = new GiftCard({price:price,Description:Description,isBought:isBought})
 
-    return await GiftCard.save();
+    return await giftCard.save();
 };
 
 const getGiftCardById = async (id) => {
@@ -15,28 +18,22 @@ const getGiftCards = async (filter) => {
     return await GiftCard.find(filter);  // Return all GiftCards that satsify the filter (json format)
 };
 
-const updateGiftCardDiscount = async (id, Discount) => {
-    await GiftCard.findOneAndUpdate({_id:id},{Discount:Discount});
-};
-
 const updateGiftCardPrice = async (id, price) => {
     await GiftCard.findOneAndUpdate({_id:id},{price:price});
-};
-
-const updateGiftCardCode = async (id, code) => {
-    await GiftCard.findOneAndUpdate({_id:id},{code:code});
 };
 
 const updateGiftCardDescription = async (id, Description) => {
     await GiftCard.findOneAndUpdate({_id:id},{Description:Description});
 };
+const deleteAll = async() => {
+    await GiftCard.deleteMany({});
+}
 
 module.exports = {
     createGiftCard,
     getGiftCardById,
     getGiftCards,
-    updateGiftCardDiscount,
     updateGiftCardPrice,
-    updateGiftCardCode,
-    updateGiftCardDescription
+    updateGiftCardDescription,
+    deleteAll
 }

@@ -17,10 +17,13 @@ const Customer = new mongoose.Schema({
     required: true
   },
   wishList: [String], //Every string represents an item (Hashset)
-  shoppingCart: [String], // As above (Hashset)
+  shoppingCart: {
+    type: Map,
+    of: Number
+  }, // As above (Hashset)
   orders: [String], // As above (Order id which will be in a hashset)
   email: String, 
-
+  
   password: {
     type: String,
     required: true,
@@ -28,7 +31,7 @@ const Customer = new mongoose.Schema({
 
   creditCards:[String]
 
-
+  
 });
 
 
