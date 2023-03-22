@@ -112,7 +112,7 @@ price.value = crValue;
 totalPrice.value=parseInt(totalPrice.value)+crValue
 }
 
-function removeFromCart(event){
+function removeFromCart(event,id){
   const ids = event.target.dataset.id.split(" ");
   const prod=document.getElementById(ids[0]);
   const check=document.getElementById(ids[3]);
@@ -124,7 +124,7 @@ function removeFromCart(event){
   }
 
   prod.classList.add("hide");
-  
+  fetch("/cart/removeFromCart/"+id)
 }
 
 function remove(event){

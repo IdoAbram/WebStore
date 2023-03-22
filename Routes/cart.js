@@ -57,7 +57,6 @@ router.route('/removeFromCart/:id').get(async (req,res)=>{
         map.delete(productID);
         
         customerService.updateCustomerShoppingCart(id,map);
-        res.redirect('/cart');
     }
     else{
         res.redirect('/homepage');

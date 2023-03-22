@@ -77,7 +77,6 @@ router.route('/delete').get(function (req,res){
  
 router.route('/deleteforsup/:id').get(function (req,res){
     productController.deleteProduct(req,res);
-    res.redirect("/products/getforsup");
 });
 
 router.route('/update/:id').get(async (req,res)=>{
