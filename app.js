@@ -18,7 +18,7 @@ app.use(session({
     secret: 'your-secret-key',
     resave: false,
     saveUninitialized: false,
-  }));
+}));
 
 mongoose.connect("mongodb://127.0.0.1:27017")
 
@@ -31,7 +31,9 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     const storeRouter = require('./Routes/store')
     const productPageRouter = require('./Routes/prPage')
     const cartRouter=require('./Routes/cart')
+    const buyPageRouter=require('./Routes/buyPage')
     const infoRouter=require('./Routes/info')
+    const giftcardRouter = require('./Routes/giftCards');
     const chatRouter=require('./Routes/adminchat');
     const graphRouter= require('./Routes/graph')
     app.use(express.static(path.join(__dirname+'/View')))
@@ -39,6 +41,7 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use(express.static(path.join(__dirname+'/View/GenericProductPage')))
     app.use(express.static(path.join(__dirname+'/View/Info')))
     app.use(express.static(path.join(__dirname+'/View/Admin')))
+    app.use(express.static(path.join(__dirname+'/View/GiftCards')))
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json());
     app.use('/cart',cartRouter);
@@ -48,11 +51,14 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use('/homePage',homePageRouter);
     app.use('/store',storeRouter);
     app.use('/prPage',productPageRouter);
+    app.use('/cart',cartRouter);
+    app.use('/buyPage',buyPageRouter);
     app.use('/cart',cartRouter)
     app.use('/info',infoRouter)
     app.use('/chat',chatRouter)
     app.use('/graph',graphRouter)
     app.use('/admin',AdminRouter)
+    app.use('/giftCards',giftcardRouter)
     app.listen(3000)
     serverChat.listen(3001,()=>{console.log("serverChat running...")})   
     let onlineCount = 0;

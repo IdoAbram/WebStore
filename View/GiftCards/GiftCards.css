@@ -81,7 +81,7 @@
     margin: 0 auto;
     display: block;
     border-radius: 10%;
-    height: 280px;
+    height: 2rem;
 }
 
 .banner .info .content p{
@@ -140,7 +140,6 @@
     margin-top: 5px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-
 } 
 
 input  {
@@ -151,6 +150,3 @@ input  {
     border-bottom: 2px solid #007bff;
     font-size: 1.1rem;
   }
-
-
-

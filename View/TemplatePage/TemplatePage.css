@@ -63,6 +63,7 @@ body{
 }
 
 footer{
+    color: #444;
     width: 100%;
     background-color: #fff;
     display:flex;

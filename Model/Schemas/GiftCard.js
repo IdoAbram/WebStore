@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
 const GiftCard=new mongoose.Schema({
-    Discount: Number,
-    price:Number,
-    code:String,
-    Description: String
+  isBought: Boolean,
+  price:Number,
+  Description: String,
+  Discount: Number,
+  code:String
   });
 
-  module.exports = mongoose.model("giftCard",GiftCard);
+module.exports = mongoose.model("giftCard",GiftCard);

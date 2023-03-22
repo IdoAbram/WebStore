@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +10,13 @@
 </head>
 
 <body>
+
+    <div class="col-md-12">
+        <div id="template1" class="header">
+            <%- include ('../HomePage/HomePage.ejs') %>
+        </div>
+    </div>
+
 
     <h3>Update Customer For <%=customer.Name%></h3>
 
@@ -51,6 +57,14 @@
         </tr>
 
         <tr>
+            <td>Credit cards:</td>
+            <td>
+                <input type="text" placeholder="12345678" name="Credit cards">
+            </td>
+
+        </tr>
+
+        <tr>
             <td>Password:</td>
             <td>
                 <input type="text" placeholder="********" name="password">
@@ -74,7 +88,17 @@
 
     <button type="submit">Submit</button>
    </form>
+   <footer id="footer-place"></footer>
+    <%- include ('../TemplatePage/Footer.ejs') %>
 
+
+    <script>
+        window.onload = function() {
+            var footer = document.querySelector('.theFoot');
+            var placeholder = document.querySelector('#footer-place');
+            placeholder.parentNode.insertBefore(footer, placeholder.nextSibling);
+        }
+    </script>
 
 </body>
 

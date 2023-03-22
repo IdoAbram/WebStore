@@ -16,6 +16,8 @@ const getCustomers = async (filter) => {
     return await Customer.find(filter);  // Return all customers that satsify the filter (json format)
 };
 
+
+
 const updateCustomerName = async (id, firstName,lastName) => {
    
     await Customer.findOneAndUpdate({_id:id},{Name:firstName,lastName:lastName});

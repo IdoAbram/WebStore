@@ -24,5 +24,16 @@
         <button class="btn btn-primary buttom" type="submit">sign in</button>
         <a class="btn btn-dark buttom" href="/login/register">Register</a>
     </form>
+    <footer id="footer-place"></footer>
+    <%- include ('../TemplatePage/Footer.ejs') %>
+
+
+    <script>
+        window.onload = function() {
+            var footer = document.querySelector('.theFoot');
+            var placeholder = document.querySelector('#footer-place');
+            placeholder.parentNode.insertBefore(footer, placeholder.nextSibling);
+        }
+    </script>
   </body>
 </html>
