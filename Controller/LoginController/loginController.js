@@ -3,9 +3,16 @@ const loginService = require("../../Services/LoginService/loginService");
 const customerController = require('../customer');
 const adminController = require('../admin');
 const supplierController = require('../supplier');
+const adminService = require('../../Services/admin')
 
 
-function loginForm(req, res) { res.render("../View/LoginPage/loginPage", {}) }
+function loginForm(req, res) { 
+  const type = "guest";
+  const user = null;
+  const error = "";
+  const first = false;
+  res.render("../View/LoginPage/loginPage", {first,user,type,error}) 
+}
 
 async function login(req, res) {
     const { email, password } = req.body
@@ -33,23 +40,59 @@ async function login(req, res) {
       res.redirect("/homepage/");
     }
     else{
-
-      res.render("../View/LoginPage/loginPage",{})
-    }
+      const error = "Wrong password or email"
+      const type = "guest";
+      const user = null;
+      const first = false;
+      res.render("../View/LoginPage/loginPage", {first,user,type,error})     }
   }
 
   function logout(req, res) {
-    
     req.session.destroy(() => {
-      
       res.redirect("/homepage/");
     });
     
   }
 
+  function registerForm(req,res){
+  const type = "guest";
+  const user = null;
+  const first = false;
+  res.render("../View/LoginPage/register", {first,user,type}) 
+  }
+
+  function register(req,res){
+    const customer = req.body.customer;
+    if(customer == 'on'){
+      customerController.createCustomer(req,res);
+    }else{
+      supplierController.createSupplier(req,res);
+    }
+    res.redirect('/login')
+  }
+
+  function createAdmin(req,res){
+    adminController.createAdmin1Privilage(req,res);
+    res.redirect('/login/createAdmin')
+  }
+
+  async function adminPage(req,res){
+
+      const type = "admin";
+      const userId = req.session.user;
+      const user = await adminService.getAdminById(userId);
+      const first = false;
+      res.render("../View/Admin/createAdmin", {first,user,type})  
+  }
+
+
 
   module.exports = {
     login,
     loginForm,
-    logout
+    logout,
+    registerForm,
+    register,
+    createAdmin,
+    adminPage
   }
