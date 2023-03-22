@@ -1,14 +1,13 @@
-
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const server = require("http").createServer(app);
-const io =  require("socket.io")(server,{cors:{origin:"*"}});
+const serverChat = require("http").createServer(app);
+const io =  require("socket.io")(serverChat,{cors:{origin:"*"}});
+
+
 app.set('view engine', 'ejs');
 const mongoose = require('mongoose');
 var path = require('path');
-
-
 
 mongoose.set('strictQuery', false);
 const Customer = require("./Model/Schemas/Customer");
@@ -21,9 +20,7 @@ app.use(session({
     saveUninitialized: false,
   }));
 
-
 mongoose.connect("mongodb://127.0.0.1:27017")
-
 
     const loginRouter = require('./Routes/login')
     const customerRouter = require('./Routes/customers')
@@ -33,7 +30,8 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     const productPageRouter = require('./Routes/prPage')
     const cartRouter=require('./Routes/cart')
     const infoRouter=require('./Routes/info')
-    const chatRouter=require('./Routes/adminchat')
+    const chatRouter=require('./Routes/adminchat');
+    const graphRouter= require('./Routes/graph')
     app.use(express.static(path.join(__dirname+'/View')))
     app.use(express.static(path.join(__dirname+'/View/HomePage')))
     app.use(express.static(path.join(__dirname+'/View/GenericProductPage')))
@@ -49,9 +47,11 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use('/cart',cartRouter)
     app.use('/info',infoRouter)
     app.use('/chat',chatRouter)
+    app.use('/graph',graphRouter)
+
+
     app.listen(3000)
-    server.listen(3001,()=>{console.log("Server running...")})
-   
+    serverChat.listen(3001,()=>{console.log("serverChat running...")})   
   let onlineCount = 0;
     io.on('connection',(socket)=>{
 
@@ -65,13 +65,19 @@ mongoose.connect("mongodb://127.0.0.1:27017")
       })
       console.log("User connected "+ socket.id)
       socket.on("message",(data)=>{io.emit('message',data)});
-
     })
 
+    
 run()
 
 
 async function run(){
+
+
+  const cust = new Customer({Name:"Maor",lastName:"Saban",password:"1234",moneySpent:10000,address:"New York"})
+
+  cust.save()
+
 
 }
 

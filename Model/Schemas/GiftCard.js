@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const GiftCard=new mongoose.schema({
+const GiftCard=new mongoose.Schema({
     Discount: Number,
     price:Number,
     code:String,
