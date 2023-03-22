@@ -2,7 +2,6 @@ body{
     text-align: center;
 }
 #myCanvas {
-    position: absolute;
     top: 10%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -23,10 +22,8 @@ h2 {
 }
 
 .video-container {
-    display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Set the height of the container to the height of the viewport */
   }
   
   video {
@@ -40,5 +37,10 @@ h2 {
   }
   
 .container{
-  margin-top: 10rem;
+  margin-top: 6rem;
 }
+
+#map {
+  height: 30rem;
+  width: 80rem;
+  }

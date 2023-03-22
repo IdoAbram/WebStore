@@ -25,8 +25,43 @@
                         </div>
                     </div>
                     <div class="col-md-6 offset-md-3 info" style="padding-top: 8%;">
+                        <aside>
+                        <input style="margin-left: 4rem;" type="text"  name="search" placeholder="Filter product by name">
+                            <div style="display: flex;">
+                            <div style="margin-left: 4rem;" class="form-check">
+                                <input style="width: 1rem;" class="form-check-input" type="radio" name="sports" id="flexRadioDefault1" onclick="checkSprots()">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  sports
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input style="width: 1rem;" class="form-check-input" type="radio" name="clothes" id="flexRadioDefault2" onclick="checkClothes()" >
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                  clothes
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input style="width: 1rem;" class="form-check-input" type="radio" name="home" id="flexRadioDefault3" onclick="checkHome()" >
+                                <label class="form-check-label" for="flexRadioDefault3">
+                                  home
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input style="width: 1rem;" class="form-check-input" type="radio" name="kids" id="flexRadioDefault4" onclick="checkKids()" >
+                                <label class="form-check-label" for="flexRadioDefault4">
+                                  kids
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input style="width: 1rem;" class="form-check-input" type="radio" name="technology" id="flexRadioDefault5" onclick="checkTechnology()" >
+                                <label class="form-check-label" for="flexRadioDefault5">
+                                  technology
+                                </label>
+                              </div>
+                              <button type="submit" style="margin: 1rem;" class="btn btn-primary">Filter</button>
+                            </div>
+                    </aside>
                         <div class="gallery">
-                            
                             <% for (p of products) { %>
                                 
                                 <div class="content">
@@ -62,5 +97,49 @@
 
     </body>
 
+    <script>
+let sports = false,clothes = false,home = false,kids = false,technology = false;
+
+        function checkSprots(){
+            if(sports == true){
+                document.getElementById("flexRadioDefault1").checked = false;
+            }else{
+                document.getElementById("flexRadioDefault1").checked = true;
+            }
+            sports = !sports;
+    }
+    function checkClothes(){
+            if(clothes == true){
+                document.getElementById("flexRadioDefault2").checked = false;
+            }else{
+                document.getElementById("flexRadioDefault2").checked = true;
+            }
+            clothes = !clothes;
+    }
+    function checkHome(){
+            if(home == true){
+                document.getElementById("flexRadioDefault3").checked = false;
+            }else{
+                document.getElementById("flexRadioDefault3").checked = true;
+            }
+            home = !home;
+    }
+    function checkKids(){
+            if(kids == true){
+                document.getElementById("flexRadioDefault4").checked = false;
+            }else{
+                document.getElementById("flexRadioDefault4").checked = true;
+            }
+            kids = !kids;
+    }
+    function checkTechnology(){
+            if(technology == true){
+                document.getElementById("flexRadioDefault5").checked = false;
+            }else{
+                document.getElementById("flexRadioDefault5").checked = true;
+            }
+            technology = !technology;
+    }
+    </script>
 
 </html>
