@@ -7,13 +7,22 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../Customer/makeCustomer.css">
+    <link rel="stylesheet" href="../Admin/get.css">
 </head>
 
 <body>
     
    <form class="container form-box" method="post">
     
+
+    <div class="col-md-12">
+        <div id="template1" class="header">
+            <%- include ('../HomePage/HomePage.ejs') %>
+        </div>
+    </div>
+
+
+
     <h1>Sign up</h1>
 
     <input type="text" placeholder="First Name" name="firstName"><br>
@@ -23,7 +32,7 @@
     <input type="text" placeholder="Password" name="password"><br>
 
     <button class="btn btn-primary buttom" type="submit">sign up</button>
-    <a class="btn btn-dark buttom" href="/login">Allready have an account</a>
+    <a class="btn btn-dark buttom" href="/login">Already have an account</a>
    </form>
    <footer id="footer-place"></footer>
     <%- include ('../TemplatePage/Footer.ejs') %>
