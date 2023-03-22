@@ -62,9 +62,17 @@
                             </tbody>
                           </table>
                     </div>
-                    <div id="footer1" class="footer">
-                        <Object class="no-scroll" data="../TemplatePage/TemplateFoot.html" width="100%" height="280%"></Object>
-                    </div>
+                    <footer id="footer-place"></footer>
+                    <%- include ('../TemplatePage/Footer.ejs') %>
+
+
+                    <script>
+                        window.onload = function() {
+                            var footer = document.querySelector('.theFoot');
+                            var placeholder = document.querySelector('#footer-place');
+                            placeholder.parentNode.insertBefore(footer, placeholder.nextSibling);
+                        }
+                    </script>
                 </div>
             </div>
         </form>

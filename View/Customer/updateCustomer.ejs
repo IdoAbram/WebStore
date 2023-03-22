@@ -11,6 +11,13 @@
 
 <body>
 
+    <div class="col-md-12">
+        <div id="template1" class="header">
+            <%- include ('../HomePage/HomePage.ejs') %>
+        </div>
+    </div>
+
+
     <h3>Update Customer For <%=customer.Name%></h3>
 
    <form method="post">
@@ -81,7 +88,17 @@
 
     <button type="submit">Submit</button>
    </form>
+   <footer id="footer-place"></footer>
+    <%- include ('../TemplatePage/Footer.ejs') %>
 
+
+    <script>
+        window.onload = function() {
+            var footer = document.querySelector('.theFoot');
+            var placeholder = document.querySelector('#footer-place');
+            placeholder.parentNode.insertBefore(footer, placeholder.nextSibling);
+        }
+    </script>
 
 </body>
 
