@@ -1,12 +1,45 @@
 const express = require("express")
 const router = express.Router();
-
-const ordersController = require('../Controller/orders')
+const customerService = require('../Services/customer');
+const ordersController = require('../Controller/orders');
+const productService = require('../Services/product');
+const ordersService = require('../Services/orders');
 
 router.get('/create', async (req,res)=>{
+   const type =req.session.userType;
+   const userID = req.session.user;
+   const first=false;
+   let user=await customerService.getCustomerById(userID);
+   res.render('../View/Orders/create',{type,user,first})
+})
 
+router.get('/my',async (req,res)=>{
+   
+   const type =req.session.userType;
+   const userID = req.session.user;
+   const first=false;
+   let user=await customerService.getCustomerById(userID);
+   let orders = [];
+   orders = await ordersController.getOrdersByFilter({UserId:userID});
+   
+   res.render('../View/Orders/OrderPage',{type,user,orders,first});
+})
 
-   res.render('../View/Orders/create')
+router.get('/:id',async (req,res)=>{
+   let order = await ordersController.getOrdersById(req,res);
+   const type =req.session.userType;
+   const userID = req.session.user;
+   const first=false;
+   let user=await customerService.getCustomerById(userID);
+
+   let products = [];
+   console.log(order.products[0]);
+   for(let i=0;i<order.products.length;i++){
+      let pro = await productService.getProductById(String(order.products[i].split(" ")[0]));
+      products.push(pro);
+   }
+
+   res.render('../View/Orders/SpesificPage',{type,user,type,order,first,products});
 
 })
 

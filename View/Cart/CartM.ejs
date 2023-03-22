@@ -51,7 +51,6 @@
                                             <button type="button" class="btn btn-light" id="<%= pro._id +4 %>" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %>" onclick="decrease(event)">-</button>
                                             
                                             <input type="text" id="<%= pro._id +1 %>" value="<%= map.get(pro._id) %>" disabled="disabled" class="change"/>
-
                                             <button type="button" class="btn btn-light" id="<%= pro._id +5 %>" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %>" onclick="increase(event)">+</button>
                                         </td>
                                         <td><a type="button" class="btn btn-danger" data-id="<%= pro._id %> <%= pro._id +2%> id <%= pro._id +3%>"  onclick="removeFromCart(event,'<%= pro._id %>')">Delete</a></td>

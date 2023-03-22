@@ -51,6 +51,7 @@ router.route('/:id').get(async (req,res)=>{
 })
 
 router.route('/:id/addToCart').get(async (req,res)=>{
+    
     const product= await productController.getProductById(req,res);
     const userID = req.session.user;
     const user = await customerService.getCustomerById(userID);

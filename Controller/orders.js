@@ -2,7 +2,7 @@ const ordersService = require('../Services/Orders');
 
 const createOrders = (req, res) => {
     const newOrders =  ordersService.createOrders(req.body.priceOfOrder,req.body.shippingPrice,
-        req.body.shippingCompany,new Date(req.body.dateIssued),req.body.expectedArrival,req.body.products);
+        req.body.shippingCompany,new Date(req.body.dateIssued),req.body.expectedArrival,req.body.products,req.session.user);
     return newOrders;
 };
 
@@ -14,12 +14,12 @@ const getOrders =  (req, res) => {
 
 
 function getOrdersByFilter(filter){
-    const orders = orderService.getOrders(filter);
+    const orders = ordersService.getOrders(filter);
     return orders;
 }
 
 const getOrdersById = (req, res) => { 
-    const order = orderService.getOrdersById(req.params.id)
+    const order = ordersService.getOrdersById(req.params.id)
 
     if(!order){
         order = null;
