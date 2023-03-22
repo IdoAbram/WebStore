@@ -2,7 +2,7 @@ const ordersService = require('../Services/Orders');
 
 const createOrders = (req, res) => {
     const newOrders =  ordersService.createOrders(req.body.priceOfOrder,req.body.shippingPrice,
-        req.body.shippingCompany,req.body.dateIssued,req.body.expectedArrival,req.body.products);
+        req.body.shippingCompany,new Date(req.body.dateIssued),req.body.expectedArrival,req.body.products);
     return newOrders;
 };
 

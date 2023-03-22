@@ -1,14 +1,13 @@
-
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const server = require("http").createServer(app);
-const io =  require("socket.io")(server,{cors:{origin:"*"}});
+const serverChat = require("http").createServer(app);
+const io =  require("socket.io")(serverChat,{cors:{origin:"*"}});
+
+
 app.set('view engine', 'ejs');
 const mongoose = require('mongoose');
 var path = require('path');
-
-
 
 mongoose.set('strictQuery', false);
 const Customer = require("./Model/Schemas/Customer");
@@ -21,8 +20,8 @@ app.use(session({
     saveUninitialized: false,
 }));
 
-
 mongoose.connect("mongodb://127.0.0.1:27017")
+
 
     const AdminRouter = require('./Routes/admin')
     const loginRouter = require('./Routes/login')
@@ -34,8 +33,9 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     const cartRouter=require('./Routes/cart')
     const buyPageRouter=require('./Routes/buyPage')
     const infoRouter=require('./Routes/info')
-    const chatRouter=require('./Routes/adminchat')
     const giftcardRouter = require('./Routes/giftCards');
+    const chatRouter=require('./Routes/adminchat');
+    const graphRouter= require('./Routes/graph')
     app.use(express.static(path.join(__dirname+'/View')))
     app.use(express.static(path.join(__dirname+'/View/HomePage')))
     app.use(express.static(path.join(__dirname+'/View/GenericProductPage')))
@@ -56,12 +56,12 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use('/cart',cartRouter)
     app.use('/info',infoRouter)
     app.use('/chat',chatRouter)
+    app.use('/graph',graphRouter)
     app.use('/admin',AdminRouter)
     app.use('/giftCards',giftcardRouter)
     app.listen(3000)
-    server.listen(3001,()=>{console.log("Server running...")})
-   
-  let onlineCount = 0;
+    serverChat.listen(3001,()=>{console.log("serverChat running...")})   
+    let onlineCount = 0;
     io.on('connection',(socket)=>{
 
       onlineCount++;  
@@ -74,12 +74,20 @@ mongoose.connect("mongodb://127.0.0.1:27017")
       })
       console.log("User connected "+ socket.id)
       socket.on("message",(data)=>{io.emit('message',data)});
-
     })
 
+    
 run()
 
 
 async function run(){
+
+  const cust = new Customer({Name:"Maor",lastName:"Saban",password:"1234",moneySpent:10000,address:"New York"})
+
+  cust.save()
+
+
+}
+
 
 }
