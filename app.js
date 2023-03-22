@@ -53,6 +53,10 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use('/chat',chatRouter)
     app.use('/graph',graphRouter)
     app.use('/admin',AdminRouter)
+
+    app.use((req,res)=>{
+      res.status(404).render('../View/Sorry/sorry.ejs')
+    })
     app.listen(3000)
     serverChat.listen(3001,()=>{console.log("serverChat running...")})   
     let onlineCount = 0;
@@ -84,4 +88,4 @@ async function run(){
 }
 
 
-}
+

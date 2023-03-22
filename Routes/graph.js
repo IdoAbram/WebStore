@@ -8,7 +8,7 @@ const Customer = require('../Model/Schemas/Customer')
 const adminService = require('../Services/admin')
 
 
-router.get('/', async (req,res)=>{
+router.get('/graph', async (req,res)=>{
 
 
      let aggOrders = await Orders.aggregate([
@@ -54,7 +54,7 @@ router.get('/address', async (req,res)=>{
 })
 
 
-router.get('/spec', async (req,res)=>{
+router.get('/', async (req,res)=>{
 
   const type =req.session.userType;
     const userID = req.session.user;

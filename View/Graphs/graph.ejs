@@ -16,14 +16,15 @@
       </div>
   </div>
 
-    <div id="graph-container" style="display: flex; align-items: center; justify-content: center;"></div>
 
-    <div id="graph-amount" style="display: flex; align-items: center; justify-content: center;"></div>
+    <div id="graph-container" style="display: flex; align-items: center; justify-content: center; margin:4rem"></div>
 
-    <div id="graph-address" style="display: flex; align-items: center; justify-content: center;"></div>
+    <div id="graph-amount" style="display: flex; align-items: center; justify-content: center;margin:4rem"></div>
+
+    <div id="graph-address" style="display: flex; align-items: center; justify-content: center;margin:4rem"></div>
 
 
-    <div id="footer1" class="footer">
+    <div id="footer1" class="footer mt-auto py-3">
       <Object class="no-scroll" data="../TemplatePage/TemplateFoot.html" width="100%" height="460rem"></Object>
   </div>
   
@@ -43,7 +44,7 @@ getByCity()
 
 
 function getGraph(){
-    fetch('/graph') //Using the fetch api 
+    fetch('/graph/graph') //Using the fetch api 
     .then(res => res.json())
     .then( (aggOrders) => {
       let newOrders = Object.values(aggOrders)[0]
