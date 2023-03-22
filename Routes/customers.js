@@ -22,6 +22,9 @@ router.route('/delete').get(function (req,res){
 });
  
 router.route('/update/:id').get(async (req,res)=>{
+    const type = "guest";
+    const user = null;
+    const first = false;
     const customer = await customerController.getCustomerById(req,res);
     if(!customer){
         await res.json({message:"Not Found"})
@@ -29,7 +32,7 @@ router.route('/update/:id').get(async (req,res)=>{
     }
 
     custID = req.params.id
-    res.render("../View/Customer/updateCustomer",{custID,customer})
+    res.render("../View/Customer/updateCustomer",{custID,customer,type,user,first})
 
 })
 

@@ -47,6 +47,17 @@
     
     <button id="sendBtn" type="button" class="btn btn-success" onclick="sendMessage()"
         style="display: block; margin: 0 auto;">Send Message</button>
+    <footer id="footer-place"></footer>
+    <%- include ('../TemplatePage/Footer.ejs') %>
+
+
+    <script>
+        window.onload = function() {
+            var footer = document.querySelector('.theFoot');
+            var placeholder = document.querySelector('#footer-place');
+            placeholder.parentNode.insertBefore(footer, placeholder.nextSibling);
+        }
+    </script>
 
     <script>
         const inputBox = document.getElementById("inputBox");

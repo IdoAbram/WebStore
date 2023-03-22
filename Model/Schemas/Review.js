@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Review=new mongoose.Schema({
     Title:String,
-    userId:Number,
+    userId:String,
     ProductId:String,
     text:String,
     Rating:{
