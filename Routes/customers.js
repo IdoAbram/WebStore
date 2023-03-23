@@ -8,7 +8,10 @@ router.get('/get',async (req,res)=>{
 })
 
 router.get('/create',async (req,res)=>{
-    res.render("../View/Customer/makeCustomer")
+    const type = "guest";
+    const user = null;
+    const first = false;
+    res.render("../View/LoginPage/register",{type,user,first})
 })
 
 router.route('/create').post(customerController.createCustomer)

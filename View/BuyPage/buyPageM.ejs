@@ -37,12 +37,6 @@
                         </nav>
                     </div>
                     <div class="col-md-8 offset-md-2 info text-center buyPage">
-                        <div id="paid" class="hide">
-                            <h1>Paid!</h1>
-                            <h3 style="color: black;"> Your amount balance is <%= customer.moneySpent + total %></h3>
-                            <a type="button" class="btn btn-success" data-id="" onclick="" href="/store %>">Back to store</a></td>
-                        </div>
-
                         <div id="credit" class="hide">
                             <h1>Insert you credit card hemi!</h1>
                             <input placeholder="don`t forget the cvv">
@@ -60,7 +54,7 @@
                                 <th scope="row">2</th>
                                 <th>Payment method</th>
                                 <td>Visa ending in <%= parseInt(customer.creditCards[0])%10000 %></td>
-                                <td><button type="button" class="btn btn-light" data-id="" onclick="credit(event)">Change</button></td>
+                                <td><a type="button" class="btn btn-light" href="/customers/update/<%= customer._id %>">Change</button></td>
                               </tr>
                               <tr>
                                 <th scope="row">3</th>
@@ -71,14 +65,33 @@
                               <tr>
                                 <th scope="row">4</th>
                                 <th>Review items and shipping</th>
-                                <td>Otto</td>
+                                <td>
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">Picture</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Price</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for (pro of finalProducts) { %>
+                                                <tr>
+                                                    <td><img src="<%= pro.Pictures[0] %>" style="width: 200px; height: 200px;"></td>
+                                                    <td><%= map.get(pro._id) %></td>
+                                                    <td><%= map.get(pro._id)*pro.price %></td>
+                                                </tr>
+                                          <% } %>
+                                        </tbody>
+                                    </table>
+                                </td>
                                 <td><a type="button" class="btn btn-light" href="/cart/<%= customer._id %>">Back to cart</a></td>
                               </tr>
                               <tr>
                                 <th scope="row">5</th>
-                                <th>Total with shipping:</th>
+                                <th>Total with shipping</th>
                                 <td><%= total %></td>
-                                <td><button type="button" class="btn btn-light" data-id="customer finalProducts customer._id <%= total %>" onclick="paid(event)">Pay now</button></td>
+                                <td><button type="button" class="btn btn-light" data-id="<%= total %>" onclick="paid(event)">Pay now</button></td>
                               </tr>
                             </tbody>
                           </table>

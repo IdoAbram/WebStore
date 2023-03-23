@@ -81,7 +81,7 @@
     margin: 0 auto;
     display: block;
     border-radius: 10%;
-    height: 280px;
+    height: 2rem;
 }
 
 .banner .info .content p{
@@ -150,3 +150,12 @@ input  {
     border-bottom: 2px solid #007bff;
     font-size: 1.1rem;
   }
+
+
+.hide{
+    display: none;
+}
+
+.Show{
+    display: block;
+}

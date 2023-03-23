@@ -1,4 +1,5 @@
 const customerService = require('../Services/Customer');
+const productService = require('../Services/product');
 const { getProductById } = require('./product');
 
 const createCustomer =  (req, res) => {
@@ -104,8 +105,7 @@ const updateCustomerOrders = async (req, res) => {
   const updateCustomerCreditcard = async (req, res) => { 
 
     customerService.updateCustomerCreditcards(req.params.id,req.body.creditcards);
-     
-
+    
   };
 
 

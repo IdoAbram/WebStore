@@ -5,6 +5,11 @@ const createAdmin =  (req, res) => {
     return newAdmin;
 };
 
+const createAdmin1Privilage = (req,res)=>{
+  const newAdmin =  AdminService.createAdmin(req.body.firstName,req.body.lastName,req.body.email,req.body.password,1);
+  return newAdmin;
+};
+
 const getAdmins =  () => { 
     const Admins =  AdminService.getAdmins({});
     return Admins;
@@ -89,6 +94,14 @@ const updateAdminPrivileges = async (req, res) => {
   
   };
 
+  const deleteAdminByEmail = (req, res) => {
+    const Admin = AdminService.deleteAdminsByEmail(req.params.email);
+    if (!Admin) {
+      return res.status(404).json({ errors: ['Admin not found'] });
+    }
+  
+  };
+
   module.exports = {
     createAdmin,
     getAdmins,
@@ -101,5 +114,7 @@ const updateAdminPrivileges = async (req, res) => {
     getCount,
     deleteAllAdmins,
     updateAll,
-    getAdminsByFilter
+    getAdminsByFilter,
+    deleteAdminByEmail,
+    createAdmin1Privilage
   };

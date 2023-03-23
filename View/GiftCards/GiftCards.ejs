@@ -26,27 +26,16 @@
                     </div>
                     <div class="col-md-6 offset-md-3 info" style="padding-top: 8%;">
                         <div class="gallery">
-                            
-                            <% for (p of products) { %>
-                                
+                            <% for(card of giftCards) { %>
                                 <div class="content">
-                                    <img id="mainpic" src ="<%= p.Pictures[0]%>" style="height: 15rem; width: 100%; max-height:100%">
-                                    <h3><%= p.Title %></h3>
-                                    <p><%= p.shortDescription %></p>
-                                    <h6><%= p.price %>$</h6>
-                                    <ul>
-                                        <% if(p.Rating!=0) { %>
-                                            <% for (let i=0;i!=p.Rating;i++){ %>
-                                                <li><i class="fa fa-star checked"></i></li>
-                                            <%}%>
-                                            <% for (let i=0;i!=5-p.Rating;i++){ %>
-                                                <li><i class="fa fa-star"></i></li>
-                                            <%}%>
-                                        <%}%>
-                                    </ul>
-                                    <a href="/prPage/<%= p._id %>" class="buy btn">Buy Now</a>
+                                    <img id="mainpic" src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPodPejvYViAL4OQKgXdvnsA1f1zUttgfUxA&usqp=CAU" style="height: 15rem; width: 100%; max-height:100%">
+                                    <h3>Gift Card</h3>
+                                    <p><%= card.Description %></p>
+                                    <h6><%= card.price %>$</h6>
+                                    <a onclick="CardPaid.js" href="/giftCards/<%= card._id %>" class="buy btn">Buy Now</a>
                                 </div>
-                            <%}%>
+                            <% } %>
+                            
                         </div>
                     </div>
 
