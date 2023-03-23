@@ -46,14 +46,10 @@ fetch('/customers/addresses')
         .then(res => res.json())
         .then(addresses => {
           markers = addresses;
-          console.log("before");
-          console.log(markers);
           createMap(addresses)
         })
 
     function createMap(markers){
-        console.log("after");
-        console.log(markers);
         const myCenter = { lat: 31.9650241, lng: 34.7817688 };
         let map;
 

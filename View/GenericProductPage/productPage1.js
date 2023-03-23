@@ -1,4 +1,4 @@
-
+document.getElementById("addToCart").style.display = "none;"
 
 
 function func(event){
@@ -23,5 +23,16 @@ function stars(num){
         inp.checked = false;
         star.classList.remove("checked");
     }
+}
+
+function addToCart(id){
+    fetch("/prPage/"+id+"/addToCart")
+    document.getElementById(id).hidden = true;
+    let gotoCart = document.createElement('a');
+    gotoCart.setAttribute('href', "/cart");
+    gotoCart.innerHTML = "Go To Cart";
+    gotoCart.classList.add("btn"); 
+    gotoCart.classList.add("btn-warning"); 
+    document.getElementById("addToCart").appendChild(gotoCart);
 }
 

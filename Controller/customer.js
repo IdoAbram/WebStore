@@ -1,4 +1,5 @@
 const customerService = require('../Services/Customer');
+const productService = require('../Services/product');
 const { getProductById } = require('./product');
 
 const createCustomer =  (req, res) => {

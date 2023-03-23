@@ -4,9 +4,15 @@ const productController = require('../Controller/product')
 const customerService = require('../Services/customer')
 const productService = require('../Services/product');
 const ordersService = require('../Services/orders');
+const giftCardService = require('../Services/giftcard');
+
+let discount = 0;
+
 
 router.get('/',async (req,res)=>{
 
+
+    let total = 0;
     const id=req.session.user;
     const customer = await customerService.getCustomerById(id);
     let products;
@@ -22,14 +28,37 @@ router.get('/',async (req,res)=>{
         let pr= await productService.getProductById(products[i]);
         if(pr!=null){
             finalProducts.push(pr);
+            total+= pr.price*map.get(pr._id);
         }
         else{
             map.delete(products[i])
             customerService.updateCustomerShoppingCart(id,map)
         }
     }
+    req.session.total = total;
+    total-=discount;
+    discount =0;
+    res.render("../View/BuyPage/buyPageM",{finalProducts,customer,id,user,type,first,map,total})
+})
 
-    res.render("../View/BuyPage/buyPageM",{finalProducts,customer,id,user,type,first,map})
+router.post('/',async(req,res)=>{
+    
+    let giftCardId= req.body.giftCard;
+    let giftCard = await giftCardService.getGiftCardById(giftCardId);
+    let total = req.session.total;
+    if(giftCard!=null&&giftCard.isBought==true){
+        if(total<giftCard.price){
+            discount = total;
+            await giftCardService.updateGiftCardPrice(giftCardId,giftCard.price-total);
+        }
+        else{
+            discount =giftCard.price;
+            await giftCardService.updateGiftCardPrice(giftCardId,0);
+        }
+    }
+    
+    res.redirect('/buyPage');
+
 })
 
 router.get('/complete',async(req,res)=>{
@@ -44,6 +73,7 @@ router.get('/complete',async(req,res)=>{
     if(customer.shoppingCart!=null){
         products=Array.from(customer.shoppingCart.keys());
     }
+
     let finalMap = new Map();
     let sum=0;
     for(let i=0;i<products.length;i++){
@@ -55,9 +85,16 @@ router.get('/complete',async(req,res)=>{
     const threeWeeksLater = new Date(today.setDate(today.getDate() + 21));
     let map1 = new Map();
 
-    ordersService.createOrders(Number(sum),Number(finalMap.size*10),"Wizz",today,threeWeeksLater,finalMap,userId);
-    customerService.updateCustomerShoppingCart(userId,map1);
-    res.redirect('/orders/my');
+    if(finalMap.size>0){
+        ordersService.createOrders(Number(sum),Number(finalMap.size*10),"Wizz",today,threeWeeksLater,finalMap,userId);
+        customerService.updateCustomerShoppingCart(userId,map1);
+        res.redirect('/orders/my');
+    }
+    else{
+        res.redirect('/homePage');
+    }
+
+    
 })
 
 router.get('/moneySpent/:total',async(req,res)=>{

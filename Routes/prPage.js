@@ -69,7 +69,7 @@ router.route('/:id/addToCart').get(async (req,res)=>{
     
     cart.set(req.params.id,1);
     customerService.updateCustomerShoppingCart(userID,cart);
-    res.redirect("/prPage/"+product._id);
+    //res.redirect("/prPage/"+product._id);
     
 })
 

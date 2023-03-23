@@ -1,17 +1,31 @@
 function paid(event){
-    const main=document.getElementById("bp");
-    main.classList.add("hide")
-    const back=document.getElementById("paid")
-    back.classList.remove("hide")
+    moneySpent(event.target.dataset.id);
+    giftCard(event.target.dataset.id);
 }
-function credit(event){
-    const main=document.getElementById("bp");
-    main.classList.add("hide")
-    const back=document.getElementById("credit")
-    back.classList.remove("hide")
-}
-function pictures(event){
-    const ids = event.target.dataset.id.split(" ");
 
-    
-}
+
+function moneySpent(total) {
+    $.ajax({
+      type: "GET",
+      url: "/buyPage/moneySpent/"+total,
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+  }
+
+  function giftCard(total) {
+    $.ajax({
+      type: "GET",
+      url: "/buyPage/giftCard/"+total,
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+  }

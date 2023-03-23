@@ -86,11 +86,11 @@
                                     <br>
                                     <% if(type==="customer") { %>
                                         <% if(!isAdded) { %>
-                                            <a href="/prPage/<%= product._id %>/addToCart" class="btn btn-warning">Add To Cart</a>
+                                            <a id="<%= product._id %>" onclick="addToCart('<%= product._id %>')" class="btn btn-warning">Add To Cart</a>
                                         <% } %>
-                                        
+                                        <div id="addToCart"></div>
                                         <% if(isAdded) { %>
-                                            <a href="/cart" class="btn btn-warning">Go To Cart</a>
+                                            <a name="<%= product._id %>" href="/cart" class="btn btn-warning">Go To Cart</a>
                                         <% } %>
                                     <% } %>
                                     

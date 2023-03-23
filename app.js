@@ -37,6 +37,8 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     const chatRouter=require('./Routes/adminchat');
     const graphRouter= require('./Routes/graph')
     const orderRouter = require('./Routes/order');
+    const Review = require('./Model/Schemas/Review');
+
     app.use(express.static(path.join(__dirname+'/View')))
     app.use(express.static(path.join(__dirname+'/View/HomePage')))
     app.use(express.static(path.join(__dirname+'/View/GenericProductPage')))
@@ -60,7 +62,7 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use('/chat',chatRouter)
     app.use('/graph',graphRouter)
     app.use('/admin',AdminRouter)
-    app.use('/giftCards',giftcardRouter);
+    app.use('/giftCards',giftcardRouter)
 
     app.use((req,res)=>{
       res.status(404).render('../View/Sorry/sorry.ejs')
@@ -88,10 +90,6 @@ run()
 
 
 async function run(){
-
-  const cust = new Customer({Name:"Maor",lastName:"Saban",password:"1234",moneySpent:10000,address:"New York"})
-
-  cust.save()
 
 
 }
