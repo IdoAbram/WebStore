@@ -31,8 +31,9 @@
                                 <div class="content">
                                     <img id="mainpic" src ="<%= p.Pictures[0]%>" style="height: 15rem; width: 100%; max-height:100%">
                                     <h3><%= p.Title %></h3>
+                                    <h3>Amount: <%= map.get(p._id) %></h3>
                                     <p><%= p.shortDescription %></p>
-                                    <h6><%= p.price %>$</h6>
+                                    <h6> For Each :<%= p.price %>$</h6>
                                     <ul>
                                         <% if(p.Rating!=0) { %>
                                             <% for (let i=0;i!=p.Rating;i++){ %>

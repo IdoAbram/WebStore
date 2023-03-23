@@ -31,15 +31,17 @@ router.get('/:id',async (req,res)=>{
    const userID = req.session.user;
    const first=false;
    let user=await customerService.getCustomerById(userID);
+   let map = order.products;
+   let array=Array.from(map);
+   
 
    let products = [];
-   console.log(order.products[0]);
-   for(let i=0;i<order.products.length;i++){
-      let pro = await productService.getProductById(String(order.products[i].split(" ")[0]));
+   for(let i=0;i<order.products.size;i++){
+      let pro = await productService.getProductById(String(array[i][0].split(" ")[0]));
       products.push(pro);
    }
 
-   res.render('../View/Orders/SpesificPage',{type,user,type,order,first,products});
+   res.render('../View/Orders/SpesificPage',{type,user,type,order,first,products,map});
 
 })
 

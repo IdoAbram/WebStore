@@ -7,7 +7,10 @@ const Orders=new mongoose.Schema({
     ShippingCompany: String,
     DateIssued: Date,
     ExpectedArrival: Date,
-    products:[String] //Array of ids of products
+    products: {
+      type: Map,
+      of: Number
+    } 
   });
   
 
