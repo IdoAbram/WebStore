@@ -3,6 +3,7 @@ const router = express.Router();
 const productController = require('../Controller/product')
 const customerService = require('../Services/customer')
 const productService = require('../Services/product');
+const ordersService = require('../Services/orders');
 
 router.get('/',async (req,res)=>{
 
@@ -29,6 +30,33 @@ router.get('/',async (req,res)=>{
     }
 
     res.render("../View/BuyPage/buyPageM",{finalProducts,customer,id,user,type,first,map})
+})
+
+router.get('/complete',async(req,res)=>{
+    const userId=req.session.user;
+    const customer = await customerService.getCustomerById(userId);
+    const type =req.session.userType;
+    let first = false;
+
+    let map = customer.shoppingCart;
+    let array=Array.from(map);
+    let products;
+    if(customer.shoppingCart!=null){
+        products=Array.from(customer.shoppingCart.keys());
+    }
+    let finalProducts = [];
+    let sum=0;
+    for(let i=0;i<products.length;i++){
+        let pro1= await productService.getProductById(products[i].split(" ")[0]);
+        finalProducts.push(products[i].split(" ")[0]);
+    }
+    var today = new Date();
+    const threeWeeksLater = new Date(today.setDate(today.getDate() + 21));
+
+
+    ordersService.createOrders(Number(sum),finalProducts.length*10,"Wizz",today,threeWeeksLater,finalProducts,userId);
+
+    res.redirect('/orders/my');
 })
 
 router.get('/moneySpent/:total',async(req,res)=>{
