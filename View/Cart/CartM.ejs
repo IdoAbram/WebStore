@@ -22,35 +22,27 @@
                         <table class="table">
                             <thead>
                               <tr>
-                                <th scope="col" style="width: 5px;">Remove</th>
                                 <th scope="col" style="width: 150px;">Picture</th>
                                 <th scope="col" style="width: 150px;">Title</th>
                                 <th scope="col" style="width: 150px;">Description</th>
-                                <th scope="col" style="width: 150px;">Amount Available</th>
                                 <th scope="col" style="width: 150px;">Quantity</th>
                                 <th scope="col" style="width: 150px;">Delete</th>
                                 <th scope="col" style="width: 150px;">Price</th>
                               </tr>
                             </thead>
                             <tbody>
-                                <% total=0 %>
+                                <%  total=0 %>
                                 <% for (pro of finalProducts) { %>
                                     <% total+= pro.price*map.get(pro._id)  %>
                                     <tr id="<%= pro._id %>">
-                                        <td>
-                                            <label class="container">
-                                                <input type="checkbox" value="1" checked="checked" id="<%= pro._id +3%>" data-id="<%= pro._id %> <%= pro._id +2%> <%= pro._id +3%> <%= pro._id +4 %> <%= pro._id +5 %>" onclick="remove(event)">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </td>
                                         <td><img src="<%= pro.Pictures[0] %>" style="width: 200px; height: 200px;"></td>
                                         <td><%= pro.Title %></td>
                                         <td><%= pro.shortDescription %></td>
-                                        <td><%= pro.AmountAvailable %></td>
                                         <td>
-                                            <button type="button" class="btn btn-light" id="<%= pro._id +4 %>" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %>" onclick="decrease(event)">-</button>
+                                            <button type="button" class="btn btn-light" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %>" onclick="decrease(event)">-</button>
                                             
                                             <input type="text" id="<%= pro._id +1 %>" value="<%= map.get(pro._id) %>" disabled="disabled" class="change"/>
+
                                             <button type="button" class="btn btn-light" id="<%= pro._id +5 %>" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %>" onclick="increase(event)">+</button>
                                         </td>
                                         <td><a type="button" class="btn btn-danger" data-id="<%= pro._id %> <%= pro._id +2%> id <%= pro._id +3%>"  onclick="removeFromCart(event,'<%= pro._id %>')">Delete</a></td>
@@ -64,7 +56,7 @@
                                     <td>
                                         $ <input type="text" value="<%= total %>" id="total" disabled="disabled" class="change"/>
                                     </td>
-                                    <td><a type="button" class="btn btn-danger" data-id="finalProducts" onclick="pictures(event)" href="/buyPage">Buy Now</a></td>
+                                    <td><a type="button" class="btn btn-danger" href="/buyPage" id="buynow">Buy Now</a></td>
                                 </tr>
                             </tbody>
                         </table>
