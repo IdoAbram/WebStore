@@ -74,18 +74,20 @@
                                             <th scope="col">Price</th>
                                           </tr>
                                         </thead>
+                                        <% let total=0 %>
                                         <tbody>
                                             <% for (pro of finalProducts) { %>
                                                 <tr>
                                                     <td><img src="<%= pro.Pictures[0] %>" style="width: 200px; height: 200px;"></td>
                                                     <td><%= map.get(pro._id) %></td>
                                                     <td><%= map.get(pro._id)*pro.price %></td>
+                                                    <% total+= pro.price*map.get(pro._id) %>
                                                 </tr>
                                           <% } %>
                                         </tbody>
                                     </table>
                                 </td>
-                                <td><a type="button" class="btn btn-light" href="/cart/<%= customer._id %>">Back to cart</a></td>
+                                <td><a type="button" class="btn btn-light" href="/cart">Back to cart</a></td>
                               </tr>
                               <tr>
                                 <th scope="row">5</th>

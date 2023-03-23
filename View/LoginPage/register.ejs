@@ -15,9 +15,9 @@
         <%- include ('../HomePage/HomePage.ejs') %>
     </div>
     
-   <form class="container form-box" method="post">
+   <form class="container form-box" method="post" style="margin-top: 6rem; margin-bottom: 10rem;">
     
-    <h1>Sign up</h1>
+    <h1 style="margin-top: 12rem;">Sign up</h1>
 
     <input pattern="[A-Za-z ]+" type="text" placeholder="First Name" name="firstName" title="Only Letters!" required><br>
     <input pattern="[A-Za-z ]+" type="text" placeholder="Last Name" name="lastName" title="Only Letters!" required><br>
@@ -38,8 +38,20 @@
 </div>
     <br><br>
     <button class="btn btn-primary buttom" type="submit">sign up</button>
-    <a class="btn btn-dark buttom" href="/login">Allready have an account</a>
+    <a style="margin-bottom: 4rem;" class="btn btn-dark buttom" href="/login">Allready have an account</a>
    </form>
+   <footer id="footer-place"></footer>
+                    <%- include ('../TemplatePage/Footer.ejs') %>
+
+
+                    <script>
+                        window.onload = function() {
+                          var footer = document.querySelector('.theFoot');
+                          var placeholder = document.querySelector('#footer-place');
+                          placeholder.parentNode.insertBefore(footer, placeholder.nextSibling);
+                         
+                        }
+                    </script>  
 
    <script>
 

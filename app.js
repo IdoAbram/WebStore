@@ -62,6 +62,7 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use('/chat',chatRouter)
     app.use('/graph',graphRouter)
     app.use('/admin',AdminRouter)
+    app.use('/giftCards',giftcardRouter)
 
     app.use((req,res)=>{
       res.status(404).render('../View/Sorry/sorry.ejs')

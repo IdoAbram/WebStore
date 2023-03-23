@@ -34,7 +34,7 @@ function increase(event){
   let currentValue=document.getElementById(ids[0]).value
   currentValue=parseInt(currentValue)+1
   document.getElementById(ids[0]).value=currentValue
-  increaseQuantity(ids[2])//the code doesnt get in it + when it does i change the number alone
+  increaseQuantity(ids[2])
 
   //handling the price
   var price = document.getElementById( ids[1] );
@@ -84,13 +84,11 @@ function decrease(event){
 function removeFromCart(event,id){
   const ids = event.target.dataset.id.split(" ");
   const prod=document.getElementById(ids[0]);
-  const check=document.getElementById(ids[3]);
 
 
   var totalPrice=document.getElementById("total");
-  if(check.value==1){
-      totalPrice.value-=document.getElementById(ids[1]).value
-  }
+  totalPrice.value-=document.getElementById(ids[1]).value
+  
 
   prod.classList.add("hide");
   fetch("/cart/removeFromCart/"+id)
