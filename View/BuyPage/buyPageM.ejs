@@ -10,32 +10,10 @@
     <body>
         <form method="post" action="http://localhost:8080//HomePage">
             <div class="container-fluid banner">
-                <div class="row">
-                    <div class="col-md-12">
-                        <nav class="navbar">
-                            <div class="navbar-brand">Mavoch</div>
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Store</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Info</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Cart</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">GiftCards</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Sign In</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                <div id="template1" class="header">
+                    <%- include ('../HomePage/HomePage.ejs') %>
+                </div>
+                <div class="row">                    
                     <div class="col-md-8 offset-md-2 info text-center buyPage">
                         <div id="credit" class="hide">
                             <h1>Insert you credit card hemi!</h1>
