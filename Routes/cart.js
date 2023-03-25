@@ -4,8 +4,10 @@ const router = express.Router();
 const productController = require('../Controller/product')
 const customerService = require('../Services/customer')
 const productService = require('../Services/product');
+const adminService = require('../Services/admin');
 
 router.get('/',async (req,res)=>{
+    
     
     const id=req.session.user;
     const customer = await customerService.getCustomerById(id);

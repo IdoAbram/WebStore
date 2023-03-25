@@ -32,24 +32,31 @@ function increase(event){
   //checking if the number is below the amount available
   //handling and increasing the quantity
   let currentValue=document.getElementById(ids[0]).value
-  currentValue=parseInt(currentValue)+1
-  document.getElementById(ids[0]).value=currentValue
-  increaseQuantity(ids[2])
+  let available = ids[3];
+  if(currentValue!=Number(available)){
+    currentValue=parseInt(currentValue)+1
+    document.getElementById(ids[0]).value=currentValue
+    increaseQuantity(ids[2])
 
-  //handling the price
-  var price = document.getElementById( ids[1] );
-  var crValue = parseInt(price.value);
+    //handling the price
+    var price = document.getElementById( ids[1] );
+    var crValue = parseInt(price.value);
 
-  //updating the total sum v1
-  var totalPrice=document.getElementById("total");
-  totalPrice.value=parseInt(totalPrice.value)-crValue
+    //updating the total sum v1
+    var totalPrice=document.getElementById("total");
+    totalPrice.value=parseInt(totalPrice.value)-crValue
 
-  //updating the price
-  crValue = crValue + (crValue/(currentValue-1));
-  price.value = crValue;
+    //updating the price
+    crValue = crValue + (crValue/(currentValue-1));
+    price.value = crValue;
 
-  //updating the total sum v2
-  totalPrice.value=parseInt(totalPrice.value)+crValue
+    //updating the total sum v2
+    totalPrice.value=parseInt(totalPrice.value)+crValue
+  }
+  else{
+    alert("Maximum Available");
+  }
+  
 }
 
 //decreasing the total on the page

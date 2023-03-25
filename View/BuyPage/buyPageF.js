@@ -1,6 +1,5 @@
 function paid(event){
     moneySpent(event.target.dataset.id);
-    giftCard(event.target.dataset.id);
 }
 
 
@@ -17,15 +16,4 @@ function moneySpent(total) {
     });
   }
 
-  function giftCard(total) {
-    $.ajax({
-      type: "GET",
-      url: "/buyPage/giftCard/"+total,
-      success: function(data) {
-        console.log(data);
-      },
-      error: function(error) {
-        console.log(error);
-      }
-    });
-  }
+  

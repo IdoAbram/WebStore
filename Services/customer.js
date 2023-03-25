@@ -1,8 +1,10 @@
 const Customer = require('../Model/Schemas/Customer');
 
-const createCustomer = async (firstName, lastName,address,email,password) => {
+const createCustomer = async (firstName, lastName,address,email,password,creditCard) => {
+    let credit = [];
+    credit.push(creditCard);
 
-    const customer = new Customer({Name:firstName,lastName:lastName,address:address,moneySpent:0,wishList:[],shoppingCart:[],orders:[],email:email,password:password,creditCards:[]})
+    const customer = new Customer({Name:firstName,lastName:lastName,address:address,moneySpent:0,wishList:[],shoppingCart:[],orders:[],email:email,password:password,creditCards:credit})
 
 
     return await customer.save();
