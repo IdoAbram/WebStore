@@ -41,7 +41,14 @@ router.route('/update/:id').post(async (req,res)=>{
     customerController.updateAll(req,res);
 })
 
-
+router.get('/addresses',async (req,res)=>{
+    let addresses = [];
+    const customers = await customerController.getCustomersByFilter({});
+    customers.forEach(c =>{
+        addresses.push(c.address);
+    })
+    res.json(addresses);
+})
 
 function setCustomer(req,res,next){
     const userId = req.id;

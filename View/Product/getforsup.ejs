@@ -29,7 +29,7 @@
                             
                             <% for (p of products) { %>
                                 
-                                <div class="content">
+                                <div id="<%=p._id%>" class="content">
                                     <img id="mainpic" src ="<%= p.Pictures[0]%>" style="max-height: 100%;">
                                     <h3><%= p.Title %></h3>
                                     <p><%= p.shortDescription %></p>
@@ -44,7 +44,7 @@
                                             <%}%>
                                         <% } %>
                                     </ul>
-                                    <a href="/products/deleteforsup/<%=p._id%>" class="buy btn">delete</a>
+                                    <a onclick="deleteProduct('<%=p._id%>')" class="buy btn">delete</a>
                                 </div>
                             <%}%>
                         </div>
@@ -67,8 +67,13 @@
         </form>
         
 
-        
-
+        <script>
+             function deleteProduct(id){
+            fetch('/products/deleteforsup/'+id);
+            document.getElementById(id).hidden = true;
+            //$("#id").empty();
+        }
+        </script>
     </body>
 
 

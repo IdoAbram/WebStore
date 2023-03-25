@@ -10,6 +10,7 @@ const Product = new mongoose.Schema({
     Description: String,
     shortDescription: String,
     Reviews: [String],
+    AmountAvailable: Number,
     Rating:{
         type: Number,
         required: true,

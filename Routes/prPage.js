@@ -51,6 +51,7 @@ router.route('/:id').get(async (req,res)=>{
 })
 
 router.route('/:id/addToCart').get(async (req,res)=>{
+    
     const product= await productController.getProductById(req,res);
     const userID = req.session.user;
     const user = await customerService.getCustomerById(userID);
@@ -68,7 +69,7 @@ router.route('/:id/addToCart').get(async (req,res)=>{
     
     cart.set(req.params.id,1);
     customerService.updateCustomerShoppingCart(userID,cart);
-    res.redirect("/prPage/"+product._id);
+    //res.redirect("/prPage/"+product._id);
     
 })
 
