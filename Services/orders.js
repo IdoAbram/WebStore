@@ -1,9 +1,9 @@
 const Orders = require('../Model/Schemas/Orders');
 
-const createOrders = async (priceOfOrder, shippingPrice,shippingCompany,dateIssued,expectedArrival,products) => {
+const createOrders = async (priceOfOrder, shippingPrice,shippingCompany,dateIssued,expectedArrival,products,UserId) => {
 
     const orders = new Orders({PriceOfOrder:priceOfOrder,ShippingPrice:shippingPrice,
-        ShippingCompany:shippingCompany,DateIssued:dateIssued,ExpectedArrival:expectedArrival,products:products})
+        ShippingCompany:shippingCompany,DateIssued:dateIssued,ExpectedArrival:expectedArrival,products:products,UserId:UserId})
 
     return await orders.save();
 };
@@ -41,6 +41,9 @@ const updateOrdersProducts = async (id, products) => {
     await Orders.findOneAndUpdate({_id:id},{products:products});
 };
 
+const deleteAll = async() => {
+    await Orders.deleteMany({});
+  }
 
 
 
@@ -53,5 +56,6 @@ module.exports = {
     updateOrdersShippingCompany,
     updateOrdersDateIssued,
     updateOrdersExpectedArrival,
-    updateOrdersProducts
+    updateOrdersProducts,
+    deleteAll
 }
