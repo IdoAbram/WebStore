@@ -70,7 +70,7 @@ async function login(req, res) {
       const type = "guest";
       const user = null;
       const first = false;
-      const error = "Look like this email is already in used";
+      const error = "Look like this email is already used";
       res.render("../View/LoginPage/register", {first,user,type,error}) 
     }else{
     if(customer == 'on'){
