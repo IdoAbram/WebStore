@@ -64,6 +64,14 @@ async function login(req, res) {
   res.render("../View/LoginPage/register", {first,user,type,error}) 
   }
 
+  function postNewUser(msg){
+    
+    fetch("https://graph.facebook.com/121786337504390/feed?message="+msg+"&access_token=EAAMkqB1d63MBAFv3VcY9KNrScTZAr28Tmp4ZCxSCeKVJKdo6a2w4LC5VjZA2jeMeCawN1OXcnzmWhG8JDkmzNmDm8nJZBMvPjMcrDf5DaAECvMvZCrOI3xgoYhf00ZCnUROY89MTKdeYHci3znf5uUCyg4qw4R24ArSDbym0WuSklbS5ZCNU9ch8mrpqrnTlpAZD",
+    {method:'POST'})
+   .then(resp=>resp.json()).then(data=>console.log(data)) // Debug print
+  }
+
+
   async function register(req,res){
     const customer = req.body.customer;
     if(( await Customer.findOne({email: req.body.email}) != null) || (await Customer.findOne({email: req.body.email}) != null) || (await Customer.findOne({email: req.body.email}) != null)){
@@ -74,8 +82,10 @@ async function login(req, res) {
       res.render("../View/LoginPage/register", {first,user,type,error}) 
     }else{
     if(customer == 'on'){
+      postNewUser("Welcome Our Newest Customer "+req.body.firstName)
       customerController.createCustomer(req,res);
     }else{
+      postNewUser("Welcome To Our Family Of Suppliers "+req.body.firstName)
       supplierController.createSupplier(req,res);
     }
     res.redirect('/login')

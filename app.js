@@ -12,6 +12,7 @@ var path = require('path');
 mongoose.set('strictQuery', false);
 const Customer = require("./Model/Schemas/Customer");
 const Product = require("./Model/Schemas/Product");
+const Admin = require("./Model/Schemas/Product");
 const session = require('express-session');
 
 app.use(session({
@@ -37,7 +38,7 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     const chatRouter=require('./Routes/adminchat');
     const graphRouter= require('./Routes/graph')
     const orderRouter = require('./Routes/order');
-    const Review = require('./Model/Schemas/Review');
+    const reviewRouter = require('./Routes/reviews');
 
     app.use(express.static(path.join(__dirname+'/View')))
     app.use(express.static(path.join(__dirname+'/View/HomePage')))
@@ -45,6 +46,7 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use(express.static(path.join(__dirname+'/View/Info')))
     app.use(express.static(path.join(__dirname+'/View/Admin')))
     app.use(express.static(path.join(__dirname+'/View/GiftCards')))
+    app.use(express.static(path.join(__dirname+'/View/Reviews')))
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json());
     app.use('/orders',orderRouter);
@@ -63,6 +65,7 @@ mongoose.connect("mongodb://127.0.0.1:27017")
     app.use('/graph',graphRouter)
     app.use('/admin',AdminRouter)
     app.use('/giftCards',giftcardRouter)
+    app.use('/reviews',reviewRouter)
 
     app.use((req,res)=>{
       res.status(404).render('../View/Sorry/sorry.ejs')
@@ -85,6 +88,7 @@ mongoose.connect("mongodb://127.0.0.1:27017")
       socket.on("message",(data)=>{io.emit('message',data)});
     })
 
+
     
 run()
 
@@ -94,5 +98,12 @@ async function run(){
 
 }
 
+
+/*
+    fetch("https://graph.facebook.com/121786337504390/feed?message=Hello World!&access_token=EAAMkqB1d63MBAFv3VcY9KNrScTZAr28Tmp4ZCxSCeKVJKdo6a2w4LC5VjZA2jeMeCawN1OXcnzmWhG8JDkmzNmDm8nJZBMvPjMcrDf5DaAECvMvZCrOI3xgoYhf00ZCnUROY89MTKdeYHci3znf5uUCyg4qw4R24ArSDbym0WuSklbS5ZCNU9ch8mrpqrnTlpAZD",
+    {method:'POST'})
+    .then(resp=>resp.json()).then(data=>console.log(data))
+*/
+    
 
 

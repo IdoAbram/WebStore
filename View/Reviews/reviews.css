@@ -1,0 +1,15 @@
+
+
+#review{
+    font-size: larger;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: groove;
+    width:700px;
+    height:300px;
+}
+
+#pos{
+    font-size: 100px;
+}
