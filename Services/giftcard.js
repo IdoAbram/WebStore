@@ -10,6 +10,10 @@ const createGiftCard = async (price,Description,isBought) => {
     return await giftCard.save();
 };
 
+const deleteGiftCardById = async(id)=>{
+    await GiftCard.deleteOne({_id:id})
+}
+
 const getGiftCardById = async (id) => {
     return await GiftCard.findById(id);
 };
@@ -35,5 +39,6 @@ module.exports = {
     getGiftCards,
     updateGiftCardPrice,
     updateGiftCardDescription,
-    deleteAll
+    deleteAll,
+    deleteGiftCardById
 }

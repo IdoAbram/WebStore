@@ -127,17 +127,19 @@
                                 <% } %>
 
                                 <% for(rev of reviews) { %>
-                                    <h3 class="stars rating"><%= rev. Title %>:
-                                        <% for (let i=0;i!=rev.Rating;i++){ %>
-                                            <li><i class="fa fa-star checked"></i></li>
-                                        <% } %>
-                                        <% for (let i=0;i!=5-rev.Rating;i++){ %>
-                                            <li><i class="fa fa-star"></i></li>
-                                        <% } %>
-                                    </h3>
-                                    <h6><%= rev.text %></h6>
-                                    <div class="stars">
-                                        
+                                    <div class="review">
+                                        <h3 class="stars rating"><%= rev. Title %>:
+                                            <% for (let i=0;i!=rev.Rating;i++){ %>
+                                                <li><i class="fa fa-star checked"></i></li>
+                                            <% } %>
+                                            <% for (let i=0;i!=5-rev.Rating;i++){ %>
+                                                <li><i class="fa fa-star"></i></li>
+                                            <% } %>
+                                        </h3>
+                                        <h6><%= rev.text %></h6>
+                                        <div class="stars">
+                                            
+                                        </div>
                                     </div>
                                 <% } %>
                                 
