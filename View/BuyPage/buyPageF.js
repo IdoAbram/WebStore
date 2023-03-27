@@ -1,5 +1,5 @@
 function paid(event){
-    moneySpent(event.target.dataset.id)
+    moneySpent(event.target.dataset.id);
 }
 
 
@@ -15,3 +15,5 @@ function moneySpent(total) {
       }
     });
   }
+
+  

@@ -29,31 +29,31 @@
                         <input style="margin-left: 4rem;" type="text"  name="search" placeholder="Filter product by name">
                             <div style="display: flex;">
                             <div style="margin-left: 4rem;" class="form-check">
-                                <input style="width: 1rem;" class="form-check-input" type="radio" name="sports" id="flexRadioDefault1" onclick="checkSprots()">
+                                <input style="width: 1rem;" class="form-check-input" type="radio" name="sports" id="flexRadioDefault1" onclick="check('flexRadioDefault1','sports')">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                   sports
                                 </label>
                               </div>
                               <div class="form-check">
-                                <input style="width: 1rem;" class="form-check-input" type="radio" name="clothes" id="flexRadioDefault2" onclick="checkClothes()" >
+                                <input style="width: 1rem;" class="form-check-input" type="radio" name="clothes" id="flexRadioDefault2" onclick="check('flexRadioDefault2','clothes')" >
                                 <label class="form-check-label" for="flexRadioDefault2">
                                   clothes
                                 </label>
                               </div>
                               <div class="form-check">
-                                <input style="width: 1rem;" class="form-check-input" type="radio" name="home" id="flexRadioDefault3" onclick="checkHome()" >
+                                <input style="width: 1rem;" class="form-check-input" type="radio" name="home" id="flexRadioDefault3" onclick="check('flexRadioDefault3','home')" >
                                 <label class="form-check-label" for="flexRadioDefault3">
                                   home
                                 </label>
                               </div>
                               <div class="form-check">
-                                <input style="width: 1rem;" class="form-check-input" type="radio" name="kids" id="flexRadioDefault4" onclick="checkKids()" >
+                                <input style="width: 1rem;" class="form-check-input" type="radio" name="kids" id="flexRadioDefault4" onclick="check('flexRadioDefault4','kids')" >
                                 <label class="form-check-label" for="flexRadioDefault4">
                                   kids
                                 </label>
                               </div>
                               <div class="form-check">
-                                <input style="width: 1rem;" class="form-check-input" type="radio" name="technology" id="flexRadioDefault5" onclick="checkTechnology()" >
+                                <input style="width: 1rem;" class="form-check-input" type="radio" name="technology" id="flexRadioDefault5" onclick="check('flexRadioDefault5','technology')" >
                                 <label class="form-check-label" for="flexRadioDefault5">
                                   technology
                                 </label>
@@ -63,27 +63,29 @@
                     </aside>
                         <div class="gallery">
                             <% for (p of products) { %>
-                                
-                                <div id="<%= p._id %>" class="content">
-                                    <img id="mainpic" src ="<%= p.Pictures[0]%>" style="height: 15rem; width: 100%; max-height:100%">
-                                    <h3><%= p.Title %></h3>
-                                    <p><%= p.shortDescription %></p>
-                                    <h6><%= p.price %>$</h6>
-                                    <ul>
-                                        <% if(p.Rating!=0) { %>
-                                            <% for (let i=0;i!=p.Rating;i++){ %>
-                                                <li><i class="fa fa-star checked"></i></li>
+                                <% if(p.AmountAvailable!=0) { %>
+                                    <div id="<%= p._id %>" class="content">
+                                        <img id="mainpic" src ="<%= p.Pictures[0]%>" style="height: 15rem; width: 100%; max-height:100%">
+                                        <h3><%= p.Title %></h3>
+                                        <p><%= p.shortDescription %></p>
+                                        <h6><%= p.price %>$</h6>
+                                        <ul>
+                                            <% if(p.Rating!=0) { %>
+                                                <% for (let i=0;i!=p.Rating;i++){ %>
+                                                    <li><i class="fa fa-star checked"></i></li>
+                                                <%}%>
+                                                <% for (let i=0;i!=5-p.Rating;i++){ %>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                <%}%>
                                             <%}%>
-                                            <% for (let i=0;i!=5-p.Rating;i++){ %>
-                                                <li><i class="fa fa-star"></i></li>
-                                            <%}%>
+                                        </ul>
+                                        <a href="/prPage/<%= p._id %>" class="buy btn">View</a>
+                                        <%if(type == "admin"){%>
+                                            <a onclick="deleteProduct('<%=p._id%>')" class="buy btn">delete</a><!--href="/products/deleteforsup/<%=p._id%>"-->
                                         <%}%>
-                                    </ul>
-                                    <a href="/prPage/<%= p._id %>" class="buy btn">View</a>
-                                    <%if(type == "admin"){%>
-                                        <a onclick="deleteProduct('<%=p._id%>')" class="buy btn">delete</a><!--href="/products/deleteforsup/<%=p._id%>"-->
-                                    <%}%>
-                                </div>
+                                    </div>
+
+                                <% } %>
                             <%}%>
                         </div>
                     </div>
@@ -122,45 +124,24 @@
 
 let sports = false,clothes = false,home = false,kids = false,technology = false;
 
-        function checkSprots(){
-            if(sports == true){
-                document.getElementById("flexRadioDefault1").checked = false;
-            }else{
-                document.getElementById("flexRadioDefault1").checked = true;
-            }
+    function check(id,name){
+        if((name == "sports" && sports == true)||(name == "clothes" && clothes == true)||(name == "home" && home == true)||(name == "kids" && kids == true)||(name == "technology" && technology == true)){
+            document.getElementById(id).checked = false;
+        }else{
+            document.getElementById(id).checked = true;
+        }
+        if(name=="sports"){
             sports = !sports;
-    }
-    function checkClothes(){
-            if(clothes == true){
-                document.getElementById("flexRadioDefault2").checked = false;
-            }else{
-                document.getElementById("flexRadioDefault2").checked = true;
-            }
+        }
+        else if(name=="clothes"){
             clothes = !clothes;
-    }
-    function checkHome(){
-            if(home == true){
-                document.getElementById("flexRadioDefault3").checked = false;
-            }else{
-                document.getElementById("flexRadioDefault3").checked = true;
-            }
+        }else if(name=="home"){
             home = !home;
-    }
-    function checkKids(){
-            if(kids == true){
-                document.getElementById("flexRadioDefault4").checked = false;
-            }else{
-                document.getElementById("flexRadioDefault4").checked = true;
-            }
+        }else if(name=="kids"){
             kids = !kids;
-    }
-    function checkTechnology(){
-            if(technology == true){
-                document.getElementById("flexRadioDefault5").checked = false;
-            }else{
-                document.getElementById("flexRadioDefault5").checked = true;
-            }
+        }else if(name=="technology"){
             technology = !technology;
+        }
     }
     </script>
 

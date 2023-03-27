@@ -40,10 +40,16 @@
                                         <td><%= pro.shortDescription %></td>
                                         <td>
                                             <button type="button" class="btn btn-light" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %>" onclick="decrease(event)">-</button>
+                                            <% if(map.get(pro._id)>pro.AmountAvailable) { %>
+                                                <input type="text" id="<%= pro._id +1 %>" value="<%= pro.AmountAvailable %>" disabled="disabled" class="change"/>
+                                            <% } %>
+                                            <% if(map.get(pro._id)<=pro.AmountAvailable) { %>
+                                                <input type="text" id="<%= pro._id +1 %>" value="<%= map.get(pro._id) %>" disabled="disabled" class="change"/>
+                                            <% } %>
                                             
-                                            <input type="text" id="<%= pro._id +1 %>" value="<%= map.get(pro._id) %>" disabled="disabled" class="change"/>
+                                            
 
-                                            <button type="button" class="btn btn-light" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %>" onclick="increase(event)">+</button>
+                                            <button type="button" class="btn btn-light" data-id="<%= pro._id +1 %> <%= pro._id +2%> <%= pro._id %> <%= pro.AmountAvailable %>" onclick="increase(event)">+</button>
                                         </td>
                                         <td><a type="button" class="btn btn-danger" data-id="<%= pro._id %> <%= pro._id +2%>"  onclick="removeFromCart(event,'<%= pro._id %>')">Delete</a></td>
                                         <td>
@@ -56,7 +62,11 @@
                                     <td>
                                         $ <input type="text" value="<%= total %>" id="total" disabled="disabled" class="change"/>
                                     </td>
-                                    <td><a type="button" class="btn btn-danger" href="/buyPage" id="buynow">Buy Now</a></td>
+                                    <% if(total!=0) { %>
+                                        <td><a type="button" class="btn btn-danger" href="/buyPage" id="buynow">Buy Now</a></td>
+                                        
+                                    <% } %>
+                                    
                                 </tr>
                             </tbody>
                         </table>

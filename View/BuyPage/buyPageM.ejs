@@ -8,12 +8,37 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
-        <form method="post" action="http://localhost:8080//HomePage">
+        <form method="post">
             <div class="container-fluid banner">
-                <div id="template1" class="header">
-                    <%- include ('../HomePage/HomePage.ejs') %>
-                </div>
-                <div class="row">                    
+              <div id="template1" class="header">
+                <%- include ('../HomePage/HomePage.ejs') %>
+            </div>
+              <div class="row">  
+                    <div class="col-md-12">
+                        <nav class="navbar">
+                            <div class="navbar-brand">Mavoch</div>
+                            <ul class="nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Store</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Info</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Cart</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">GiftCards</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Sign In</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                     <div class="col-md-8 offset-md-2 info text-center buyPage">
                         <div id="credit" class="hide">
                             <h1>Insert you credit card hemi!</h1>
@@ -37,8 +62,8 @@
                               <tr>
                                 <th scope="row">3</th>
                                 <th>Gift card</th>
-                                <td><input placeholder="enter serial number"></td>
-                                <td><button type="button" class="btn btn-light">Apply</button></td>
+                                <td><input placeholder="enter serial number" name="giftCard"></td>
+                                <td><button type="submit" class="btn btn-light">Apply</button></td>
                               </tr>
                               <tr>
                                 <th scope="row">4</th>
@@ -52,14 +77,21 @@
                                             <th scope="col">Price</th>
                                           </tr>
                                         </thead>
-                                        <% let total=0 %>
+                                        
                                         <tbody>
                                             <% for (pro of finalProducts) { %>
                                                 <tr>
                                                     <td><img src="<%= pro.Pictures[0] %>" style="width: 200px; height: 200px;"></td>
-                                                    <td><%= map.get(pro._id) %></td>
-                                                    <td><%= map.get(pro._id)*pro.price %></td>
-                                                    <% total+= pro.price*map.get(pro._id) %>
+                                                    <% if(map.get(pro._id)>pro.AmountAvailable) { %>
+                                                      <td><%= pro.AmountAvailable %></td>
+                                                      <td><%= pro.AmountAvailable*pro.price %></td>
+                                                    <% } %>
+                                                    <% if(map.get(pro._id)<=pro.AmountAvailable) { %>
+                                                      <td><%= map.get(pro._id) %></td>
+                                                      <td><%= map.get(pro._id)*pro.price %></td>
+                                                    <% } %>
+                                                    
+                                                    
                                                 </tr>
                                           <% } %>
                                         </tbody>
@@ -70,8 +102,13 @@
                               <tr>
                                 <th scope="row">5</th>
                                 <th>Total with shipping</th>
+                                
                                 <td><%= total %></td>
                                 <td><a type="button" class="btn btn-light" data-id="<%= total %>" onclick="paid(event)" href="/buyPage/complete">Pay now</a></td>
+                                <% if(customer.creditCards[0]!=null) { %>
+                                  
+                                <% } %>
+                                
                               </tr>
                             </tbody>
                           </table>
