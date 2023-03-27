@@ -27,7 +27,10 @@ body{
     cursor: pointer;
 }
 
-
+.reviews{
+    border-style: groove;
+    border-radius: 2px;
+}
 
 .banner .info{
     position: relative;

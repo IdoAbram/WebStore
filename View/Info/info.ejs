@@ -23,12 +23,7 @@
         <div style="display: flex; align-items: center; justify-content: center; ">
         <div style="width: 50rem; height: 25rem;"><canvas id="ma-chart" width="200" height="200"></canvas></div>
     </div>
-    
-
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCj-7roIP9DhPdiKXSDJLOsZKJ7WB2Tyk8&callback=initMap&v=weekly" defer></script>
-      
-      <script src="/info.js"></script>
-      <footer id="footer-place"></footer>
+    <footer id="footer-place"></footer>
     <%- include ('../TemplatePage/Footer.ejs') %>
   
   
@@ -39,5 +34,11 @@
               placeholder.parentNode.insertBefore(footer, placeholder.nextSibling);
           }
       </script>
+    
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCj-7roIP9DhPdiKXSDJLOsZKJ7WB2Tyk8&callback=initMap&v=weekly" defer></script>
+      
+      <script src="/info.js"></script>
+      
   </body>
 </html>

@@ -25,7 +25,33 @@ router.get('/', async (req,res)=>{
     res.render("../View/GiftCards/GiftCards",{type,giftCards,user,first,isAdded})
 })
 
-router.route('/:id').get(async (req,res)=>{
+router.route('/create').post(async (req,res)=>{
+    let Description = req.body.Description;
+    let price = req.body.Amount;
+    await giftCardsService.createGiftCard(price,Description,false);
+
+    res.redirect('/giftCards')
+
+})
+
+router.get('/delete/:id',async (req,res)=>{
+    let cardId = req.params.id;
+    await giftCardsService.deleteGiftCardById(cardId);
+})
+
+
+
+router.get('/create',async (req,res)=>{
+    const type =req.session.userType;
+    const userID = req.session.user;
+    let user=await adminService.getAdminById(userID);
+    let isAdded=false;
+    const first=false;
+    res.render("../View/GiftCards/CreateCard",{type,user,first,isAdded})
+
+});
+
+router.route('/buy/:id').get(async (req,res)=>{
     
     let isAdded=false;
     const first=false;

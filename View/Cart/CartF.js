@@ -33,7 +33,7 @@ function increase(event){
   //handling and increasing the quantity
   let currentValue=document.getElementById(ids[0]).value
   let available = ids[3];
-  if(currentValue!=Number(available)){
+  if(currentValue<Number(available)){
     currentValue=parseInt(currentValue)+1
     document.getElementById(ids[0]).value=currentValue
     increaseQuantity(ids[2])
