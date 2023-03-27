@@ -40,4 +40,3 @@ function addToCart(id){
     gotoCart.classList.add("btn-warning"); 
     document.getElementById("addToCart").appendChild(gotoCart);
 }
-

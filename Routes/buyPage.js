@@ -142,7 +142,7 @@ router.get('/moneySpent/:total',async(req,res)=>{
             //changing
             productService.updateProductAmAvailable(product._id,product.AmountAvailable-array[i][1])
             product.AmountAvailable-=array[i][1]
-   
+            
         }
     }
     if(err==""){
