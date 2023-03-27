@@ -1,11 +1,19 @@
 const Review = require('../Model/Schemas/Review');
 
 const createReview = async (Title,userId,ProductId,text,rating,Images_Videos) => {
+    let review=null;
+    if(rating!=0){
+        review = new Review({Title:Title,userId:userId,ProductId:ProductId,text:text,Rating:rating,Images_Videos:Images_Videos})
+        return await review.save();
+    }
+    
 
-    const review = new Review({Title:Title,userId:userId,ProductId:ProductId,text:text,Rating:rating,Images_Videos:Images_Videos})
-
-    return await review.save();
+    
 };
+
+const deleteReviewById = async(id)=>{
+    await Review.deleteOne({_id:id});
+}
 
 const deleteAll = async() => {
     await Review.deleteMany({})
@@ -53,5 +61,6 @@ module.exports = {
     updateReviewText,
     updateReviewRating,
     updateReviewImagesVideos,
-    deleteAll
+    deleteAll,
+    deleteReviewById
 }

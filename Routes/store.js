@@ -4,10 +4,12 @@ const productController = require('../Controller/Product');
 const customerService = require('../Services/customer');
 const adminService = require('../Services/admin');
 const supplierService = require('../Services/supplier');
+const reviewService = require('../Services/review');
 
 
 
 router.get('/', async (req,res)=>{
+    
     const products = await productController.getProductsByFilter({});
     const type =req.session.userType;
     const userID = req.session.user;

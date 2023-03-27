@@ -127,7 +127,7 @@
                                 <% } %>
 
                                 <% for(rev of reviews) { %>
-                                    <div class="review">
+                                    <div class="review"  id="<%= rev._id %>">
                                         <h3 class="stars rating"><%= rev. Title %>:
                                             <% for (let i=0;i!=rev.Rating;i++){ %>
                                                 <li><i class="fa fa-star checked"></i></li>
@@ -137,9 +137,10 @@
                                             <% } %>
                                         </h3>
                                         <h6><%= rev.text %></h6>
-                                        <div class="stars">
-                                            
-                                        </div>
+                                        <% if(rev.userId==user._id) { %>
+                                            <button onclick="deleteRev('<%= rev._id %>') ">Delete</button>
+                                        <% } %>
+
                                     </div>
                                 <% } %>
                                 
