@@ -10,6 +10,11 @@ function func(event){
     imgSec.src = firstSrc;
 }
 
+function deleteRev(id){
+    fetch('/prPage/rev/'+id);
+    document.getElementById(id).hidden=true;
+}
+
 function stars(num){
     for(let i=1;i<num+1;i++){
         var star = document.getElementById(i);

@@ -73,6 +73,10 @@ router.route('/:id/addToCart').get(async (req,res)=>{
     
 })
 
+router.route('/rev/:id').get(async (req,res)=>{
+    reviewService.deleteReviewById(req.params.id);
+})
+
 router.route('/:id').post(async (req,res)=>{
     const product= await productController.getProductById(req,res);
     let star1= req.body.i1;
@@ -117,7 +121,7 @@ router.route('/:id').post(async (req,res)=>{
 
     let revy = await reviewService.createReview(Title,userID,product._id,review,parseInt(num),videos);
 
-    const reviews= await reviewController.getReviews(req,res);
+    const reviews= await reviewController.getReviewsByFilter({ProductId:req.params.id})
 
     let sum=0;
     if(reviews.length!=0){

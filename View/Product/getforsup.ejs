@@ -28,24 +28,26 @@
                         <div class="gallery">
                             
                             <% for (p of products) { %>
+                                <% if(p.AmountAvailable>0) { %>
+                                    <div id="<%=p._id%>" class="content">
+                                        <img id="mainpic" src ="<%= p.Pictures[0]%>" style="max-height: 100%;">
+                                        <h3><%= p.Title %></h3>
+                                        <p><%= p.shortDescription %></p>
+                                        <h6><%= p.price %>$</h6>
+                                        <ul>
+                                            <% if(p.Rating!=0) { %>
+                                                <% for (let i=0;i!=p.Rating;i++){ %>
+                                                    <li><i class="fa fa-star checked"></i></li>
+                                                <%}%>
+                                                <% for (let i=0;i!=5-p.Rating;i++){ %>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                <%}%>
+                                            <% } %>
+                                        </ul>
+                                        <a onclick="deleteProduct('<%=p._id%>')" class="buy btn">delete</a>
+                                    </div>
+                                <% } %>
                                 
-                                <div id="<%=p._id%>" class="content">
-                                    <img id="mainpic" src ="<%= p.Pictures[0]%>" style="max-height: 100%;">
-                                    <h3><%= p.Title %></h3>
-                                    <p><%= p.shortDescription %></p>
-                                    <h6><%= p.price %>$</h6>
-                                    <ul>
-                                        <% if(p.Rating!=0) { %>
-                                            <% for (let i=0;i!=p.Rating;i++){ %>
-                                                <li><i class="fa fa-star checked"></i></li>
-                                            <%}%>
-                                            <% for (let i=0;i!=5-p.Rating;i++){ %>
-                                                <li><i class="fa fa-star"></i></li>
-                                            <%}%>
-                                        <% } %>
-                                    </ul>
-                                    <a onclick="deleteProduct('<%=p._id%>')" class="buy btn">delete</a>
-                                </div>
                             <%}%>
                         </div>
                     </div>
