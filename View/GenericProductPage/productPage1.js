@@ -37,6 +37,6 @@ function addToCart(id){
     gotoCart.setAttribute('href', "/cart");
     gotoCart.innerHTML = "Go To Cart";
     gotoCart.classList.add("btn"); 
-    gotoCart.classList.add("btn-warning"); 
+    gotoCart.classList.add("btn-success"); 
     document.getElementById("addToCart").appendChild(gotoCart);
 }

@@ -29,7 +29,7 @@ const Customer = new mongoose.Schema({
     required: true,
   },
 
-  creditCards:[String]
+  creditCards:Number
 
   
 });

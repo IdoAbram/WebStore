@@ -10,35 +10,13 @@
     <body>
         <form method="post">
             <div class="container-fluid banner">
-              <div id="template1" class="header">
-                <%- include ('../HomePage/HomePage.ejs') %>
-            </div>
               <div class="row">  
-                    <div class="col-md-12">
-                        <nav class="navbar">
-                            <div class="navbar-brand">Mavoch</div>
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Store</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Info</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Cart</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">GiftCards</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Sign In</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                <div class="col-md-12">
+                  <div id="template1" class="header1"> 
+                      <%- include ('../HomePage/HomePage.ejs') %>
+                  </div>
+                  
+              </div>
                     <div class="col-md-8 offset-md-2 info text-center buyPage">
                         <div id="credit" class="hide">
                             <h1>Insert you credit card hemi!</h1>
@@ -56,7 +34,7 @@
                               <tr>
                                 <th scope="row">2</th>
                                 <th>Payment method</th>
-                                <td>Visa ending in <%= parseInt(customer.creditCards[0])%10000 %></td>
+                                <td>Visa ending in <%= parseInt(customer.creditCards)%10000 %></td>
                                 <td><a type="button" class="btn btn-light" href="/customers/update/<%= customer._id %>">Change</button></td>
                               </tr>
                               <tr>
@@ -104,9 +82,13 @@
                                 <th>Total with shipping</th>
                                 
                                 <td><%= total %></td>
-                                <td><a type="button" class="btn btn-light" data-id="<%= total %>" onclick="paid(event)" href="/buyPage/complete">Pay now</a></td>
-                                <% if(customer.creditCards[0]!=null) { %>
-                                  
+                                
+                                
+                                <% if(customer.creditCards!=null) { %>
+                                  <td><a type="button" class="btn btn-light" data-id="<%= total %>" onclick="paid(event)" href="/buyPage/complete">Pay now</a></td>
+                                <% } %>
+                                <% if(customer.creditCards==null) { %>
+                                  <h4>No Credit Card Available</h4>
                                 <% } %>
                                 
                               </tr>

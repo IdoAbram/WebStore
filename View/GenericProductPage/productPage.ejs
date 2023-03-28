@@ -85,12 +85,15 @@
                                     </select>
                                     <br>
                                     <% if(type==="customer") { %>
-                                        <% if(!isAdded) { %>
-                                            <a id="<%= product._id %>" onclick="addToCart('<%= product._id %>')" class="btn btn-warning">Add To Cart</a>
+                                        <% if(!isAdded&&product.AmountAvailable>0) { %>
+                                            <a id="<%= product._id %>" onclick="addToCart('<%= product._id %>')" class="btn btn-success">Add To Cart</a>
+                                        <% } %>
+                                        <% if(!product.AmountAvailable>0) { %>
+                                            <h3 style="color: rgb(235, 96, 96);">Out Of Stock</h3>
                                         <% } %>
                                         <div id="addToCart"></div>
                                         <% if(isAdded) { %>
-                                            <a name="<%= product._id %>" href="/cart" class="btn btn-warning">Go To Cart</a>
+                                            <a name="<%= product._id %>" href="/cart" class="btn btn-success">Go To Cart</a>
                                         <% } %>
                                     <% } %>
                                     
@@ -123,7 +126,7 @@
                                         
                                         <textarea id="revBox" name="review" rows="3" cols="5" placeholder="Type your comments here..." style="resize: none;"></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-warning" style="width: 10rem; align-items: center;">Send Your Review</button>
+                                    <button type="submit" class="btn btn-success" style="width: 10rem; align-items: center;">Send Your Review</button>
                                 <% } %>
 
                                 <% for(rev of reviews) { %>
@@ -138,7 +141,7 @@
                                         </h3>
                                         <h6><%= rev.text %></h6>
                                         <% if(rev.userId==user._id) { %>
-                                            <button onclick="deleteRev('<%= rev._id %>') ">Delete</button>
+                                            <button class="btn-success btn" onclick="deleteRev('<%= rev._id %>') ">Delete</button>
                                         <% } %>
                                     </div>
                                 <% } %>
