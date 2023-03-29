@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const serverChat = require("http").createServer(app);
 const io =  require("socket.io")(serverChat,{cors:{origin:"*"}});
+const adminService = require('./Services/admin');
+
 
 
 app.set('view engine', 'ejs');
@@ -94,7 +96,10 @@ run()
 
 
 async function run(){
-
+  
+  if(await adminService.getCount()==0){
+    await adminService.createAdmin("Admin","CEO","Admin@gmail.com"," ",2);
+  }
 
 }
 

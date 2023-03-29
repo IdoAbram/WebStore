@@ -47,6 +47,7 @@ body{
 }
 .cart{
     background-color: white;
+    border-radius: 5%;
 }
 .change{
     border-color: white;
@@ -58,3 +59,33 @@ body{
 .remove{
     pointer-events: none;
 }
+
+html {
+    font-size: 16px; /* Set the base font size */
+  }
+  
+  h1 {
+    font-size: 2rem; /* 2 times the base font size */
+    margin-bottom: 1rem; /* 1 times the base font size */
+  }
+  
+  p {
+    font-size: 1.2rem; /* 1.2 times the base font size */
+    line-height: 1.5rem; /* 1.5 times the base font size */
+  }
+  
+  @media (max-width: 600px) {
+    html {
+      font-size: 14px; /* Decrease the base font size for smaller screens */
+    }
+    
+    h1 {
+      font-size: 1.5rem; /* Decrease the font size for smaller screens */
+      margin-bottom: 0.5rem; /* Decrease the margin for smaller screens */
+    }
+    
+    p {
+      font-size: 1rem; /* Decrease the font size for smaller screens */
+      line-height: 1.2rem; /* Decrease the line height for smaller screens */
+    }
+  }

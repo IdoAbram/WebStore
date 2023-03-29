@@ -16,4 +16,13 @@ function moneySpent(total) {
     });
   }
 
+  function setFontSize() {
+    const vw = window.innerWidth;
+    const fontSize = vw / 100; // 1vw = 1% of the viewport width
+    document.documentElement.style.fontSize = fontSize + 'px';
+  }
+  
+  setFontSize(); // Set initial font size on page load
+  
+  window.addEventListener('resize', setFontSize);
   
