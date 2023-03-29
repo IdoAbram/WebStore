@@ -1,7 +1,7 @@
 document.getElementById("addToCart").style.display = "none;"
 
 
-function func(event){
+function func(event){//Switch Between the samll picture and the bigger one.
     var imgSec = event.target;
 
     var firstImg = document.getElementById("firstPic");
@@ -10,12 +10,12 @@ function func(event){
     imgSec.src = firstSrc;
 }
 
-function deleteRev(id){
+function deleteRev(id){//Delete your own review
     fetch('/prPage/rev/'+id);
     document.getElementById(id).hidden=true;
 }
 
-function stars(num){
+function stars(num){//Gets How Many stars you gave in your review
     for(let i=1;i<num+1;i++){
         var star = document.getElementById(i);
         var inp =document.getElementById("i"+i);
@@ -30,7 +30,7 @@ function stars(num){
     }
 }
 
-function addToCart(id){
+function addToCart(id){//Add the product to card, and switch the button to a go to cart one
     fetch("/prPage/"+id+"/addToCart")
     document.getElementById(id).hidden = true;
     let gotoCart = document.createElement('a');

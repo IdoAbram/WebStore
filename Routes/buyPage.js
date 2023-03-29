@@ -40,7 +40,7 @@ router.get('/',async (req,res)=>{
         }
         else{
             map.delete(products[i])
-            customerService.updateCustomerShoppingCart(id,map)
+            await customerService.updateCustomerShoppingCart(id,map)
         }
     }
     req.session.total = total;
@@ -109,13 +109,14 @@ router.get('/complete',async(req,res)=>{
     }
 
     if(finalMap.size>0){
-        ordersService.createOrders(Number(sum),Number(finalMap.size*10),"Wizz",today,threeWeeksLater,finalMap,userId);
-        customerService.updateCustomerShoppingCart(userId,map1);
+        await ordersService.createOrders(Number(sum),Number(finalMap.size*10),"Wizz",today,threeWeeksLater,finalMap,userId);
+        await customerService.updateCustomerShoppingCart(userId,map1);
         res.redirect('/orders/my');
     }
     else{
         res.redirect('/homePage');
     }
+    
 
     
 })
@@ -148,8 +149,8 @@ router.get('/moneySpent/:total',async(req,res)=>{
     if(err==""){
         //for money spent
         total=parseInt(total)+parseInt(req.params.total)
-        customerService.updateCustomerMoneySpent(id,Number(total))
-        customerService.updateCustomerShoppingCart(id,new Map)
+        await customerService.updateCustomerMoneySpent(id,Number(total))
+        await customerService.updateCustomerShoppingCart(id,new Map)
         
         res.redirect('/buyPage/complete')
     }

@@ -3,7 +3,13 @@ const app = express();
 const bodyParser = require('body-parser');
 const serverChat = require("http").createServer(app);
 const io =  require("socket.io")(serverChat,{cors:{origin:"*"}});
+const customerService = require('./Services/customer');
 const adminService = require('./Services/admin');
+const supplierService = require('./Services/supplier');
+const reviewService = require('./Services/review');
+const productService = require('./Services/product');
+const ordersService = require('./Services/orders');
+const giftCardService = require('./Services/giftcard');
 
 
 
@@ -96,6 +102,7 @@ run()
 
 
 async function run(){
+  
   
   if(await adminService.getCount()==0){
     await adminService.createAdmin("Admin","CEO","Admin@gmail.com"," ",2);
