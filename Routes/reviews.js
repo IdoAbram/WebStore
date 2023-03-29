@@ -1,6 +1,9 @@
 const express = require("express")
 const router = express.Router();
 var path = require('path')
+const supplierService = require('../Services/supplier');
+const customerService = require('../Services/customer');
+const adminService = require('../Services/admin');
 
 
 router.get('/', async (req,res)=>{
