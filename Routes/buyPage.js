@@ -101,6 +101,7 @@ router.get('/complete',async(req,res)=>{
     }
     var today = new Date();
     const threeWeeksLater = new Date(today.setDate(today.getDate() + 21));
+    var accToday = new Date();
     let map1 = new Map();
 
     let update = Array.from(giftCards);
@@ -109,8 +110,8 @@ router.get('/complete',async(req,res)=>{
     }
 
     if(finalMap.size>0){
-        ordersService.createOrders(Number(sum),Number(finalMap.size*10),"Wizz",today,threeWeeksLater,finalMap,userId);
-        customerService.updateCustomerShoppingCart(userId,map1);
+        await ordersService.createOrders(Number(sum),Number(finalMap.size*10),"Wizz",accToday,threeWeeksLater,finalMap,userId);
+        await customerService.updateCustomerShoppingCart(userId,map1);
         res.redirect('/orders/my');
     }
     else{
