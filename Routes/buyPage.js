@@ -40,7 +40,7 @@ router.get('/',async (req,res)=>{
         }
         else{
             map.delete(products[i])
-            customerService.updateCustomerShoppingCart(id,map)
+            await customerService.updateCustomerShoppingCart(id,map)
         }
     }
     req.session.total = total;
@@ -102,6 +102,9 @@ router.get('/complete',async(req,res)=>{
     var today = new Date();
     const threeWeeksLater = new Date(today.setDate(today.getDate() + 21));
     var accToday = new Date();
+
+    
+
     let map1 = new Map();
 
     let update = Array.from(giftCards);
@@ -117,6 +120,7 @@ router.get('/complete',async(req,res)=>{
     else{
         res.redirect('/homePage');
     }
+    
 
     
 })
@@ -149,8 +153,8 @@ router.get('/moneySpent/:total',async(req,res)=>{
     if(err==""){
         //for money spent
         total=parseInt(total)+parseInt(req.params.total)
-        customerService.updateCustomerMoneySpent(id,Number(total))
-        customerService.updateCustomerShoppingCart(id,new Map)
+        await customerService.updateCustomerMoneySpent(id,Number(total))
+        await customerService.updateCustomerShoppingCart(id,new Map)
         
         res.redirect('/buyPage/complete')
     }

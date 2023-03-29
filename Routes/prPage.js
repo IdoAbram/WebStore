@@ -32,7 +32,7 @@ router.route('/:id').get(async (req,res)=>{
     else{
         user=null;
     }
-    if(user!=null&&type=="customer"){
+    if(user!=null&&type=="customer"){//Checks if the product is in the cart
         let cart =JSON.stringify(Array.from(user.shoppingCart.keys()));
         if(cart.includes((product._id)))
         {

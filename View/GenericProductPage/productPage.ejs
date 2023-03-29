@@ -140,7 +140,7 @@
                                             <% } %>
                                         </h3>
                                         <h6><%= rev.text %></h6>
-                                        <% if(rev.userId==user._id) { %>
+                                        <% if(rev.userId==user._id||type=="admin") { %>
                                             <button class="btn-success btn" onclick="deleteRev('<%= rev._id %>') ">Delete</button>
                                         <% } %>
                                     </div>
