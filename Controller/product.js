@@ -1,7 +1,7 @@
 const productService = require('../Services/product');
 
 const createProduct = (req, res) => {
-    const newProduct =  productService.createProduct(req.body.title,req.body.price,req.body.suppID,req.body.Description,req.body.shortDescription,req.body.amountAvailable,req.body.pictures,req.body.tags);
+    const newProduct =  productService.createProduct(req.body.title,req.body.price,req.session.user,req.body.Description,req.body.shortDescription,req.body.amountAvailable,req.body.pictures,req.body.tags,req.body.Sizes);
     return newProduct;
 };
 
@@ -14,6 +14,33 @@ const getProducts = (req, res) => {
 function getProductsByFilter(filter){
     const products = productService.getProducts(filter);
     return products;
+}
+
+function getProductsByIds(allProducts,products){
+  let finalProducts=[];
+
+  
+
+  if(products!=null){
+      for(let i=0;i<allProducts.length;i++){
+          if(products.includes(allProducts[i]._id)){
+              if(!finalProducts.includes(allProducts[i])){
+                  finalProducts.push(allProducts[i]);
+              }
+          }
+      }
+  }
+  return finalProducts;
+}
+
+function removeFromCart(cart,id){
+  let final=[];
+  for(let i=0;i<cart.length;i++){
+    if(cart[i]!=id){
+        final.push(cart[i]);
+    }
+  }
+  return(final);
 }
 
 const getProductById =  (req, res) => { 
@@ -46,11 +73,19 @@ const updateAll =  (req,res) =>{
        updateProductPictures(req,res);
   if(req.body.tags)
        updateProductTags(req,res);
+  if(req.body.Sizes)
+       updateProductSizes(req,res);
+  if(req.body.Rating)
+       updateProductRating(req,res);
      
   
   
   
 }
+
+const updateProductSizes = async (req, res) => { 
+  productService.updateProductSizes(req.params.id,req.body.Sizes);
+};
 
 const updateProductTitle = async (req, res) => { 
     productService.updateProductTitle(req.params.id,req.body.title);
@@ -88,6 +123,10 @@ const updateProductAmAvailable = async (req, res) => {
   const updateProductTags = async (req, res) => { 
     productService.updateProductTags(req.params.id,req.body.tags);
   };
+
+  const updateProductRating = async (req,res) =>{
+    productService.updateProductRating(req.params.id,req.body.Rating);
+  }
   
 
 
@@ -109,6 +148,8 @@ const updateProductAmAvailable = async (req, res) => {
   
   };
 
+
+
   module.exports = {
     createProduct,
     getProducts,
@@ -125,5 +166,8 @@ const updateProductAmAvailable = async (req, res) => {
     getCount,
     deleteAllProducts,
     updateAll,
-    getProductsByFilter
+    getProductsByFilter,
+    removeFromCart,
+    getProductsByIds,
+    updateProductRating
   };

@@ -13,6 +13,8 @@
 
 <body>
 
+    
+
     <h3>Make A Customer </h3>
 
 
@@ -20,10 +22,11 @@
     <ul>
         <% for (cus of customers) { %>
 
-            <li><%= cus.Name %> <%= cus.lastName %> <%= cus.address %> <%= cus.email %> <%= cus.password %> <%= cus._id %> <%= cus.shoppingCart %></li>
+            <li><%= cus.Name %> <%= cus.lastName %> <%= cus.address %> <%= cus.email %> <%= cus.password %> <%= cus._id %> <%= cus.shoppingCart %> <%= cus.creditCards[0] %></li>
 
         <% } %>
     </ul>
+    
     
 
 </body>

@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-var  Orders = mongoose.model('orders')
 
 const Supplier = new mongoose.Schema({
 
@@ -15,16 +14,16 @@ const Supplier = new mongoose.Schema({
     },
   
     products:{
-      type: [Product],
+      type: [String], // Ids of products
       required: true
     },
     
     moneyGiven: Number,
-    outGoingOrders: [Orders],
-    pastOrders: [Orders],
-
-    location: String
-  
+    outGoingOrders: [String], // Ids of Orders
+    pastOrders: [String],
+    email: String, 
+    location: String,
+    password: String
   
   });
 

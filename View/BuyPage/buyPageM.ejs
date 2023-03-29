@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <link href="../BuyPage/buyPageD.css" rel="stylesheet">
+        <script src="../BuyPage/buyPageF.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <form method="post">
+            <div class="container-fluid banner">
+              <div class="row">  
+                <div class="col-md-12">
+                  <div id="template1" class="header1"> 
+                      <%- include ('../HomePage/HomePage.ejs') %>
+                  </div>
+                  
+              </div>
+                    <div class="col-md-8 offset-md-2 info text-center buyPage">
+                        <div id="credit" class="hide">
+                            <h1>Insert you credit card hemi!</h1>
+                            <input placeholder="don`t forget the cvv">
+                            <a type="button" class="btn btn-success" data-id="value from input" onclick="" href="/cart/<%= customer._id %>">Back to cart</a></td>
+                        </div>
+                        <table class="table"  id="bp">
+                            <tbody>
+                              <tr >
+                                <th scope="row">1</th>
+                                <th>Shipping address</th>
+                                <td><%= customer.address %></td>
+                                <td><a type="button" class="btn btn-light" href="/customers/update/<%= customer._id %>">Change</a></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <th>Payment method</th>
+                                <td>Visa ending in <%= parseInt(customer.creditCards)%10000 %></td>
+                                <td><a type="button" class="btn btn-light" href="/customers/update/<%= customer._id %>">Change</button></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <th>Gift card</th>
+                                <td><input placeholder="enter serial number" name="giftCard"></td>
+                                <td><button type="submit" class="btn btn-light">Apply</button></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">4</th>
+                                <th>Review items and shipping</th>
+                                <td>
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">Picture</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Price</th>
+                                          </tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <% for (pro of finalProducts) { %>
+                                                <tr>
+                                                    <td><img src="<%= pro.Pictures[0] %>" style="width: 200px; height: 200px;"></td>
+                                                    <% if(map.get(pro._id)>pro.AmountAvailable) { %>
+                                                      <td><%= pro.AmountAvailable %></td>
+                                                      <td><%= pro.AmountAvailable*pro.price %></td>
+                                                    <% } %>
+                                                    <% if(map.get(pro._id)<=pro.AmountAvailable) { %>
+                                                      <td><%= map.get(pro._id) %></td>
+                                                      <td><%= map.get(pro._id)*pro.price %></td>
+                                                    <% } %>
+                                                    
+                                                    
+                                                </tr>
+                                          <% } %>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td><a type="button" class="btn btn-light" href="/cart">Back to cart</a></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">5</th>
+                                <th>Total with shipping</th>
+                                
+                                <td><%= total %></td>
+                                
+                                
+                                <% if(customer.creditCards!=null) { %>
+                                  <td><a type="button" class="btn btn-light" data-id="<%= total %>" onclick="paid(event)" href="/buyPage/complete">Pay now</a></td>
+                                <% } %>
+                                <% if(customer.creditCards==null) { %>
+                                  <h4>No Credit Card Available</h4>
+                                <% } %>
+                                
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                    <footer id="footer-place"></footer>
+                    <%- include ('../TemplatePage/Footer.ejs') %>
+
+
+                    <script>
+                        window.onload = function() {
+                            var footer = document.querySelector('.theFoot');
+                            var placeholder = document.querySelector('#footer-place');
+                            placeholder.parentNode.insertBefore(footer, placeholder.nextSibling);
+                        }
+                    </script>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

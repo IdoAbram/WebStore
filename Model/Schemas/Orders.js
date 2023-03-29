@@ -1,12 +1,16 @@
 const mongoose = require("mongoose");
 
-const Orders=new mongoose.schema({
-    PriceOfOrder: Double,
-    ShippingPrice: Double,
+const Orders=new mongoose.Schema({
+    UserId: String,
+    PriceOfOrder: Number,
+    ShippingPrice: Number,
     ShippingCompany: String,
     DateIssued: Date,
     ExpectedArrival: Date,
-    products:[Product]
+    products: {
+      type: Map,
+      of: Number
+    } 
   });
   
 

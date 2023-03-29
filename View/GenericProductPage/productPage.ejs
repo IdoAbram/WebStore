@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        
+         
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="/GenericProductPage/ProductPage.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/GenericProductPage/productPage1.js"></script>
+        
+        
+        
+	    
+        
+    </head>
+
+    <body>
+        <form method="post">
+            <div class="container-fluid banner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="template1" class="header1"> 
+                            <%- include ('../HomePage/HomePage.ejs') %>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6 offset-md-1 info">
+                        <section class="container sproduct my-5">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-12 col-12">
+                                    <img class="img-fluid w-100 pb-1" id="firstPic" src="<%= product.Pictures[0]%>">
+                                    <% for (let i=1; i < product.Pictures.length; i++ ) { %>
+                                        <% if ((i%3==1)){%>
+                                            <div class="small-img-group row">
+                                                <div class="small-img-col col">
+                                                    <img data-id="<%= product.Pictures[i] %>" id="<%= product.Pictures[i] %>" onclick="func(event)" src="<%= product.Pictures[i] %>" width="100%" class="small-img">
+                                                </div>
+                                                <div class="small-img-col col">
+                                                    <img data-id="<%= product.Pictures[i+1] %>" id="<%= product.Pictures[i+1] %>" onclick="func(event)" src="<%= product.Pictures[i+1] %>" width="100%" class="small-img">
+                                                </div>
+                                                <div class="small-img-col col">
+                                                    <img data-id="<%= product.Pictures[i+2] %>" id="<%= product.Pictures[i+2] %>" onclick="func(event)" src="<%= product.Pictures[i+2] %>" width="100%" class="small-img">
+                                                </div>
+                                            </div>
+                                            <% i=i+2%>
+                                        <%}%>
+                                        
+                                    <%}%>
+
+                                        
+                                    
+                                </div>
+                                
+                                <div class="col-lg-3 col-md-12 col-12 desc">
+                                    <h6><%= product.shortDescription %></h6>
+                                    <div class="stars">
+                                        <% if(product.Rating!=0) { %>
+                                            <% for (let i=0;i!=product.Rating;i++){ %>
+                                                <li><i class="fa fa-star checked"></i></li>
+                                            <%}%>
+                                            <% for (let i=0;i!=5-product.Rating;i++){ %>
+                                                <li><i class="fa fa-star"></i></li>
+                                            <%}%>
+                                        <% } %>
+                                        
+                                    </div>
+                                    
+                                    <h3 class="py-4"> <%= product.Title %></h3>
+                                    <h2><%= product.price %>$</h2>
+                                    <% if (product.Sizes.length > 1 ) { %>
+                                        <select class="my-3">
+                                            <option value="">Select Size</option>
+                                            <% for( size of product.Sizes) { %>
+                                                <option value=""><%= size %></option>
+                                            <%}%>
+                                    <%}%>
+                                    </select>
+                                    <br>
+                                    <% if(type==="customer") { %>
+                                        <% if(!isAdded&&product.AmountAvailable>0) { %>
+                                            <a id="<%= product._id %>" onclick="addToCart('<%= product._id %>')" class="btn btn-success">Add To Cart</a>
+                                        <% } %>
+                                        <% if(!product.AmountAvailable>0) { %>
+                                            <h3 style="color: rgb(235, 96, 96);">Out Of Stock</h3>
+                                        <% } %>
+                                        <div id="addToCart"></div>
+                                        <% if(isAdded) { %>
+                                            <a name="<%= product._id %>" href="/cart" class="btn btn-success">Go To Cart</a>
+                                        <% } %>
+                                    <% } %>
+                                    
+                                    
+                                    
+                                    <h4 class="mt-5 mb-5">Product Details</h4>
+                                    <span><%= product.Description %>
+                                    </span>
+
+
+                                </div>
+                                <% if(type==="customer") { %>
+                                    <h4>Rate Our Product:
+                                        <div class="stars">
+                                            <input type="radio" class="inp" name="i1" id="i1">
+                                            <input type="radio" class="inp" name="i2" id="i2">
+                                            <input type="radio" class="inp" name="i3" id="i3">
+                                            <input type="radio" class="inp" name="i4" id="i4">
+                                            <input type="radio" class="inp" name="i5" id="i5">
+                                            
+                                            <li><i class="fa fa-star" id="1" onclick="stars(1)" name="s1"></i></li>
+                                            <li><i class="fa fa-star" id="2" onclick="stars(2)" name="s2"></i></li>
+                                            <li><i class="fa fa-star" id="3" onclick="stars(3)" name="s3"></i></li>
+                                            <li><i class="fa fa-star" id="4" onclick="stars(4)" name="s4"></i></li>
+                                            <li><i class="fa fa-star" id="5" onclick="stars(5)" name="s5"></i></li>
+                                        </div>
+                                    </h4>
+                                    
+                                    <div class="review">
+                                        
+                                        <textarea id="revBox" name="review" rows="3" cols="5" placeholder="Type your comments here..." style="resize: none;"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-success" style="width: 10rem; align-items: center;">Send Your Review</button>
+                                <% } %>
+
+                                <% for(rev of reviews) { %>
+                                    <div class="review"  id="<%= rev._id %>">
+                                        <h3 class="stars rating"><%= rev. Title %>:
+                                            <% for (let i=0;i!=rev.Rating;i++){ %>
+                                                <li><i class="fa fa-star checked"></i></li>
+                                            <% } %>
+                                            <% for (let i=0;i!=5-rev.Rating;i++){ %>
+                                                <li><i class="fa fa-star"></i></li>
+                                            <% } %>
+                                        </h3>
+                                        <h6><%= rev.text %></h6>
+                                        <% if(rev.userId==user._id||type=="admin") { %>
+                                            <button class="btn-success btn" onclick="deleteRev('<%= rev._id %>') ">Delete</button>
+                                        <% } %>
+                                    </div>
+                                <% } %>
+                                
+
+
+
+
+                                
+                                
+                            </div>
+                        </section>
+                    </div>
+                    <footer id="footer-place"></footer>
+                    <%- include ('../TemplatePage/Footer.ejs') %>
+
+
+                    <script>
+                        window.onload = function() {
+                          var footer = document.querySelector('.theFoot');
+                          var placeholder = document.querySelector('#footer-place');
+                          placeholder.parentNode.insertBefore(footer, placeholder.nextSibling);
+                        }
+                    </script>
+                    
+                    
+                </div>
+            </div>
+        </form>
+
+        
+
+    </body>
+
+
+</html>

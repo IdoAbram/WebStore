@@ -1,7 +1,9 @@
 const customerService = require('../Services/Customer');
+const productService = require('../Services/product');
+const { getProductById } = require('./product');
 
 const createCustomer =  (req, res) => {
-    const newCustomer =  customerService.createCustomer(req.body.firstName,req.body.lastName,req.body.address,req.body.email,req.body.password);
+    const newCustomer =  customerService.createCustomer(req.body.firstName,req.body.lastName,req.body.address,req.body.email,req.body.password,req.body.creditCard);
     return newCustomer;
 };
 
@@ -40,8 +42,8 @@ const updateAll =  (req,res) =>{
        updateCustomerMail(req,res);
   if(req.body.password)
        updateCustomerPassword(req,res);
-  if(req.body.shoppingCart)
-       updateCustomerShoppingCart(req,res);
+  if(req.body.creditcards)
+      updateCustomerCreditcard(req,res);
   
 }
 
@@ -75,7 +77,6 @@ const updateCustomerWishList = async (req, res) => {
 const updateCustomerShoppingCart = async (req, res) => { 
 
     customerService.updateCustomerShoppingCart(req.params.id,req.body.shoppingCart);
-      
 
 };
   
@@ -104,8 +105,7 @@ const updateCustomerOrders = async (req, res) => {
   const updateCustomerCreditcard = async (req, res) => { 
 
     customerService.updateCustomerCreditcards(req.params.id,req.body.creditcards);
-     
-
+    
   };
 
 

@@ -1,0 +1,354 @@
+ 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Our Graphs</title>
+    <script src="https://d3js.org/d3.v7.min.js" ></script>
+  
+  </head>
+  <body>
+
+    <div class="col-md-12">
+      <div id="template1" class="header">
+          <%- include ('../HomePage/HomePage.ejs') %>
+      </div>
+  </div>
+
+<h1 style="padding-top: 10rem; justify-content: center; display: flex; font-size:100px">Statistics</h1>
+
+    <div id="graph-container" style="display: flex; align-items: center; justify-content: center; margin:4rem"></div>
+
+    <div id="graph-amount" style="display: flex; align-items: center; justify-content: center;margin:4rem"></div>
+
+    <div id="graph-address" style="display: flex; align-items: center; justify-content: center;margin:4rem"></div>
+
+
+    <footer id="footer-place"></footer>
+    <%- include ('../TemplatePage/Footer.ejs') %>
+
+
+
+<script>
+
+
+
+getGraph() 
+getCounts()
+getByCity()
+window.onload = function() {
+            var footer = document.querySelector('.theFoot');
+            var placeholder = document.querySelector('#footer-place');
+            placeholder.parentNode.insertBefore(footer, placeholder.nextSibling);
+        }
+
+
+function getGraph(){
+    fetch('/graph/graph') //Using the fetch api 
+    .then(res => res.json())
+    .then( (aggOrders) => {
+      let newOrders = Object.values(aggOrders)[0]
+
+    data = newOrders.map((result) => ({
+    month: result._id,
+    avgMoney: result.averageAmountSpent
+    }))
+  
+     
+  console.log(data)
+
+  var margin = { top: 40, right: 40, bottom: 100, left: 100 },
+      width = 960 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
+    
+    // Set the ranges for the x-axis and y-axis
+    var x = d3.scaleBand().range([0, width]).padding(0.1);
+    var y = d3.scaleLinear().range([height, 0]);
+    
+    // Create the SVG element and append it to the body of the page
+    var svg = d3
+      .select("#graph-container")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    
+    // Map the data to the x-axis and y-axis scales
+    x.domain([1,2,3,4,5,6,7,8,9,10,11,12]);
+    y.domain([0, d3.max(data, d => d.avgMoney)]);
+    
+    // Create the bars for the chart
+    svg
+      .selectAll(".bar")
+      .data(data)
+      .enter()
+      .append("rect")
+      .attr("class", "bar")
+      .attr("x", (d) => x(d.month))
+      .attr("width", x.bandwidth())
+      .attr("y", (d) => y(d.avgMoney))
+      .attr("height",(d) => height - y(d.avgMoney))
+      .attr("fill","#6B27D9")
+    
+    
+    // Add the x-axis to the chart
+    svg
+      .append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x))
+      .attr("font-size","20px");
+    
+    // Add the y-axis to the chart
+    svg.append("g")
+    .call(d3.axisLeft(y))
+    .attr("font-size","20px");
+    
+    
+    //Add x - Axis title
+    
+    svg.append("text")
+       .attr("transform", "translate(" + (width/2) + " ," + (height + margin.top + 20) + ")")
+       .style("text-anchor", "right")
+       .style("text-size","20px")
+       .attr("font-family","Helvetica")
+       .attr("font-weight","bold")
+       .text("Month");
+    
+    
+    svg.append("text")
+       .attr("transform", "rotate(-90)")
+       .attr("y", 0 - margin.left)
+       .attr("x", 0 - (height / 2))
+       .attr("dy", "1em")
+       .style("text-anchor", "middle")
+       .attr("font-family","Helvetica")
+       .attr("font-weight","bold")
+       .text("Average Money Spent");
+    
+    
+    
+    
+    // Add the chart title
+    svg
+      .append("text")
+      .attr("x", width / 2)
+      .attr("y", 0 - margin.top / 2)
+      .attr("text-anchor", "middle")
+      .attr("font-family","Helvetica")
+      .attr("font-weight","bold")
+      .text("Average Money Spent Per Month");
+      
+  
+  
+})
+}
+
+async function getCounts(){
+
+  fetch('/graph/products') //Using the fetch api 
+    .then(res => res.json())
+    .then( async (aggProducts) => {
+        
+     data = Object.values(aggProducts)[0]
+
+  var margin = { top: 40, right: 40, bottom: 100, left: 100 },
+      width = 960 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
+    
+    // Set the ranges for the x-axis and y-axis
+    var x = d3.scaleBand().range([0, width]).padding(0.1);
+    var y = d3.scaleLinear().range([height, 0]);
+    
+    // Create the SVG element and append it to the body of the page
+    var svg = d3
+      .select("#graph-amount")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        
+    // Map the data to the x-axis and y-axis scales
+    x.domain(data.map((d)=>d.Title));
+    y.domain([0, d3.max(data, d => d.AmountAvailable)]);
+    
+    // Create the bars for the chart
+    svg
+      .selectAll(".bar")
+      .data(data)
+      .enter()
+      .append("rect")
+      .attr("class", "bar")
+      .attr("x", (d) => x(d.Title))
+      .attr("width", x.bandwidth())
+      .attr("y", (d) => y(d.AmountAvailable))
+      .attr("height",(d) => height - y(d.AmountAvailable))
+      .attr("fill","#6B27D9")
+    
+    
+    // Add the x-axis to the chart
+    svg
+      .append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x))
+      .attr("font-size","20px");
+    
+    // Add the y-axis to the chart
+    svg.append("g")
+    .call(d3.axisLeft(y))
+    .attr("font-size","20px");
+    
+    
+    //Add x - Axis title
+    
+    svg.append("text")
+       .attr("transform", "translate(" + (width/2) + " ," + (height + margin.top + 20) + ")")
+       .style("text-anchor", "right")
+       .style("text-size","20px")
+       .attr("font-family","Helvetica")
+       .attr("font-weight","bold")
+       .text("Product");
+    
+    
+    svg.append("text")
+       .attr("transform", "rotate(-90)")
+       .attr("y", 0 - margin.left)
+       .attr("x", 0 - (height / 2))
+       .attr("dy", "1em")
+       .style("text-anchor", "middle")
+       .attr("font-family","Helvetica")
+       .attr("font-weight","bold")
+       .text("Amount Available");
+    
+    
+    
+    
+    // Add the chart title
+    svg
+      .append("text")
+      .attr("x", width / 2)
+      .attr("y", 0 - margin.top / 2)
+      .attr("text-anchor", "middle")
+      .attr("font-family","Helvetica")
+      .attr("font-weight","bold")
+      .text("Amount Of Products Available");
+      
+})
+
+}
+
+
+function getByCity(){
+
+  fetch('/graph/address') //Using the fetch api 
+    .then(res => res.json())
+    .then((aggCustomer) => {
+      let newCustomers = Object.values(aggCustomer)[0]
+
+    data = newCustomers.map((result) => ({
+    city: Object.values(result._id).join(""),
+    avgMoney: result.averageAmountSpent
+    }))
+        
+     data = Object.values(data)
+
+     console.log(data)
+
+  var margin = { top: 40, right: 40, bottom: 100, left: 100 },
+      width = 960 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
+    
+    // Set the ranges for the x-axis and y-axis
+    var x = d3.scaleBand().range([0, width]).padding(0.1);
+    var y = d3.scaleLinear().range([height, 0]);
+    
+    // Create the SVG element and append it to the body of the page
+    var svg = d3
+      .select("#graph-address")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Map the data to the x-axis and y-axis scales
+    x.domain(data.map((d)=>d.city));
+    y.domain([0, d3.max(data, d => d.avgMoney)]);
+    
+    // Create the bars for the chart
+    svg
+      .selectAll(".bar")
+      .data(data)
+      .enter()
+      .append("rect")
+      .attr("class", "bar")
+      .attr("x", (d) => x(d.city))
+      .attr("width", x.bandwidth())
+      .attr("y", (d) => y(d.avgMoney))
+      .attr("height",(d) => height - y(d.avgMoney))
+      .attr("fill","#6B27D9")
+    
+    
+    // Add the x-axis to the chart
+    svg
+      .append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x))
+      .attr("font-size","20px");
+    
+    // Add the y-axis to the chart
+    svg.append("g")
+    .call(d3.axisLeft(y))
+    .attr("font-size","20px");
+    
+    
+    //Add x - Axis title
+    
+    svg.append("text")
+       .attr("transform", "translate(" + (width/2) + " ," + (height + margin.top + 20) + ")")
+       .style("text-anchor", "right")
+       .style("text-size","20px")
+       .attr("font-family","Helvetica")
+       .attr("font-weight","bold")
+       .text("City");
+    
+    
+    svg.append("text")
+       .attr("transform", "rotate(-90)")
+       .attr("y", 0 - margin.left)
+       .attr("x", 0 - (height / 2))
+       .attr("dy", "1em")
+       .style("text-anchor", "middle")
+       .attr("font-family","Helvetica")
+       .attr("font-weight","bold")
+       .text("Average Money Spent");
+    
+    
+    
+    
+    // Add the chart title
+    svg
+      .append("text")
+      .attr("x", width / 2)
+      .attr("y", 0 - margin.top / 2)
+      .attr("text-anchor", "middle")
+      .attr("font-family","Helvetica")
+      .attr("font-weight","bold")
+      .text("Money Spent In Specific Streets");
+      
+})
+
+
+}
+
+
+ 
+    </script>
+
+  </body>
+
+  
+</html>

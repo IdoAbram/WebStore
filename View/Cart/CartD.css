@@ -1,0 +1,90 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    font-family: 'Raleway',sans-serif;
+    color: #fff;
+}
+.banner{
+    
+    width: 100%;
+    background:url('Logo.png');
+    background-position: top;
+    background-size: cover;
+    
+}
+.banner .navbar{
+    margin-top: 4%;
+}
+
+.banner .navbar-brand{
+    color: black;
+    font-weight: 700;
+    margin-left: 10%;
+}
+
+.banner .nav{
+    margin-right: 10%;
+}
+.banner .nav li a{
+    color: #444;
+    font-size: 1.2em;
+}
+.banner .info{
+    margin-top: 15%;
+    transform: translateY(-15%);
+}
+
+.banner .info h1{
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #444;
+    letter-spacing: 2px;
+}
+.banner .info p{
+    color:#444;
+}
+.cart{
+    background-color: white;
+    border-radius: 5%;
+}
+.change{
+    border-color: white;
+    width: 35px;
+}
+.hide{
+    display: none;
+}
+.remove{
+    pointer-events: none;
+}
+
+html {
+    font-size: 16px; /* Set the base font size */
+  }
+  
+  h1 {
+    font-size: 2rem; /* 2 times the base font size */
+    margin-bottom: 1rem; /* 1 times the base font size */
+  }
+  
+  p {
+    font-size: 1.2rem; /* 1.2 times the base font size */
+    line-height: 1.5rem; /* 1.5 times the base font size */
+  }
+  
+  @media (max-width: 600px) {
+    html {
+      font-size: 14px; /* Decrease the base font size for smaller screens */
+    }
+    
+    h1 {
+      font-size: 1.5rem; /* Decrease the font size for smaller screens */
+      margin-bottom: 0.5rem; /* Decrease the margin for smaller screens */
+    }
+    
+    p {
+      font-size: 1rem; /* Decrease the font size for smaller screens */
+      line-height: 1.2rem; /* Decrease the line height for smaller screens */
+    }
+  }

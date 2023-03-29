@@ -2,10 +2,10 @@ const Admin = require('../Model/Schemas/Admin');
 
 const createAdmin = async (firstName, lastName,email,password,privileges) => {
 
-    const Admin = new Admin({Name:firstName,lastName:lastName,email:email,password:password,Privileges:privileges})
+    const admin = new Admin({Name:firstName,lastName:lastName,Email:email,password:password,Privileges:privileges})
 
 
-    return await Admin.save();
+    return await admin.save();
 };
 
 const getAdminById = async (id) => {
@@ -43,12 +43,16 @@ const updateAdminPrivileges = async (id, privileges) => {
 
 const deleteAdmin = async (id) => {
     
-    Admin.deleteOne({_id:id})
+    await Admin.deleteOne({_id:id})
 
 }
 
 const deleteAdminsByName = async(name) =>{
     await Admin.delete({Name:name});
+}
+
+const deleteAdminsByEmail = async(email) =>{
+    await Admin.delete({Email:email});
 }
 
 const deleteAll = async() => {
@@ -71,5 +75,6 @@ module.exports = {
     deleteAdminsByName,
     deleteAdmin,
     getCount,
-    deleteAll
+    deleteAll,
+    deleteAdminsByEmail
 }
