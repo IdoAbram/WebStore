@@ -40,7 +40,7 @@ router.get('/',async (req,res)=>{
         }
         else{
             map.delete(products[i])
-            customerService.updateCustomerShoppingCart(id,map)
+            await customerService.updateCustomerShoppingCart(id,map)
         }
     }
     req.session.total = total;
@@ -101,6 +101,10 @@ router.get('/complete',async(req,res)=>{
     }
     var today = new Date();
     const threeWeeksLater = new Date(today.setDate(today.getDate() + 21));
+    var accToday = new Date();
+
+    
+
     let map1 = new Map();
 
     let update = Array.from(giftCards);
@@ -109,13 +113,14 @@ router.get('/complete',async(req,res)=>{
     }
 
     if(finalMap.size>0){
-        ordersService.createOrders(Number(sum),Number(finalMap.size*10),"Wizz",today,threeWeeksLater,finalMap,userId);
-        customerService.updateCustomerShoppingCart(userId,map1);
+        await ordersService.createOrders(Number(sum),Number(finalMap.size*10),"Wizz",accToday,threeWeeksLater,finalMap,userId);
+        await customerService.updateCustomerShoppingCart(userId,map1);
         res.redirect('/orders/my');
     }
     else{
         res.redirect('/homePage');
     }
+    
 
     
 })
@@ -142,16 +147,14 @@ router.get('/moneySpent/:total',async(req,res)=>{
             //changing
             productService.updateProductAmAvailable(product._id,product.AmountAvailable-array[i][1])
             product.AmountAvailable-=array[i][1]
-            if(product.AmountAvailable<=0){
-                productService.deleteProduct(product._id)
-            }
+            
         }
     }
     if(err==""){
         //for money spent
         total=parseInt(total)+parseInt(req.params.total)
-        customerService.updateCustomerMoneySpent(id,Number(total))
-        customerService.updateCustomerShoppingCart(id,new Map)
+        await customerService.updateCustomerMoneySpent(id,Number(total))
+        await customerService.updateCustomerShoppingCart(id,new Map)
         
         res.redirect('/buyPage/complete')
     }

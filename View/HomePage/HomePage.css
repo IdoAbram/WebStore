@@ -59,10 +59,28 @@ body{
     font-size: 1.2em;
 }
 
+.dropdown li{
+    display: block;
+    position: absolute;
+    
+}
 
+.dropdown{
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    z-index: 999999999;
+    display: none;
+}
+
+ul li:hover ul.dropdown {
+    display: block;
+}
 
 
 footer{
+    
+    width: 100%;
     background-color: #fff;
     display:flex;
     flex-wrap: wrap;

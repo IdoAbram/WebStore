@@ -15,16 +15,16 @@
         <%- include ('../HomePage/HomePage.ejs') %>
     </div>
     
-   <form class="container form-box" method="post" style="margin-top: 6rem; margin-bottom: 10rem;">
+   <form class="container form-box" method="post" style="margin-top: 9rem; margin-bottom: 10rem;">
     
     <h1 style="margin-top: 12rem;">Sign up</h1>
 
     <input pattern="[A-Za-z ]+" type="text" placeholder="First Name" name="firstName" title="Only Letters!" required><br>
-    <input pattern="[A-Za-z ]+" type="text" placeholder="Last Name" name="lastName" title="Only Letters!" required><br>
-    <input pattern="[A-Za-z ]+" type="text" placeholder="City or spesific address" name="address" required><br>
-    <input type="Number" name="creditCard" placeholder="Credit Card" required><br>
+    <input pattern="[a-zA-Z_]+( [a-zA-Z_]+)*$" type="text" placeholder="Last Name" name="lastName" title="Only Letters!" required><br>
+    <input pattern="[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$" type="text" placeholder="City or specific address" name="address" required><br>
+    <input type="text" name="creditCard" placeholder="Credit Card" required><br>
     <input type="text" placeholder="e-mail" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Email not valid"><br>
-    <input type="text" placeholder="Password" name="password"><br>
+    <input type="password" placeholder="Password" name="password"><br>
 
     <div class="row">
       <div class="form-check col" style="padding-right: 5rem;">
@@ -40,11 +40,12 @@
         </label>
       </div>
 
-    </div><br><br>
-
-    <br><br>
+    </div><br>
+    <p><%=error%></p>
     <button class="btn btn-primary buttom" type="submit">sign up</button>
-    <a style="margin-bottom: 4rem;" class="btn btn-dark buttom" href="/login">Allready have an account</a>
+    
+    <h3 id="error" style="color:red"></h3>
+    <a style="margin-bottom: 6rem;" class="btn btn-dark buttom" href="/login">Already have an account</a>
    </form>
    <footer id="footer-place"></footer>
                     <%- include ('../TemplatePage/Footer.ejs') %>

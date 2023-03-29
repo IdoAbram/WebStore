@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Our Reviews & Feedback</title>
+    <link href="reviews.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="col-md-12">
+      <div id="template1" class="header">
+          <%- include ('../HomePage/HomePage.ejs') %>
+      </div>
+  </div>
+
+  <h1 style="padding-top: 10rem; justify-content: center; display: flex; font-size:100px">Reviews - Facebook</h1>
+
+<div style="justify-content: center; display: flex;">
+
+  <% let count = 0 %>
+  <% for (rev of revs) { %>
+
+    <% if(rev.recommendation_type === "positive") {%>
+        <%count++%>
+    <%}%>
+    
+    <div id="review">
+    
+       <%=rev.review_text%>
+       
+    </div>
+
+<%}%>
+
+</div>
+
+<div id="pos" style="justify-content: center; display: flex;">
+
+    Number of Positive Comments: <%=count%> 
+
+</div>
+
+
+  <footer id="footer-place"></footer>
+    <%- include ('../TemplatePage/Footer.ejs') %>
+
+
+  </body>
+
+  </html>

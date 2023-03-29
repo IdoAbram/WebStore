@@ -32,7 +32,7 @@ router.route('/:id').get(async (req,res)=>{
     else{
         user=null;
     }
-    if(user!=null&&type=="customer"){
+    if(user!=null&&type=="customer"){//Checks if the product is in the cart
         let cart =JSON.stringify(Array.from(user.shoppingCart.keys()));
         if(cart.includes((product._id)))
         {
@@ -71,6 +71,10 @@ router.route('/:id/addToCart').get(async (req,res)=>{
     customerService.updateCustomerShoppingCart(userID,cart);
     //res.redirect("/prPage/"+product._id);
     
+})
+
+router.route('/rev/:id').get(async (req,res)=>{
+    reviewService.deleteReviewById(req.params.id);
 })
 
 router.route('/:id').post(async (req,res)=>{
@@ -117,7 +121,7 @@ router.route('/:id').post(async (req,res)=>{
 
     let revy = await reviewService.createReview(Title,userID,product._id,review,parseInt(num),videos);
 
-    const reviews= await reviewController.getReviews(req,res);
+    const reviews= await reviewController.getReviewsByFilter({ProductId:req.params.id})
 
     let sum=0;
     if(reviews.length!=0){

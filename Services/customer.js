@@ -1,10 +1,8 @@
 const Customer = require('../Model/Schemas/Customer');
 
 const createCustomer = async (firstName, lastName,address,email,password,creditCard) => {
-    let credit = [];
-    credit.push(creditCard);
 
-    const customer = new Customer({Name:firstName,lastName:lastName,address:address,moneySpent:0,wishList:[],shoppingCart:[],orders:[],email:email,password:password,creditCards:credit})
+    const customer = new Customer({Name:firstName,lastName:lastName,address:address,moneySpent:0,wishList:[],shoppingCart:[],orders:[],email:email,password:password,creditCards:creditCard})
 
 
     return await customer.save();
@@ -54,25 +52,25 @@ const updateCustomerOrders = async (id, orders) => {
 
 const updateCustomerMail = async (id, email) => {
    
-    Customer.findOneAndUpdate({_id:id},{email:email});
+    await Customer.findOneAndUpdate({_id:id},{email:email});
 
 };
 
 const updateCustomerPassword = async (id, newPass) => {
    
-    Customer.findOneAndUpdate({_id:id},{password:newPass});
+    await Customer.findOneAndUpdate({_id:id},{password:newPass});
 
 };
 
 const updateCustomerCreditcards = async (id, creditcards) => {
-   
-    Customer.findOneAndUpdate({_id:id},{creditCards:creditcards});
+
+    await Customer.findOneAndUpdate({_id:id},{creditCards:creditcards});
 
 };
 
 const deleteCustomer = async (id) => {
     
-    Customer.deleteOne({_id:id})
+    await Customer.deleteOne({_id:id})
 
 }
 

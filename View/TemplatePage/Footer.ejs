@@ -26,14 +26,15 @@
                 <div class="col">
                     <h4>About</h4>
                     <a href="/info">About Us</a>
-                    <a href="#">Delivery Information</a>
-                    <a href="#">Contact Us</a>
+                    <a href="/orders/my">Delivery Information</a>
                 </div>
                 <div class="col">
                     <h4>My Account</h4>
                     <a href="/login">Sign In</a>
                     <a href="/cart">View Cart</a>
-                    
+                    <% if(type!="guest"&&type!=null&&user!=null) { %>
+                        <a href="/customers/update/<%= user._id %>">Update Accound Details</a>
+                    <% } %>
                 </div>
                 <div class="col install">
                     <h4>Secured Payment Gateways</h4>

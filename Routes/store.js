@@ -4,11 +4,13 @@ const productController = require('../Controller/Product');
 const customerService = require('../Services/customer');
 const adminService = require('../Services/admin');
 const supplierService = require('../Services/supplier');
+const reviewService = require('../Services/review');
 
 
 
 router.get('/', async (req,res)=>{
-    const products = await productController.getProductsByFilter({});
+    
+    const products = await productController.getProductsByFilter({});//All products
     const type =req.session.userType;
     const userID = req.session.user;
     const first=false;
@@ -32,9 +34,9 @@ router.get('/', async (req,res)=>{
 
 router.post('/', async (req,res)=>{
     let products = await productController.getProductsByFilter({});
-    if(req.body.search != ""){
+    if(req.body.search != ""){//Searce by letters
         products = products.filter(p => String(p.Title).includes(String(req.body.search)));
-    }
+    }//search By tags
     if(req.body.sports == 'on'){products = products.filter(p => p.Tags.includes("sports"));}
     if(req.body.kids == 'on'){products = products.filter(p => p.Tags.includes("kids"));}
     if(req.body.technology == 'on'){products = products.filter(p => p.Tags.includes("technology"));}
@@ -60,17 +62,7 @@ router.post('/', async (req,res)=>{
 
     res.render("../View/StorePage/StorePage",{products,type,user,first})
 })
-// router.route('/:id').get(async (req,res)=>{
-//     const customer = await customerController.getCustomerById(req,res);
-//     const products = await productController.getProductsByFilter({});
-//     if(!products){
-//         await res.json({message:"Not Found"})
-//         return;
-//     }
 
-//     res.render("../View/StorePage/StorePage",{customer,products})
-
-// })
 
 
 

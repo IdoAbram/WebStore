@@ -33,7 +33,7 @@ function increase(event){
   //handling and increasing the quantity
   let currentValue=document.getElementById(ids[0]).value
   let available = ids[3];
-  if(currentValue!=Number(available)){
+  if(currentValue<Number(available)){
     currentValue=parseInt(currentValue)+1
     document.getElementById(ids[0]).value=currentValue
     increaseQuantity(ids[2])
@@ -100,3 +100,13 @@ function removeFromCart(event,id){
   prod.classList.add("hide");
   fetch("/cart/removeFromCart/"+id)
 }
+
+function setFontSize() {
+  const vw = window.innerWidth;
+  const fontSize = vw / 100; // 1vw = 1% of the viewport width
+  document.documentElement.style.fontSize = fontSize + 'px';
+}
+
+setFontSize(); // Set initial font size on page load
+
+window.addEventListener('resize', setFontSize);

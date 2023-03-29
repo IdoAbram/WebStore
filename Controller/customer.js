@@ -42,8 +42,8 @@ const updateAll =  (req,res) =>{
        updateCustomerMail(req,res);
   if(req.body.password)
        updateCustomerPassword(req,res);
-  if(req.body.shoppingCart)
-       updateCustomerShoppingCart(req,res);
+  if(req.body.creditcards)
+      updateCustomerCreditcard(req,res);
   
 }
 

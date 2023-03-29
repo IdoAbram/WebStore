@@ -16,6 +16,7 @@
       </div>
   </div>
 
+<h1 style="padding-top: 10rem; justify-content: center; display: flex; font-size:100px">Statistics</h1>
 
     <div id="graph-container" style="display: flex; align-items: center; justify-content: center; margin:4rem"></div>
 
@@ -24,12 +25,9 @@
     <div id="graph-address" style="display: flex; align-items: center; justify-content: center;margin:4rem"></div>
 
 
-    <div id="footer1" class="footer mt-auto py-3">
-      <Object class="no-scroll" data="../TemplatePage/TemplateFoot.html" width="100%" height="460rem"></Object>
-  </div>
-  
+    <footer id="footer-place"></footer>
+    <%- include ('../TemplatePage/Footer.ejs') %>
 
-  <br>
 
 
 <script>
@@ -39,7 +37,11 @@
 getGraph() 
 getCounts()
 getByCity()
- 
+window.onload = function() {
+            var footer = document.querySelector('.theFoot');
+            var placeholder = document.querySelector('#footer-place');
+            placeholder.parentNode.insertBefore(footer, placeholder.nextSibling);
+        }
 
 
 function getGraph(){
