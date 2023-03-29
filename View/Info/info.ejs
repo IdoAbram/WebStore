@@ -19,7 +19,7 @@
       <h1 style="margin-top: 6rem;" >Info</h1>
         <% if(type == "admin"){%>
           <h2 style="display: block;">map of customers</h2>
-          <div style="display: flex; align-items: center; justify-content: center; margin-left: 12rem;" id="map"></div>
+          <div class="col-md-6 offset-md-3" style="display: flex; align-items: center; justify-content: center;" id="map"></div>
           <%}%>
         <br>
     </div>
@@ -27,6 +27,12 @@
         <h2 style="display: block;margin: 6rem;">Our stock</h2>
         <div style="display: flex; align-items: center; justify-content: center; ">
         <div style="width: 50rem; height: 25rem;"><canvas id="ma-chart" width="200" height="200"></canvas></div>
+    </div>
+    <div class="col-md-6 offset-md-3" style="margin-top: 4rem;">
+      <h2>Sign Up Example</h2>
+      <video width="100%" height="800" controls>
+        <source src="./signUpExample.mp4" type="video/mp4">
+      </video>
     </div>
     
   
